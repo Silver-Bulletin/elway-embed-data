@@ -1,0 +1,427 @@
+<style>
+@font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:300 800;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
+#qbert-leaderboard{--ink:#101214;--green:#04ff40;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif;--sans:"Geist",Arial,Helvetica,sans-serif;--mono:"Geist Mono",SFMono-Regular,Menlo,Consolas,monospace;max-width:740px;margin:0 auto;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+#qbert-leaderboard *{box-sizing:border-box}
+#qbert-leaderboard .qbl-brandmark{width:28px;height:6px;margin-bottom:8px;background:var(--green)}
+#qbert-leaderboard h1{margin:0;font:700 34px/1.02 var(--headline);letter-spacing:-.015em}
+#qbert-leaderboard .qbl-dek{max-width:680px;margin:10px 0 0;color:#454c52;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Helvetica,sans-serif!important;font-size:15px;font-style:normal;font-weight:400!important;line-height:1.42;font-synthesis:none}
+#qbert-leaderboard .qbl-tabs{display:none}
+#qbert-leaderboard .qbl-boards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+#qbert-leaderboard .qbl-board{min-width:0;background:#fff}
+#qbert-leaderboard .qbl-board-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 12px 8px;background:var(--green);color:var(--ink)}
+#qbert-leaderboard .qbl-board-head h2{margin:0;color:var(--ink);font:750 13px/1.08 var(--sans);letter-spacing:-.005em}
+#qbert-leaderboard .qbl-board-period{flex:0 0 auto;font:600 8px/1 var(--mono);letter-spacing:.04em}
+#qbert-leaderboard .qbl-list{display:grid;gap:0;margin:0;padding:0;border-bottom:1px solid var(--ink);list-style:none}
+#qbert-leaderboard .qbl-entry{display:grid;grid-template-columns:38px 1px minmax(0,1fr) 54px;align-items:center;min-height:66px;border-bottom:1px solid rgba(16,18,20,.14);background:#fff}
+#qbert-leaderboard .qbl-entry:last-child{border-bottom:0}
+#qbert-leaderboard .qbl-rank{justify-self:center;color:var(--ink);font:400 25px/1 var(--sans);font-variant-numeric:tabular-nums}
+#qbert-leaderboard .qbl-divider{align-self:stretch;width:1px;height:auto;background:rgba(16,18,20,.16)}
+#qbert-leaderboard .qbl-identity{min-width:0;padding:0 7px 0 12px}
+#qbert-leaderboard .qbl-identity strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;font-weight:750;line-height:1.08}
+#qbert-leaderboard .qbl-name-full{display:none}
+#qbert-leaderboard .qbl-identity small{display:flex;align-items:center;gap:5px;margin-top:5px;color:var(--ink);font:800 11px/1 var(--sans)}
+#qbert-leaderboard .qbl-team-logo{display:block;width:22px;height:22px;object-fit:contain}
+#qbert-leaderboard .qbl-score{align-self:stretch;display:grid;place-items:center;padding:0 4px;background:var(--heat);color:var(--heat-ink);font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums}
+#qbert-leaderboard .qbl-footer{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(11,67,137,.16)}
+#qbert-leaderboard .qbl-notes{max-width:575px;color:#697178;font:400 8px/1.45 var(--mono)}
+#qbert-leaderboard .qbl-wordmark{display:block;width:104px;height:auto}
+@media(max-width:620px){
+  #qbert-leaderboard{padding:0 2px}
+  #qbert-leaderboard h1{font-size:31px}
+  #qbert-leaderboard .qbl-dek{font-size:14px}
+  #qbert-leaderboard .qbl-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px;border:1px solid var(--ink)}
+  #qbert-leaderboard .qbl-tabs button{min-height:44px;padding:6px 4px;border:0;border-left:1px solid var(--ink);background:#fff;color:var(--ink);font:750 8px/1.15 var(--mono);cursor:pointer}
+  #qbert-leaderboard .qbl-tabs button:first-child{border-left:0}
+  #qbert-leaderboard .qbl-tabs button[aria-selected="true"]{background:var(--ink);color:#fff;box-shadow:inset 0 -4px 0 var(--green)}
+  #qbert-leaderboard .qbl-boards{display:block;margin-top:10px}
+  #qbert-leaderboard .qbl-board{display:none}
+  #qbert-leaderboard .qbl-board.is-active{display:block}
+  #qbert-leaderboard .qbl-entry{grid-template-columns:42px 1px minmax(0,1fr) 64px;min-height:66px}
+  #qbert-leaderboard .qbl-rank{font-size:27px}
+  #qbert-leaderboard .qbl-identity strong{font-size:17px}
+  #qbert-leaderboard .qbl-name-short{display:none}
+  #qbert-leaderboard .qbl-name-full{display:inline}
+  #qbert-leaderboard .qbl-identity small{font-size:10px}
+  #qbert-leaderboard .qbl-team-logo{width:21px;height:21px}
+  #qbert-leaderboard .qbl-score{font-size:16px}
+  #qbert-leaderboard .qbl-footer{align-items:flex-start}
+  #qbert-leaderboard .qbl-wordmark{width:96px}
+}
+@media(max-width:360px){
+  #qbert-leaderboard .qbl-tabs button{font-size:7px}
+  #qbert-leaderboard .qbl-entry{grid-template-columns:38px 1px minmax(0,1fr) 58px}
+  #qbert-leaderboard .qbl-rank{font-size:24px}
+  #qbert-leaderboard .qbl-score{font-size:15px}
+}
+</style>
+<main id="qbert-leaderboard" aria-labelledby="qbl-title">
+  <div class="qbl-brandmark" aria-hidden="true"></div>
+  <h1 id="qbl-title">The QBERT leaderboard</h1>
+  <p class="qbl-dek">The top five quarterbacks by 2025  performance, total value, and the model's Week 1 2026 outlook</p>
+  <nav class="qbl-tabs" aria-label="Leaderboard measure"><button type="button" data-target="adjusted" aria-selected="true">Adjusted QBERT</button><button type="button" data-target="war" aria-selected="false">QBERT WAR</button><button type="button" data-target="projected" aria-selected="false">Projected QBERT</button></nav>
+  <div class="qbl-boards"><section class="qbl-board is-active" data-board="adjusted" aria-labelledby="qbl-adjusted-title">
+      <header class="qbl-board-head"><h2 id="qbl-adjusted-title">Adjusted QBERT</h2></header>
+      <ol class="qbl-list" data-list="adjusted"></ol>
+    </section><section class="qbl-board" data-board="war" aria-labelledby="qbl-war-title">
+      <header class="qbl-board-head"><h2 id="qbl-war-title">QBERT WAR</h2></header>
+      <ol class="qbl-list" data-list="war"></ol>
+    </section><section class="qbl-board" data-board="projected" aria-labelledby="qbl-projected-title">
+      <header class="qbl-board-head"><h2 id="qbl-projected-title">Projected QBERT</h2><span class="qbl-board-period">WEEK 1</span></header>
+      <ol class="qbl-list" data-list="projected"></ol>
+    </section></div>
+  <footer class="qbl-footer">
+    <div class="qbl-notes"></div>
+    <img class="qbl-wordmark" src="https://static.dwcdn.net/custom/themes/silver-bulletin/Silver%20Bulletin%20June2026%20logo%20-%20black.svg" alt="Silver Bulletin" loading="lazy" decoding="async" />
+  </footer>
+</main>
+<script>
+(function(){
+  const root=document.getElementById("qbert-leaderboard");
+  const buttons=[...root.querySelectorAll(".qbl-tabs button")];
+  const boards=[...root.querySelectorAll(".qbl-board")];
+
+  /* ---- Data feed ----
+     Live data comes from three Google Sheets (all shared as "Anyone with the link can view"):
+       qbert_leaders      rank,player_qbert,adj_qbert,player_war,war,player_prior,current_rating  (names are last names, initial only when ambiguous)
+       qbert_depth_charts full names + teams, used to turn "Purdy" into "B. Purdy" / "Brock Purdy" / SF
+       nfl_teams          team,team_name,color,logo
+     The FALLBACK_* CSVs are rendered first and kept if a fetch fails. A board whose live column is blank
+     (e.g. adjusted QBERT / WAR before the season starts) keeps its fallback rows. */
+  /* ---- Google Sheets feed helpers ---- */
+  const SB_SHEET_URL=(id,opts={})=>{let u="https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&headers=1"+(opts.sheet?"&sheet="+encodeURIComponent(opts.sheet):"&gid="+(opts.gid||0));if(opts.query)u+="&tq="+encodeURIComponent(opts.query);return u;};
+  function parseCSV(text){
+    text=String(text||"").replace(/^﻿/,"");
+    const rows=[];let row=[],field="",q=false;
+    for(let i=0;i<text.length;i++){const c=text[i];
+      if(q){if(c==='"'){if(text[i+1]==='"'){field+='"';i++;}else q=false;}else field+=c;}
+      else if(c==='"')q=true;
+      else if(c===","){row.push(field);field="";}
+      else if(c==="\n"){row.push(field);rows.push(row);row=[];field="";}
+      else if(c!=="\r")field+=c;}
+    if(field.length||row.length){row.push(field);rows.push(row);}
+    if(!rows.length)return [];
+    const head=rows.shift().map(h=>h.trim().toLowerCase());
+    return rows.filter(r=>r.some(v=>v.trim()!=="")).map(r=>{const o={};head.forEach((h,i)=>{o[h]=(r[i]==null?"":r[i]).trim();});return o;});
+  }
+  const num=v=>{if(v==null)return null;let s=String(v).trim();if(!s)return null;let pct=false;if(s.endsWith("%")){pct=true;s=s.slice(0,-1);}s=s.replace(/,/g,"");const n=Number(s);if(!Number.isFinite(n))return null;return pct?n/100:n;};
+  const flag=v=>/^(1|true|yes|y|r)$/i.test(String(v==null?"":v).trim());
+  const MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  function ymd(v){
+    if(v==null)return null;const s=String(v).trim();if(!s)return null;let m;
+    if((m=s.match(/^(\d{1,2})\s*([a-z]{3})[a-z]*\.?\s*(\d{4})$/i)))return +m[3]*10000+MONTHS[m[2].toLowerCase()]*100+ +m[1];
+    if((m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)))return +m[1]*10000+ +m[2]*100+ +m[3];
+    if((m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/))){let y=+m[3];if(y<100)y+=y<30?2000:1900;return y*10000+ +m[1]*100+ +m[2];}
+    if((m=s.match(/^([a-z]{3})[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})$/i)))return +m[3]*10000+MONTHS[m[1].toLowerCase()]*100+ +m[2];
+    const d=new Date(s);return isNaN(d)?null:d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  }
+  function fetchGoogleSheet(source){return new Promise((resolve,reject)=>{const url=new URL(source),callback="__qbertSheet_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2),script=document.createElement("script");let done=false;const finish=(error,value)=>{if(done)return;done=true;clearTimeout(timer);script.remove();delete window[callback];error?reject(error):resolve(value)};const timer=setTimeout(()=>finish(new Error("Google Sheets request timed out")),20000);window[callback]=payload=>{try{if(payload.status!=="ok"||!Array.isArray(payload.table?.cols)||!Array.isArray(payload.table?.rows))throw new Error("Google Sheets returned an incomplete response");const headers=payload.table.cols.map(col=>String(col.label||col.id||"").trim().toLowerCase());const rows=payload.table.rows.map(row=>Object.fromEntries(headers.map((header,index)=>{const cell=row.c?.[index];return[header,String(cell?.f??cell?.v??"").trim()]}))).filter(row=>Object.values(row).some(Boolean));finish(null,rows)}catch(error){finish(error)}};script.onerror=()=>finish(new Error("Google Sheets could not be loaded"));url.searchParams.set("tqx","out:json;responseHandler:"+callback);url.searchParams.set("_",Date.now().toString());script.src=url.toString();document.head.append(script)})}
+
+// Same-origin approved-data runtime for the permanent hosted Substack embed.
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+function __sbHostedFeed(source){
+  try{
+    const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
+    if(!match)return null;
+    const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
+    if(!file)return null;
+    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
+    hosted.searchParams.set('_',Date.now().toString());
+    return hosted;
+  }catch(_error){return null;}
+}
+
+async function fetchSheet(source){
+  const hosted=__sbHostedFeed(source);
+  if(!hosted)return fetchGoogleSheet(source);
+  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  try{
+    const response=await fetch(hosted,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
+    const text=await response.text();
+    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
+    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    return parseCSV(text);
+  }catch(error){
+    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
+    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return parseCSV(cached);}
+    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
+    return fetchGoogleSheet(source);
+  }
+}
+
+  const SHEET_LEADERS=SB_SHEET_URL("16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA",{sheet:"_embed_approved_qbert_leaderboard"});
+  const SHEET_ROSTER=SB_SHEET_URL("1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M",{sheet:"_embed_approved_qbert_leaderboard"});
+  const SHEET_TEAMS=SB_SHEET_URL("1eo-5kxojTmrymMI_TjZqbT8IbLv3bgQUACEgY21hk1M");
+  /* qb_career_track: season (col D) and week (col F) of the forthcoming=1 (col P) rows, i.e. the projection week */
+  const SHEET_SCHEDULE=SB_SHEET_URL("1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc",{sheet:"_embed_approved_qbert_leaderboard",query:"select D, F where P = 1 limit 1"});
+  const FALLBACK_PROJECTION={season:2026,week:4};
+  const FALLBACK_STATS_SEASON=2026; /* season the fallback adjusted/WAR boards describe */
+  const FALLBACK_LEADERS_CSV=`rank,player_qbert,adj_qbert,player_war,war,player_prior,current_rating
+1,Purdy,130.464599609375,Purdy,1.7690200060606,Purdy,100.748483027155
+2,Lock,108.978370666504,Prescott,1.16404804587364,Jackson,95.4132215241385
+3,Darnold,104.347038269043,Jackson,1.05735436081886,J. Allen,91.7064888207398
+4,Jackson,104.156463623047,Young,0.963658876717091,Prescott,90.9939793880858
+5,Mariota,104.130180358887,Burrow,0.796972654759884,Lawrence,89.8788197614548`;
+  const FALLBACK_ROSTER_CSV=`team,order,player,displayname,frid,birthdate,qbert,current_starter
+ARI,QB1,Jacoby Brissett,Brissett,BrisJa00,33949,80.04771194512462,1
+ARI,QB2,Gardner Minshew II,Minshew,MinsGa00,35201,72.05895428083448,0
+ARI,QB3,Carson Beck,Beck,BeckCa01,37579,65.76757555220176,0
+ATL,QB1,Michael Penix Jr.,Penix,PeniMi00,36654,80.19860116967347,1
+ATL,QB2,Tua Tagovailoa,Tagovailoa,TagoTu00,35856,78.73681048121203,0
+ATL,QB3,Cooper Rush,Rush,RushCo00,34294,66.50789997788375,0
+ATL,QB4,Jack Strand,Strand,StraJa00,38161,62.92239562288843,0
+BAL,QB1,Lamar Jackson,Jackson,JackLa00,35437,95.41322152413846,1
+BAL,QB2,Tyler Huntley,Huntley,HuntTy01,35829,79.41118576901607,0
+BAL,QB3,Joe Fagnano,Fagnano,FagnJo00,36981,59.61002927313437,0
+BAL,QB4,Skylar Thompson,Thompson,ThomSk00,35585,63.45198191694281,0
+BUF,QB1,Josh Allen,Allen,AlleJo02,35206,91.7064888207398,1
+BUF,QB2,Kyle Allen,Allen,AlleKy00,35132,63.96104320634896,0
+BUF,QB3,Shane Buechele,Buechele,BuecSh00,35803,63.0561500646233,0
+CAR,QB1,Bryce Young,Young,YounBr01,37097,81.8510508800366,1
+CAR,QB2,Kenny Pickett,Pickett,PickKe00,35952,68.86837666894354,0
+CAR,QB3,Haynes King,King,KingHa00,36900,59.32492114261474,0
+CHI,QB1,Caleb Williams,Williams,WillCa03,37213,83.57936415421888,0
+CHI,QB2,Case Keenum,Keenum,KeenCa00,32190,66.63792101336729,1
+CHI,QB3,Tyson Bagent,Bagent,BageTy00,36685,68.63155277273847,0
+CIN,QB1,Joe Burrow,Burrow,BurrJo01,35409,87.6667752655172,1
+CIN,QB2,Joe Flacco,Flacco,FlacJo00,31063,72.66374082522573,0
+CIN,QB3,Josh Johnson,Johnson,JohnJo05,31547,72.60474036819856,0
+CIN,QB4,Sean Clifford,Clifford,ClifSe00,35990,65.03646043689352,0
+CLE,QB1,Deshaun Watson,Watson,WatsDe00,34956,72.9886089003425,1
+CLE,QB2,Shedeur Sanders,Sanders,SandSh00,37294,70.1410015479504,0
+CLE,QB3,Dillon Gabriel,Gabriel,GabrDi00,36888,71.80370505236793,0
+CLE,QB4,Taylen Green,Green,GreeTa00,37547,65.36167467504652,0
+DAL,QB1,Dak Prescott,Prescott,PresDa01,34179,90.9939793880858,1
+DAL,QB2,Sam Howell,Howell,HoweSa00,36785,66.654980226589,0
+DAL,QB3,Joe Milton III,Milton,MiltJo00,36591,67.93494699299679,0
+DEN,QB1,Bo Nix,Nix,NixxBo00,36581,82.72207866809343,1
+DEN,QB2,Jarrett Stidham,Stidham,StidJa00,35285,70.60003910491297,0
+DEN,QB3,Sam Ehlinger,Ehlinger,EhliSa00,36068,69.71723405599236,0
+DET,QB1,Jared Goff,Goff,GoffJa00,34621,85.4447354072378,1
+DET,QB2,Joshua Dobbs,Dobbs,DobbJo00,34725,70.92395929230847,0
+DET,QB3,Luke Altmyer,Altmyer,AltmLu00,37551,61.47249777154633,0
+GB,QB1,Jordan Love,Love,LoveJo03,36101,88.16605073861365,1
+GB,QB2,Tyrod Taylor,Taylor,TaylTy00,32723,74.75407698974477,0
+GB,QB3,Kedon Slovis,Slovis,SlovKe00,36992,62.78779089583492,0
+HOU,QB1,C.J. Stroud,Stroud,StroCJ00,37167,78.44668179215361,1
+HOU,QB2,Davis Mills,Mills,MillDa02,36089,70.5035013473034,0
+HOU,QB3,Graham Mertz,Mertz,MertGr00,36866,63.08299439982576,0
+IND,QB1,Daniel Jones,Jones,JoneDa05,35577,82.64203966078053,1
+IND,QB2,Anthony Richardson Sr.,Richardson,RichAn03,37398,76.1009880266712,0
+IND,QB3,Riley Leonard,Leonard,LeonRi02,37512,73.1264562924251,0
+JAX,QB1,Trevor Lawrence,Lawrence,LawrTr00,36439,89.87881976145482,1
+JAX,QB2,Quinn Ewers,Ewers,EwerQu00,37695,71.47955346556496,0
+JAX,QB3,Nick Mullens,Mullens,MullNi00,34779,70.72789104142929,0
+JAX,QB4,Carter Bradley,Bradley,BradCa02,36594,61.83560355632027,0
+JAX,QB5,Joey Aguilar,Aguilar,AguiJo00,37058,59.87649260452833,0
+KC,QB1,Patrick Mahomes,Mahomes,MahoPa00,34959,88.66303593556601,1
+KC,QB2,Justin Fields,Fields,FielJu00,36224,70.16309028010396,0
+KC,QB3,Garrett Nussmeier,Nussmeier,NussGa00,37293,63.04164744974631,0
+KC,QB4,Chris Oladokun,Oladokun,OladCh00,35676,62.29792813857579,0
+LAC,QB1,Justin Herbert,Herbert,HerbJu00,35864,78.93289845529898,1
+LAC,QB2,Trey Lance,Lance,LancTr00,36655,69.4815491292882,0
+LAC,QB3,DJ Uiagalelei,Uiagalelei,UiagDJ00,36998,61.48500378872374,0
+LAR,QB1,Matthew Stafford,Stafford,StafMa00,32180,87.52682189583174,1
+LAR,QB2,Stetson Bennett IV,Bennett,BennSt00,35731,65.48195740423301,0
+LAR,QB3,Ty Simpson,Simpson,SimpTy00,37611,63.48098960891337,0
+LAR,QB4,Matthew Caldwell,Caldwell,CaldMa00,37764,62.10060016421422,0
+LV,QB1,Kirk Cousins,Cousins,CousKi00,32374,80.0531351020556,1
+LV,QB2,Fernando Mendoza,Mendoza,MendFe00,37895,65.07644007082808,0
+LV,QB3,Aidan O'Connell,O'Connell,OConAi00,36039,72.64188591470918,0
+MIA,QB1,Malik Willis,Willis,WillMa12,36305,78.34267230059031,1
+MIA,QB2,Kyle McCord,McCord,McCoKy00,37518,65.55974791427433,0
+MIA,QB3,Brady Cook,Cook,CookBr03,37176,63.82773871824903,0
+MIN,QB1,Kyler Murray,Murray,MurrKy00,35649,74.74163144117855,1
+MIN,QB2,Carson Wentz,Wentz,WentCa00,33968,67.06582504236292,0
+MIN,QB3,Max Brosmer,Brosmer,BrosMa00,36978,61.34014187434589,0
+NE,QB1,Drake Maye,Maye,MayeDr00,37498,86.4705060580755,1
+NE,QB2,Tommy DeVito,DeVito,DeViTo00,36014,64.46238450758871,0
+NE,QB3,Behren Morton,Morton,MortBe00,37273,62.59107380000984,0
+NO,QB1,Tyler Shough,Shough,ShouTy00,36431,80.60011210633384,1
+NO,QB2,Spencer Rattler,Rattler,RattSp00,36797,75.01593352701937,0
+NO,QB3,Zach Wilson,Wilson,WilsZa00,36375,61.31146276190246,0
+NYG,QB1,Jaxson Dart,Dart,DartJa00,37754,82.35638730160674,0
+NYG,QB2,Jameis Winston,Winston,WinsJa00,34340,75.1479772186967,1
+NYG,QB3,J.J. McCarthy,McCarthy,McCaJJ00,37641,77.63668979799473,0
+NYJ,QB1,Geno Smith,Smith,SmitGe00,33156,74.52973841758958,1
+NYJ,QB2,Cade Klubnik,Klubnik,KlubCa00,37904,65.79376043427528,0
+NYJ,QB3,Will Levis,Levis,LeviWi00,36338,67.73475593370141,0
+PHI,QB1,Jalen Hurts,Hurts,HurtJa00,36014,84.0613992451441,1
+PHI,QB2,Andy Dalton,Dalton,DaltAn00,32079,66.13464260214523,0
+PHI,QB3,Tanner McKee,McKee,McKeTa01,36643,71.00746714382034,0
+PHI,QB4,Cole Payton,Payton,PaytCo00,37555,62.16302228442264,0
+PIT,QB1,Aaron Rodgers,Rodgers,RodgAa00,30652,73.64047603976445,1
+PIT,QB2,Mason Rudolph,Rudolph,RudoMa00,34897,75.12578364005022,0
+PIT,QB3,Will Howard,Howard,HowaWi01,37158,66.11446230995308,0
+PIT,QB4,Drew Allar,Allar,AllaDr00,38054,66.32860518370708,0
+SEA,QB1,Sam Darnold,Darnold,DarnSa00,35586,85.74198656122161,1
+SEA,QB2,Drew Lock,Lock,LockDr00,35379,73.48287036753892,0
+SEA,QB3,Jalen Milroe,Milroe,MilrJa00,37603,63.90819492447566,0
+SF,QB1,Brock Purdy,Purdy,PurdBr00,36521,100.748483027155,1
+SF,QB2,Mac Jones,Jones,JoneMa05,36043,74.83590517148102,0
+SF,QB3,Kurtis Rourke,Rourke,RourKu01,36824,63.12979277591486,0
+TB,QB1,Baker Mayfield,Mayfield,MayfBa00,34803,78.64213971215707,0
+TB,QB2,Jalon Daniels,Daniels,DaniJa03,37558,60.58093236029774,1
+TB,QB3,Easton Stick,Stick,SticEa00,34957,68.93055925933686,0
+TEN,QB1,Cam Ward,Ward,WardCa00,37401,72.5328781323789,1
+TEN,QB2,Mitchell Trubisky,Trubisky,TrubMi00,34566,74.74251116269723,0
+TEN,QB3,Hendon Hooker,Hooker,HookHe00,35808,64.87786968463962,0
+WAS,QB1,Jayden Daniels,Daniels,DaniJa02,36878,84.08580778919286,1
+WAS,QB2,Marcus Mariota,Mariota,MariMa01,34272,81.68949317162853,0
+WAS,QB3,Athan Kaliakmanis,Kaliakmanis,KaliAt00,37853,64.37995311655784,0
+WAS,QB4,Sam Hartman,Hartman,HartSa00,36370,60.97284013943054,0`;
+  const FALLBACK_TEAMS_CSV=`team,team_name,color,logo
+ARI,Arizona Cardinals,#97233f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/ARI.png
+ATL,Atlanta Falcons,#a71930,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/ATL.png
+BAL,Baltimore Ravens,#241773,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/BAL.png
+BUF,Buffalo Bills,#01338d,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/BUF.png
+CAR,Carolina Panthers,#0085ca,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CAR.png
+CHI,Chicago Bears,#0b162a,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CHI.png
+CIN,Cincinnati Bengals,#fb4f14,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CIN.png
+CLE,Cleveland Browns,#311D00,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CLE.png
+DAL,Dallas Cowboys,#041e42,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DAL.png
+DEN,Denver Broncos,#fb4f14,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DEN.png
+DET,Detroit Lions,#0076b6,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DET.png
+GB,Green Bay Packers,#203731,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/GB.png
+HOU,Houston Texans,#03202f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/HOU.png
+IND,Indianapolis Colts,#002c5f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/IND.png
+JAX,Jacksonville Jaguars,#006778,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/JAX.png
+KC,Kansas City Chiefs,#e31837,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/KC.png
+LAC,Los Angeles Chargers,#0080c6,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LAC.png
+LAR,Los Angeles Rams,#003594,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LA.png
+LV,Las Vegas Raiders,#a5acaf,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LV.png
+MIA,Miami Dolphins,#008e97,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/MIA.png
+MIN,Minnesota Vikings,#4f2683,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/MIN.png
+NE,New England Patriots,#002244,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NE.png
+NO,New Orleans Saints,#d3bc8d,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NO.png
+NYG,New York Giants,#0b2265,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NYG.png
+NYJ,New York Jets,#125740,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NYJ.png
+PHI,Philadelphia Eagles,#004c54,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/PHI.png
+PIT,Pittsburgh Steelers,#ffb612,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/PIT.png
+SEA,Seattle Seahawks,#69be28,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/SEA.png
+SF,San Francisco 49ers,#aa0000,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/SF.png
+TB,Tampa Bay Buccaneers,#d50a0a,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/TB.png
+TEN,Tennessee Titans,#4b92db,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/TEN.png
+WAS,Washington Commanders,#5a1414,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/WAS.png`;
+
+  const BOARDS=[
+    {key:"adjusted",name:"player_qbert",value:"adj_qbert",fmt:v=>v.toFixed(1)},
+    {key:"war",name:"player_war",value:"war",fmt:v=>(v>=0?"+":"")+v.toFixed(1)},
+    {key:"projected",name:"player_prior",value:"current_rating",fmt:v=>v.toFixed(1)}
+  ];
+  const HEAT=[["#1318B2","#FFFFFF"],["#4FBED8","#101214"],["#82D7E7","#101214"],["#A9E4EF","#101214"],["#CCEFF6","#101214"]];
+  const TOP_N=5;
+  const escapeHtml=value=>String(value==null?"":value).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  const SUFFIX=/^(jr|sr|ii|iii|iv|v)\.?$/i;
+  const lastWord=name=>{const parts=String(name||"").trim().split(/\s+/);while(parts.length>1&&SUFFIX.test(parts[parts.length-1]))parts.pop();return parts[parts.length-1]||"";};
+  const norm=s=>String(s||"").toLowerCase().replace(/[.'’\-\s]/g,"");
+
+  function buildRoster(records){
+    return records.filter(r=>(r.player||"").trim()).map(r=>({
+      team:(r.team||"").trim().toUpperCase(),
+      order:num(String(r.order||"").replace(/\D/g,""))??99,
+      player:r.player.trim(),
+      display:(r.displayname||"").trim()||lastWord(r.player),
+      starter:flag(r.current_starter)?1:0,
+      rating:num(r.qbert)??-Infinity
+    }));
+  }
+  function buildTeams(records,base){
+    const map=new Map(base||[]);
+    records.forEach(r=>{
+      const code=(r.team||"").trim().toUpperCase();if(!code)return;
+      const prev=map.get(code)||{};
+      map.set(code,{code,name:(r.team_name||"").trim()||prev.name||"",color:(r.color||"").trim()||prev.color||"",logo:(r.logo||"").trim()||prev.logo||""});
+    });
+    return map;
+  }
+  /* "Purdy" / "J. Allen" -> {short:"B. Purdy", full:"Brock Purdy", team:"SF"} */
+  function resolve(shortName,roster){
+    const raw=String(shortName||"").trim();
+    const m=raw.match(/^([A-Za-z])\.?\s+(.+)$/);
+    const initial=m?m[1].toUpperCase():null;
+    const part=m?m[2]:raw;
+    const keys=new Set([norm(part),norm(lastWord(part))]);
+    let cands=roster.filter(r=>keys.has(norm(r.display))||keys.has(norm(lastWord(r.player))));
+    if(initial)cands=cands.filter(r=>r.player[0].toUpperCase()===initial);
+    if(!cands.length)cands=roster.filter(r=>norm(r.player)===norm(raw));
+    if(!cands.length)return {short:raw,full:raw,team:""};
+    cands.sort((a,b)=>(b.starter-a.starter)||(a.order-b.order)||(b.rating-a.rating));
+    const r=cands[0];
+    return {short:`${r.player[0].toUpperCase()}. ${r.display}`,full:r.player,team:r.team};
+  }
+  function boardRows(records,board){
+    return records.map(r=>({rank:num(r.rank),name:(r[board.name]||"").trim(),value:num(r[board.value])}))
+      .filter(r=>r.name&&r.value!=null)
+      .sort((a,b)=>(a.rank??99)-(b.rank??99))
+      .slice(0,TOP_N);
+  }
+  function entryHtml(i,who,team,score){
+    const [bg,ink]=HEAT[Math.min(i,HEAT.length-1)];
+    const logo=team&&team.logo?`<img class="qbl-team-logo" src="${escapeHtml(team.logo)}" alt width="22" height="22" loading="lazy" decoding="async" />`:"";
+    const teamHtml=who.team?`<small>${logo}${escapeHtml(who.team)}</small>`:"";
+    return `<li class="qbl-entry">
+      <span class="qbl-rank">${i+1}</span>
+      <span class="qbl-divider" aria-hidden="true"></span>
+      <span class="qbl-identity"><strong title="${escapeHtml(who.full)}"><span class="qbl-name-short">${escapeHtml(who.short)}</span><span class="qbl-name-full">${escapeHtml(who.full)}</span></strong>${teamHtml}</span>
+      <span class="qbl-score" style="--heat:${bg};--heat-ink:${ink}">${score}</span>
+    </li>`;
+  }
+
+  const state={
+    fallbackLeaders:parseCSV(FALLBACK_LEADERS_CSV),
+    leaders:null,
+    roster:buildRoster(parseCSV(FALLBACK_ROSTER_CSV)),
+    teams:buildTeams(parseCSV(FALLBACK_TEAMS_CSV)),
+    projection:FALLBACK_PROJECTION
+  };
+  const dekEl=root.querySelector(".qbl-dek");
+  const periodEl=root.querySelector(".qbl-board-period");
+
+  function render(){
+    BOARDS.forEach(board=>{
+      const list=root.querySelector(`.qbl-list[data-list="${board.key}"]`);
+      if(!list)return;
+      let rows=state.leaders?boardRows(state.leaders,board):[],source="live";
+      if(!rows.length){rows=boardRows(state.fallbackLeaders,board);source="fallback";}
+      list.closest(".qbl-board").dataset.source=source;
+      list.innerHTML=rows.map((row,i)=>{const who=resolve(row.name,state.roster);return entryHtml(i,who,state.teams.get(who.team),board.fmt(row.value));}).join("");
+    });
+    /* copy: the adjusted/WAR boards describe the current season once the live sheet has values for them */
+    const adjustedLive=root.querySelector('.qbl-board[data-board="adjusted"]').dataset.source==="live";
+    const statsSeason=adjustedLive?state.projection.season:FALLBACK_STATS_SEASON;
+    if(dekEl)dekEl.textContent=`The top five quarterbacks by ${statsSeason} performance, total value, and the model's Week ${state.projection.week} ${state.projection.season} outlook`;
+    if(periodEl)periodEl.textContent=`WEEK ${state.projection.week}`;
+    requestAnimationFrame(reportHeight);
+  }
+
+  function reportHeight(){
+    if(window.parent===window)return;
+    const s=getComputedStyle(document.body);
+    const height=Math.ceil(root.getBoundingClientRect().height+parseFloat(s.paddingTop||0)+parseFloat(s.paddingBottom||0));
+    window.parent.postMessage({type:"silver-bulletin:embed-height",height},"*");
+  }
+  buttons.forEach(button=>button.addEventListener("click",()=>{
+    buttons.forEach(item=>item.setAttribute("aria-selected",String(item===button)));
+    boards.forEach(board=>board.classList.toggle("is-active",board.dataset.board===button.dataset.target));
+    requestAnimationFrame(reportHeight);
+  }));
+  if("ResizeObserver" in window)new ResizeObserver(reportHeight).observe(root);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(reportHeight);
+  window.addEventListener("load",reportHeight);
+  window.addEventListener("resize",reportHeight);
+
+  render();
+  document.documentElement.dataset.feedStatus="fallback";
+  Promise.allSettled([fetchSheet(SHEET_LEADERS),fetchSheet(SHEET_ROSTER),Promise.resolve([]),fetchSheet(SHEET_SCHEDULE)]).then(([leaders,roster,teams,schedule])=>{
+    if(schedule.status==="fulfilled"&&schedule.value.length){const r=schedule.value[0],season=num(r.season),week=num(r.week);if(season!=null&&week!=null)state.projection={season,week};}
+    if(roster.status==="fulfilled"&&roster.value.length)state.roster=buildRoster(roster.value);
+    if(teams.status==="fulfilled"&&teams.value.length)state.teams=buildTeams(teams.value,state.teams);
+    if(leaders.status==="fulfilled"){state.leaders=leaders.value;document.documentElement.dataset.feedStatus="approved";}
+    else console.warn("QBERT leaderboard: showing embedded data.",leaders.reason&&leaders.reason.message);
+    render();
+  });
+})();
+</script>

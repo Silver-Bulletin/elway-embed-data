@@ -1,0 +1,267 @@
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>ELWAY win-total distributions</title>
+<style>
+@font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
+:root{--ink:#101214;--muted:#626a72;--hair:#d9dee2;--soft:#f2f4f5;--green:#04ff40;--blue:#1769e0;--sans:"Geist",Arial,Helvetica,sans-serif;--mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;color-scheme:light}
+#dist{box-sizing:border-box;position:relative;width:100%;max-width:740px;margin:0 auto;padding:8px}
+#dist *{box-sizing:border-box}
+#dist button,#dist input{font:inherit}
+#dist .mark{width:27px;height:0;margin:0 0 5px;border-bottom:5.5px solid var(--green)}
+#dist h1{margin:0;font-family:var(--headline);font-size:28px;font-weight:700;line-height:1.2}
+#dist .dek{max-width:690px;margin:12px 0 0;color:#757575;font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.25;font-synthesis:none}
+#dist .dek b{color:inherit;font-weight:400}
+
+/* Same labeled controls and regular-weight type as the future-game table. */
+#dist .controls{display:flex;align-items:flex-end;gap:8px;margin-top:16px}
+#dist .conference-field,#dist .search-label{display:block;min-width:0}
+#dist .tabs{display:flex;border:1px solid var(--hair);border-radius:3px;overflow:hidden}
+#dist .tab{min-width:50px;min-height:35px;padding:8px 10px;border:0;border-right:1px solid var(--hair);background:#fff;color:#454c52;font:400 12px/1.2 var(--sans);cursor:pointer}
+#dist .tab:last-child{border-right:0}
+#dist .tab[aria-pressed="true"]{background:var(--ink);color:#fff}
+#dist .tab:hover{background:#fafafa}
+#dist .tab[aria-pressed="true"]:hover{background:var(--ink)}
+#dist .tab:focus-visible{outline:2px solid var(--green);outline-offset:-3px}
+#dist .search-label{width:220px;margin-left:auto;padding-right:2px}
+#dist .search{display:block;box-sizing:border-box;-webkit-appearance:none;appearance:none;min-width:0;max-width:100%;margin:0;width:100%;min-height:35px;padding:8px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 12px/1.2 var(--sans)}
+#dist .search:focus{outline:2px solid var(--green);outline-offset:-3px;border-color:var(--ink)}
+#dist .search::placeholder{color:#777}
+
+/* Header and row geometry share one grid; numerical columns are centered. */
+#dist .scroll{margin-top:13px;border-top:1px solid var(--hair)}
+#dist .head,#dist .row{display:grid;grid-template-columns:104px 64px 64px minmax(0,1fr);min-width:0;font-synthesis:none}
+#dist .head{height:44px;border-bottom:1px solid var(--ink);background:#fff;font:400 12.5px/1.1 var(--sans)}
+#dist .head-team,#dist .head-mean,#dist .head-sd{display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+#dist .head-team{grid-column:1;justify-content:flex-start}
+#dist .head-mean{grid-column:2}
+#dist .head-sd{grid-column:3;white-space:nowrap}
+#dist .head-chart{position:relative;grid-column:4;min-width:0;height:100%}
+#dist .axis{position:absolute;left:3px;right:3px;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:2px;color:var(--muted);font:400 12.5px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+#dist .axis span{text-align:center}
+#dist .axis span:not(.show){visibility:hidden}
+#dist .row{height:46px;border-bottom:1px solid #e5e8ea;background:#fff}
+#dist .team{grid-column:1;display:flex;align-items:center;gap:6px;min-width:0;padding:0 8px;background:#fff;color:var(--ink)}
+#dist .logo{display:block;width:22px;height:22px;object-fit:contain;flex:0 0 auto}
+#dist .abbr{display:inline-flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:20px;padding:4px 5px;border-radius:999px;background:var(--team);color:var(--team-ink);font:400 12px/1 var(--sans);letter-spacing:.02em;text-align:center}
+#dist .logo,#dist .abbr{transition:transform 140ms ease,filter 140ms ease}
+@media(hover:hover){#dist .team:hover .logo,#dist .team:hover .abbr{transform:translateY(-1px);filter:drop-shadow(0 2px 2px rgba(16,18,20,.16))}}
+/* Keep full names available to search, downloads and assistive technology. */
+#dist .name{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#dist .mean,#dist .sd{display:flex;align-items:center;justify-content:center;padding:6px 8px;color:var(--ink);font:400 13px/1.1 var(--sans);font-variant-numeric:tabular-nums;text-align:center}
+#dist .mean{grid-column:2}
+#dist .mean strong{font:inherit}
+#dist .mean small{display:none}
+#dist .sd{grid-column:3}
+
+/* Team-colored, square bars share the same probability scale. */
+#dist .chart{position:relative;grid-column:4;display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:2px;align-items:end;min-width:0;height:100%;padding:6px 3px 5px;background:#fff}
+#dist .chart:after{content:"";position:absolute;left:3px;right:3px;bottom:5px;border-bottom:1px solid #e5e8ea;pointer-events:none}
+#dist .bar-wrap{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:center;min-width:0;height:32px;cursor:crosshair}
+#dist .bar{width:100%;max-width:100%;min-height:0!important;border-radius:0;background:var(--team,var(--blue));opacity:1;box-shadow:inset 0 0 0 .5px rgba(16,18,20,.18);pointer-events:none;transform-origin:bottom;transition:transform 120ms ease,filter 120ms ease}
+#dist .bar-wrap:hover,#dist .bar-wrap:focus-visible{z-index:2}
+#dist .bar-wrap:hover .bar,#dist .bar-wrap:focus-visible .bar{transform:translateY(-1px);filter:drop-shadow(0 2px 3px rgba(16,18,20,.20))}
+#dist .bar-wrap:focus-visible{outline:1px solid var(--ink);outline-offset:1px}
+#dist .tooltip{position:absolute;z-index:10;display:none;pointer-events:none;padding:8px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);font:400 13px/1.25 var(--sans);font-variant-numeric:tabular-nums;white-space:nowrap}
+#dist .tooltip strong{font-weight:400}
+#dist .bottom{display:flex;align-items:center;justify-content:center;margin-top:10px}
+#dist .expand{display:block;width:auto;min-width:190px;padding:9px 14px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 11px/1 var(--sans);cursor:pointer}
+#dist .expand:hover{border-color:var(--ink);background:#f7f8f8}
+#dist .expand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+#dist .empty{display:none;padding:22px 0;color:var(--muted);font:400 13px/1.45 var(--sans);text-align:center}
+
+/* The reference retains monospace only for its smaller notes. */
+#dist .footer{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-top:13px;padding-top:11px;border-top:1px solid var(--hair);color:#687178;font:500 8px/1.45 var(--mono)}
+#dist .footer-copy{min-width:0;flex:1}
+#dist .footer-note{max-width:560px}
+#dist .footer-meta{margin-top:7px;color:#777;font:500 9.5px/1.45 var(--mono)}
+#dist .text-action{-webkit-appearance:none;appearance:none;border:0;border-radius:0;background:transparent;padding:0;margin:0;color:inherit;font:inherit;font-weight:800;vertical-align:baseline;cursor:pointer}
+#dist .text-action:hover,#dist .text-action:focus-visible{text-decoration:underline;text-underline-offset:2px}
+#dist .wordmark{display:block;flex:0 0 auto;width:103px;height:auto}
+
+/* On phones, give each histogram a full-width row instead of shrinking it. */
+@media(max-width:620px){
+  #dist .head,#dist .row{grid-template-columns:minmax(0,1fr) 64px 64px}
+  #dist .head{grid-template-rows:38px 26px;height:64px}
+  #dist .head-team,#dist .head-mean,#dist .head-sd{grid-row:1}
+  #dist .head-chart{grid-column:1/-1;grid-row:2;height:26px}
+  #dist .row{grid-template-rows:38px 44px;height:83px}
+  #dist .team,#dist .mean,#dist .sd{grid-row:1}
+  #dist .chart{grid-column:1/-1;grid-row:2;height:44px;border-top:1px solid #edf0f2}
+}
+@media(max-width:480px){
+  #dist .controls{flex-wrap:wrap}
+  #dist .conference-field,#dist .search-label{width:100%;margin:0}
+  #dist .tab{flex:1}
+}
+@media(prefers-reduced-motion:reduce){#dist .bar,#dist .logo,#dist .abbr{transition:none}#dist .bar-wrap:hover .bar,#dist .bar-wrap:focus-visible .bar,#dist .team:hover .logo,#dist .team:hover .abbr{transform:none}}
+</style></head><body><main id="dist"><div class="mark"></div><h1>ELWAY win total distributions</h1><p class="dek">Probability of each team finishing with <b>0–17 wins</b>, based on ELWAY simulations. Taller bars indicate more likely season win totals. Win SD measures the spread of simulated win totals; higher values indicate greater uncertainty</p>
+<section class="controls" aria-label="Table controls"><div class="conference-field"><div class="tabs" role="group" aria-label="Conference"><button class="tab" data-conf="AFC" aria-pressed="true">AFC</button><button class="tab" data-conf="NFC" aria-pressed="false">NFC</button><button class="tab" data-conf="ALL" aria-pressed="false">All</button></div></div><label class="search-label"><input class="search" data-search type="search" aria-label="Search teams" placeholder="Team or abbreviation" /></label></section>
+<div class="scroll"><div class="head"><div class="head-team">Team</div><div class="head-mean">Avg.</div><div class="head-sd" title="Standard deviation of simulated win totals, in wins. Higher values indicate greater uncertainty.">Win SD</div><div class="head-chart"><div class="axis"><span class="show">0</span><span>1</span><span>2</span><span class="show">3</span><span>4</span><span>5</span><span class="show">6</span><span>7</span><span>8</span><span class="show">9</span><span>10</span><span>11</span><span class="show">12</span><span>13</span><span>14</span><span class="show">15</span><span>16</span><span class="show">17</span></div></div></div><div class="rows" data-rows=""></div></div><div class="empty" data-empty>No teams match this search.</div><div class="bottom"><button class="expand" data-expand>Show all 32 teams ↓</button></div>
+<footer class="footer"><div class="footer-copy">Note: Avg. is expected wins. Win SD is the standard deviation of simulated win totals, measured in wins. Higher values indicate greater uncertainty. Updated September 29, 2026 at 11:30 PM EDT</div><img class="wordmark" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MjkuMyAxMjYiPgogIDxnIGlkPSJMYWdfMSIgZGF0YS1uYW1lPSJMYWcgMSI+CiAgICA8Zz4KICAgICAgPHBhdGggZD0iTTUzLjUsNTUuMWwtMTQuMi03Yy00LjMtMi4xLTYuNy0zLjktOC02LjMtMS4yLTIuMS0xLjUtNC4xLTEuNS02LjdzLjUtNC4zLDEuNS02YzEuNC0yLjIsMi40LTMuNCw1LjMtMy40LDUuMywwLDcuOSwzLjQsNy45LDEwLjZ2NS41aDI3LjR2LTUuNUM3MS45LDEyLjUsNTkuOCwwLDM2LjcsMFMxMi41LDUuNSw2LjksMTUuMmMtMy40LDYtNS4zLDEzLjUtNS4zLDIyLjJzMS43LDE1LjQsNSwyMWMzLjEsNS4zLDcuNSw5LjQsMTMuNSwxMi4zbDE0LjIsN2M0LjMsMi4xLDYuNywzLjksOCw2LjMsMS4yLDIuMSwxLjUsNC4xLDEuNSw2LjdzLS41LDQuMy0xLjUsNmMtMS40LDIuMi0zLjQsMy40LTYuNywzLjQtNS41LDAtOC4yLTMuNC04LjItMTAuNnYtNS41SDB2NS41YzAsMjMuOCwxMi4zLDM2LjMsMzUuNiwzNi4zczI1LjUtNS41LDMxLjEtMTUuMmMzLjQtNiw1LjMtMTMuNSw1LjMtMjIuMnMtMS43LTE1LjQtNS0yMWMtMy4xLTUuMy03LjUtOS40LTEzLjUtMTIuM2gwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjIwMi4yIDg1LjggMjAyLjIgMTAyLjMgMTk3LjkgMTAyLjMgMTk3LjkgODUuOCAxOTAuNCAzLjIgMTYxLjIgMy4yIDE3NC41IDEyMi45IDIyNS42IDEyMi45IDIzOSAzLjIgMjA5LjcgMy4yIDIwMi4yIDg1LjgiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxMzguNiAzLjIgMTExLjIgMy4yIDExMS4yIDEyMi45IDE2Ny4zIDEyMi45IDE2Ny4zIDk3LjIgMTM4LjYgOTcuMiAxMzguNiAzLjIiLz4KICAgICAgPHJlY3QgeD0iNzcuNSIgeT0iMy4yIiB3aWR0aD0iMjcuNCIgaGVpZ2h0PSIxMTkuNyIvPgogICAgICA8cGF0aCBkPSJNNDgzLjEsNDkuOGMyLjQtNC4xLDMuOC05LjQsMy44LTE1LjRzLTEuNC0xMy00LjEtMTcuOGMtNS4xLTkuMS0xNS43LTEzLjUtMzEtMTMuNWgtMzcuNXYxMTkuN2gzNy41YzE1LjIsMCwyNS44LTQuNCwzMS0xMy41LDIuNy00LjgsNC4xLTEwLjYsNC4xLTE3LjhzLTEuNC0xMS44LTMuOC0xNS45Yy0zLjQtNS44LTkuMi0xMC44LTIxLjctMTAuOHYtNC4zYzEyLDAsMTguMy01LDIxLjctMTAuOHYuMVpNNDU3LjEsOTMuM2MtMS43LDIuOS00LjQsMy45LTguNywzLjloLTYuN3YtMjIuMmg2LjdjMy45LDAsNywxLjUsOC43LDQuNCwxLDEuNywxLjUsMy45LDEuNSw2LjVzLS4zLDUuMy0xLjUsNy40Wk00NTcuMSw0Ni42Yy0xLjcsMi45LTQuOCw0LjQtOC43LDQuNGgtNi43di0yMi4yaDYuN2M0LjMsMCw3LDEsOC43LDMuOSwxLjIsMi4xLDEuNSw0LjMsMS41LDcuNHMtLjUsNC44LTEuNSw2LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik01MzYsODkuNWMwLDYuNS0yLjYsMTAuOC03LjksMTAuOHMtOC4xLTQuNC04LjEtMTAuOFYzLjJoLTI3LjR2ODYuNGMwLDIyLjYsMTIuOSwzNi40LDM1LjQsMzYuNHMzNS4zLTE0LDM1LjMtMzYuNFYzLjJoLTI3LjR2ODYuNGwuMS0uMVoiLz4KICAgICAgPHBhdGggZD0iTTM1Ny43LDcwLjJ2LTMuOGM3LjktMi4xLDE0LjQtNi4zLDE3LjgtMTIuMywyLjctNC42LDQuMy0xMC4zLDQuMy0xNi4ycy0xLjUtMTQuNC00LjYtMTkuN2MtNS44LTkuNy0xNi42LTE1LTMxLjgtMTVoLTk5Ljh2MTE5LjdoNTcuM3YtMjUuN2gtMjkuOXYtMjEuNGgyOC4ydi0yNS43aC0yOC4ydi0yMS40aDM2Ljl2OTQuMWgyNy40di01MC4xaDEuNWwxNS4yLDUwLjFoMzAuNmwtMTUuNy01MC44LTkuMS0xLjktLjEuMVpNMzUwLjUsNDYuOGMtMS45LDMuMi01LjYsNS4xLTkuNyw1LjFoLTUuNnYtMjMuMWg1LjZjNC4zLDAsOCwyLjEsOS45LDUuNSwxLDEuNywxLjUsMy42LDEuNSw2cy0uNyw0LjgtMS43LDYuNWgwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjU5Ny4zIDk3LjIgNTk3LjMgMy4yIDU3MCAzLjIgNTcwIDEyMi45IDYyMC42IDEyMi45IDYyMC42IDk3LjIgNTk3LjMgOTcuMiIvPgogICAgPC9nPgogICAgPHBhdGggZD0iTTgwOC4xLDEyMi45aDI3LjRWMy4yaC0yNy40djExOS43Wk02MjQuOSwxMjIuOWg1MC42di0yNS43aC0yMy4zVjMuMmgtMjcuNHYxMTkuN2guMVoiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjc5LjcgMy4yIDY3OS43IDEyMi45IDczNy41IDEyMi45IDczNy41IDk3LjIgNzA3IDk3LjIgNzA3IDc1LjggNzM1LjggNzUuOCA3MzUuOCA1MC4yIDcwNyA1MC4yIDcwNyAyOC44IDczNy41IDI4LjggNzU0LjUgMjguOCA3NTQuNSAxMjIuOSA3ODEuOSAxMjIuOSA3ODEuOSAyOC44IDgwMy4yIDI4LjggODAzLjIgMy4yIDY3OS43IDMuMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI5MDQuMyAzIDkwNC4zIDEwMi42IDkwMS41IDEwMi42IDg5OS41IDc3LjIgODgxLjEgMyA4NDAuNyAzIDg0MC43IDEyMi44IDg2NS44IDEyMi44IDg2NS44IDIyLjcgODY4LjcgMjIuNyA4NzAuMyA0OC45IDg4OS4xIDEyMi44IDkyOS4zIDEyMi44IDkyOS4zIDMgOTA0LjMgMyIvPgogIDwvZz4KPC9zdmc+" alt="Silver Bulletin" /></footer><div class="tooltip" data-tip></div></main>
+<script>
+(()=>{
+const root=document.getElementById('dist'),search=root.querySelector('[data-search]'),expand=root.querySelector('[data-expand]'),empty=root.querySelector('[data-empty]'),tip=root.querySelector('[data-tip]');
+const footerCopy=root.querySelector('.footer-copy');
+if(footerCopy){const note=document.createElement('div'),meta=document.createElement('div');note.className='footer-note';note.textContent='Note: Avg. is expected wins. Win SD is the standard deviation of simulated win totals, measured in wins. Higher values indicate greater uncertainty.';meta.className='footer-meta';meta.append('Updated September 29, 2026 at 11:30 PM EDT');footerCopy.replaceChildren(note,meta)}
+let rowEls=[];const teamChrome=new Map([{"conf":"AFC","color":"#01338d","code":"BUF","name":"Bills","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/BUF.webp"},{"conf":"NFC","color":"#aa0000","code":"SF","name":"49ers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/SF.webp"},{"conf":"AFC","color":"#e31837","code":"KC","name":"Chiefs","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/KC.webp"},{"conf":"NFC","color":"#69be28","code":"SEA","name":"Seahawks","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/SEA.webp"},{"conf":"AFC","color":"#241773","code":"BAL","name":"Ravens","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/BAL.webp"},{"conf":"NFC","color":"#4f2683","code":"MIN","name":"Vikings","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/MIN.webp"},{"conf":"NFC","color":"#0076b6","code":"DET","name":"Lions","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/DET.webp"},{"conf":"AFC","color":"#006778","code":"JAX","name":"Jaguars","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/JAX.webp"},{"conf":"AFC","color":"#fb4f14","code":"DEN","name":"Broncos","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/DEN.webp"},{"conf":"AFC","color":"#fb4f14","code":"CIN","name":"Bengals","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/CIN.webp"},{"conf":"NFC","color":"#004c54","code":"PHI","name":"Eagles","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/PHI.webp"},{"conf":"AFC","color":"#002244","code":"NE","name":"Patriots","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/NE.webp"},{"conf":"NFC","color":"#003594","code":"LAR","name":"Rams","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/LAR.webp"},{"conf":"NFC","color":"#0b162a","code":"CHI","name":"Bears","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/CHI.webp"},{"conf":"AFC","color":"#ffb612","code":"PIT","name":"Steelers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/PIT.webp"},{"conf":"AFC","color":"#a5acaf","code":"LV","name":"Raiders","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/LV.webp"},{"conf":"AFC","color":"#03202f","code":"HOU","name":"Texans","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/HOU.webp"},{"conf":"NFC","color":"#d3bc8d","code":"NO","name":"Saints","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/NO.webp"},{"conf":"NFC","color":"#203731","code":"GB","name":"Packers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/GB.webp"},{"conf":"NFC","color":"#a71930","code":"ATL","name":"Falcons","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/ATL.webp"},{"conf":"AFC","color":"#311D00","code":"CLE","name":"Browns","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/CLE.webp"},{"conf":"AFC","color":"#002c5f","code":"IND","name":"Colts","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/IND.webp"},{"conf":"NFC","color":"#041e42","code":"DAL","name":"Cowboys","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/DAL.webp"},{"conf":"NFC","color":"#0b2265","code":"NYG","name":"Giants","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/NYG.webp"},{"conf":"NFC","color":"#5a1414","code":"WAS","name":"Commanders","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/WAS.webp"},{"conf":"NFC","color":"#0085ca","code":"CAR","name":"Panthers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/CAR.webp"},{"conf":"NFC","color":"#97233f","code":"ARI","name":"Cardinals","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/ARI.webp"},{"conf":"AFC","color":"#125740","code":"NYJ","name":"Jets","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/NYJ.webp"},{"conf":"NFC","color":"#d50a0a","code":"TB","name":"Buccaneers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/TB.webp"},{"conf":"AFC","color":"#0080c6","code":"LAC","name":"Chargers","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/LAC.webp"},{"conf":"AFC","color":"#4b92db","code":"TEN","name":"Titans","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/TEN.webp"},{"conf":"AFC","color":"#008e97","code":"MIA","name":"Dolphins","logo":"https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/MIA.webp"}].map(team=>[team.code,team]));
+// Google Visualization's responseHandler transport works in cross-origin embeds.
+// Keep this helper inline: pasted embeds cannot depend on a local JS file.
+function markFeedLive(){document.documentElement.dataset.feedStatus='approved';}
+function fetchPublicSheet(source, options={}){
+  return new Promise((resolve,reject)=>{
+    const url=new URL(source);
+    if(url.protocol!=='https:'||url.hostname!=='docs.google.com'||!/^\/spreadsheets\/d\/[\w-]+\/gviz\/tq$/.test(url.pathname)){
+      reject(new Error('Unrecognized Google Sheets data source'));return;
+    }
+    const callback='__elwaySheet_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2);
+    const script=document.createElement('script');let finished=false;
+    const finish=(error,text)=>{
+      if(finished)return;finished=true;clearTimeout(timer);script.remove();
+      options.signal?.removeEventListener('abort',abort);
+      delete window[callback];
+      if(error)reject(error);else resolve({ok:true,status:200,text:async()=>text});
+    };
+    const abort=()=>finish(new Error('Google Sheets request cancelled'));
+    const timer=setTimeout(()=>finish(new Error('Google Sheets request timed out')),20000);
+    window[callback]=payload=>{
+      try{
+        if(payload.status!=='ok'||!Array.isArray(payload.table?.cols)||!Array.isArray(payload.table?.rows))throw new Error('Google Sheets returned an incomplete response');
+        const cols=payload.table.cols,quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+        const rows=[cols.map(c=>c.label||c.id),...payload.table.rows.map(r=>cols.map((_,i)=>r.c?.[i]?.v??''))];
+        finish(null,rows.map(row=>row.map(quote).join(',')).join('\n'));
+      }catch(error){finish(error)}
+    };
+    script.onerror=()=>finish(new Error('Google Sheets could not be loaded'));
+    script.async=true;script.referrerPolicy='no-referrer';
+    url.searchParams.set('tqx','out:json;responseHandler:'+callback);
+    url.searchParams.set('_',Date.now().toString());
+    script.src=url.toString();
+    if(options.signal?.aborted){abort();return}
+    options.signal?.addEventListener('abort',abort,{once:true});
+    document.head.append(script);
+  });
+}
+
+// Same-origin approved-data runtime for the permanent hosted Substack embed.
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+function __sbHostedFeed(source){
+  try{
+    const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
+    if(!match)return null;
+    const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
+    if(!file)return null;
+    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
+    hosted.searchParams.set('_',Date.now().toString());
+    return hosted;
+  }catch(_error){return null;}
+}
+
+const __sbPreviousFetchPublicSheet=fetchPublicSheet;
+fetchPublicSheet=async function(source,options={}){
+  const hosted=__sbHostedFeed(source);
+  if(!hosted)return __sbPreviousFetchPublicSheet(source,options);
+  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  try{
+    const response=await fetch(hosted,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
+    const text=await response.text();
+    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
+    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    return {ok:true,status:200,text:async()=>text};
+  }catch(error){
+    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
+    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return {ok:true,status:200,text:async()=>cached};}
+    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
+    return __sbPreviousFetchPublicSheet(source,options);
+  }
+};
+
+const SHEET_CSV=id=>`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&headers=1&sheet=_embed_approved_win_totals`;
+const WIN_TOTALS_CSV=SHEET_CSV('18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0','826111639');
+function parseCSV(text){text=String(text||'').replace(/^\uFEFF/,'');const rows=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'){if(text[i+1]==='"'){field+='"';i++;}else quoted=false;}else field+=c;}else if(c==='"')quoted=true;else if(c===','){row.push(field);field='';}else if(c==='\n'){row.push(field);rows.push(row);row=[];field='';}else if(c!=='\r')field+=c;}if(field.length||row.length){row.push(field);rows.push(row);}if(!rows.length)return[];const headers=rows.shift().map(h=>h.trim().toLowerCase());return rows.filter(r=>r.some(v=>String(v).trim())).map(r=>Object.fromEntries(headers.map((h,i)=>[h,String(r[i]??'').trim()])));}
+async function fetchSheet(url){const response=await fetchPublicSheet(url,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status} fetching sheet`);const text=await response.text();if(/^\s*</.test(text))throw new Error('Sheet returned HTML; publish or share it for link viewing.');return parseCSV(text);}
+const numberOrNull=value=>{const text=String(value??'').replace(/,/g,'').trim();if(!text)return null;const n=Number(text);return Number.isFinite(n)?n:null;};
+const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+// Nate's badge rule: white lettering, with dark lettering only for NO, PIT, and LV.
+const teamInk=code=>['NO','PIT','LV'].includes(code)?'#101214':'#fff';
+function paintTeamCells(){rowEls.forEach(row=>{const cell=row.querySelector('.team'),code=row.querySelector('.abbr').textContent.trim();if(cell){row.style.setProperty('--team',cell.style.getPropertyValue('--team'));cell.style.setProperty('--team-ink',teamInk(code));cell.title=row.querySelector('.name').textContent.trim()}})}
+function summarize(values){const ordered=values.slice().sort((a,b)=>a.wins-b.wins),total=ordered.reduce((sum,item)=>sum+item.p,0);if(!total)return null;const normalized=ordered.map(item=>({...item,q:item.p/total}));const mean=normalized.reduce((sum,item)=>sum+item.wins*item.q,0);const variance=normalized.reduce((sum,item)=>sum+item.q*(item.wins-mean)**2,0);const quantile=target=>{let cumulative=0;for(const item of normalized){cumulative+=item.q;if(cumulative>=target)return item.wins;}return normalized.at(-1).wins;};return{values:ordered,mean,sd:Math.sqrt(variance),low:quantile(.1),high:quantile(.9)};}
+function buildLiveRows(records){const groups=new Map();records.forEach(record=>{const code=String(record.home_sb_fran_id||'').trim().toUpperCase(),wins=numberOrNull(record.season_total),p=numberOrNull(record.wins_pct);if(!teamChrome.has(code)||wins==null||p==null)return;if(!groups.has(code))groups.set(code,[]);groups.get(code).push({wins,p});});const teams=[...groups].map(([code,values])=>{const summary=summarize(values);return summary&&values.length===18?{...teamChrome.get(code),...summary}:null;}).filter(Boolean).sort((a,b)=>b.mean-a.mean||a.name.localeCompare(b.name));if(teams.length!==32)throw new Error(`Expected 32 complete teams, received ${teams.length}`);const maxProbability=Math.max(...teams.flatMap(team=>team.values.map(item=>item.p)));return teams.map(team=>`<div class="row" data-team-row data-conf="${team.conference}" data-name="${escapeHtml(`${team.name} ${team.code}`.toLowerCase())}"><div class="team" style="--team:${team.color}"><img class="logo" src="${team.logo}" alt=""><span class="abbr">${team.code}</span><span class="name">${escapeHtml(team.name)}</span></div><div class="mean"><strong>${team.mean.toFixed(1)}</strong><small>${team.low}–${team.high}</small></div><div class="sd" title="Standard deviation: ${team.sd.toFixed(2)} wins">${team.sd.toFixed(1)}</div><div class="chart">${team.values.map(item=>{const height=item.p>0?Math.max(1,item.p/maxProbability*32):0;return`<div class="bar-wrap" tabindex="0" data-team="${escapeHtml(team.name)}" data-wins="${item.wins}" data-p="${item.p}"><div class="bar" style="height:${height.toFixed(2)}px"></div></div>`;}).join('')}</div></div>`).join('');}
+
+function dataVersion(records){const fields=Object.keys(records[0]||{}).sort();const rows=records.map(r=>fields.map(k=>{const v=String(r[k]??'').trim();return v!==''&&Number.isFinite(Number(v))?Number(Number(v).toPrecision(12)):v;})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));const s=JSON.stringify([fields,rows]);let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;return 'win-totals-v1-'+s.length+'-'+h.toString(16);}
+let refreshing=false,hasLiveData=false;
+async function readUpdateStamp(records){
+ try{
+  const u=new URL(WIN_TOTALS_CSV);u.searchParams.set('sheet','_embed_approved_win_totals_meta');
+  const meta=Object.fromEntries((await fetchSheet(u.toString())).map(r=>[r.key,r.value])),stamp=meta.updated_at;
+  return meta.data_version===dataVersion(records)&&/^\d{4}-\d\d-\d\dT/.test(stamp)&&Number.isFinite(Date.parse(stamp))&&Date.parse(stamp)<=Date.now()+60000?stamp:null;
+ }catch(error){console.warn('Win-total update metadata unavailable.',error);return null;}
+}
+function updateTimestamp(stamp){
+ const el=root.querySelector('.footer-meta');if(!el)return;
+ if(!stamp){el.textContent='Updated time unavailable';return;}
+ const d=new Date(stamp),z={timeZone:'America/New_York'};
+ el.textContent='Updated '+new Intl.DateTimeFormat('en-US',{...z,month:'long',day:'numeric',year:'numeric'}).format(d)+' at '+new Intl.DateTimeFormat('en-US',{...z,hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d);
+}
+async function refreshFromSheet(){
+ if(refreshing)return;refreshing=true;
+ try{
+  const records=await fetchSheet(WIN_TOTALS_CSV),html=buildLiveRows(records),stamp=await readUpdateStamp(records);
+  root.querySelector('[data-rows]').innerHTML=html;rowEls=[...root.querySelectorAll('[data-team-row]')];
+  paintTeamCells();hasLiveData=true;markFeedLive();updateTimestamp(stamp);apply();
+ }catch(error){document.documentElement.dataset.feedStatus=hasLiveData?'stale':'fallback';console.warn('ELWAY win totals: retaining the last approved data and timestamp.',error);}
+ finally{refreshing=false;}
+}
+setInterval(()=>{if(!document.hidden)refreshFromSheet()},300000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshFromSheet()});
+let conf='AFC',expanded=false;
+let sortKey=null,sortDirection=-1;
+const sortMetrics=new WeakMap();
+const sortStyle=document.createElement('style');sortStyle.textContent=`
+#dist .sort-button{position:relative;display:block;width:100%;padding:0 0 8px;border:0;background:none;color:inherit;font:inherit;text-align:inherit;cursor:pointer}
+#dist .sort-button::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);font-size:9px;line-height:1}
+#dist .sort-button[data-direction="ascending"]::after{content:'▲'}
+#dist .sort-button[data-direction="descending"]::after{content:'▼'}
+#dist .sort-button:focus-visible{outline:2px solid var(--green);outline-offset:3px}`;root.append(sortStyle);
+const sortButtons=['mean','sd'].map(key=>{
+  const header=root.querySelector('.head-'+key),button=document.createElement('button');
+  button.type='button';button.className='sort-button';button.textContent=header.textContent;
+  button.setAttribute('aria-label',button.textContent+': sort descending');header.replaceChildren(button);
+  button.addEventListener('click',()=>{
+    sortDirection=sortKey===key?-sortDirection:-1;sortKey=key;
+    sortButtons.forEach(({button:b})=>{delete b.dataset.direction;b.setAttribute('aria-label',b.textContent+': sort descending')});
+    button.dataset.direction=sortDirection===1?'ascending':'descending';
+    button.setAttribute('aria-label',button.textContent+': sorted '+button.dataset.direction+'; sort '+(sortDirection===1?'descending':'ascending'));
+    apply();
+  });return{key,button};
+});
+const unsortedApply=apply;
+apply=function(){
+  if(sortKey){
+    rowEls.forEach(row=>{
+      if(!sortMetrics.has(row))sortMetrics.set(row,summarize([...row.querySelectorAll('.bar-wrap')].map(bar=>({wins:Number(bar.dataset.wins),p:Number(bar.dataset.p)}))));
+    });
+    rowEls.sort((a,b)=>sortDirection*(sortMetrics.get(a)[sortKey]-sortMetrics.get(b)[sortKey])||a.dataset.name.localeCompare(b.dataset.name));
+    root.querySelector('[data-rows]').append(...rowEls);
+  }
+  unsortedApply();
+};
+function rescaleBars(){const bars=rowEls.flatMap(row=>[...row.querySelectorAll('.bar-wrap')]),max=Math.max(0,...bars.map(bar=>Number(bar.dataset.p)||0));bars.forEach(bar=>{const p=Number(bar.dataset.p)||0;bar.querySelector('.bar').style.height=(p&&max?Math.max(1,p/max*32):0).toFixed(2)+'px';});}
+function apply(){hideTip();const q=search.value.trim().toLowerCase(),matches=rowEls.filter(r=>(conf==='ALL'||r.dataset.conf===conf)&&(!q||r.dataset.name.includes(q))),limit=(expanded||q)?Infinity:16;rowEls.forEach(r=>r.style.display='none');matches.forEach((r,i)=>{if(i<limit)r.style.display='grid'});empty.style.display=matches.length?'none':'block';expand.style.display=(!q&&matches.length>16)?'inline-block':'none';expand.textContent=expanded?'Show first 16 teams ↑':`Show all ${matches.length} teams ↓`;requestAnimationFrame(reportHeight)}
+function showTip(el,e){tip.innerHTML=`<strong>${el.dataset.team}</strong><br>${el.dataset.wins} wins: ${Number(el.dataset.p).toFixed(1)}%`;const r=root.getBoundingClientRect(),b=el.getBoundingClientRect();tip.style.display='block';const tw=tip.offsetWidth,th=tip.offsetHeight;let left=(e&&e.clientX?e.clientX-r.left:b.left-r.left+b.width/2)-tw/2;left=Math.max(4,Math.min(root.clientWidth-tw-4,left));let top=b.top-r.top-th-4;if(top<0)top=b.bottom-r.top+4;tip.style.left=left+'px';tip.style.top=top+'px'}
+function hideTip(){tip.style.display='none'}
+root.addEventListener('mouseover',e=>{const el=e.target.closest('.bar-wrap');if(el)showTip(el,e)});
+root.addEventListener('mouseout',e=>{if(e.target.closest('.bar-wrap'))hideTip()});
+root.addEventListener('focusin',e=>{const el=e.target.closest('.bar-wrap');if(el)showTip(el)});
+root.addEventListener('focusout',e=>{if(e.target.closest('.bar-wrap'))hideTip()});
+root.querySelectorAll('.tabs button[data-conf]').forEach(btn=>btn.addEventListener('click',()=>{conf=btn.dataset.conf;expanded=false;root.querySelectorAll('.tabs button[data-conf]').forEach(b=>b.setAttribute('aria-pressed',b===btn?'true':'false'));apply()}));
+search.addEventListener('input',()=>{expanded=!!search.value.trim();apply()});
+expand.addEventListener('click',()=>{expanded=!expanded;apply()});
+function reportHeight(){if(window.parent===window)return;const height=Math.ceil(root.getBoundingClientRect().height);window.parent.postMessage({type:'substack-code-embed',source:'height',height},'*');window.parent.postMessage({type:'silver-bulletin:embed-height',height},'*')}
+if('ResizeObserver'in window)new ResizeObserver(reportHeight).observe(root);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(reportHeight);window.addEventListener('resize',()=>{hideTip();reportHeight()});document.documentElement.dataset.feedStatus='fallback';paintTeamCells();rescaleBars();apply();refreshFromSheet();
+})();
+</script></body></html>
+

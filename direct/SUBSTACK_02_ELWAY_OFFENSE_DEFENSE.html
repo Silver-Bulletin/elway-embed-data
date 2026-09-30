@@ -1,0 +1,363 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ELWAY — NFL teams on both sides of the ball</title>
+  <style>
+    @font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+    @font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
+    @font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
+    html,body{margin:0;background:#fff;-webkit-font-smoothing:antialiased}
+    #elway-scatter{--ink:#101214;--muted:#60686e;--hair:#cfd5d9;--green:#04ff40;--blue:#286fd1;--sans:"Geist",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif;box-sizing:border-box;width:100%;max-width:1400px;margin:0 auto;padding:8px;color:var(--ink);font-family:var(--sans);color-scheme:light}
+    #elway-scatter *{box-sizing:border-box}
+    .mark{width:27px;height:0;margin-bottom:5px;border-bottom:5.5px solid var(--green)}
+    h1{margin:0;font-family:var(--headline);font-size:28px;font-weight:700;line-height:1.15}
+    .dek{max-width:680px;margin:10px 0 0;color:#757575;font-size:16px;font-weight:400;line-height:1.25}
+    .dek b{color:var(--ink);font-weight:600}
+    .chart-wrap{position:relative;margin-top:15px;overflow:hidden;background:#fff}
+    svg{display:block;width:100%;height:auto;overflow:visible}
+    .grid{stroke:var(--hair);stroke-width:1;vector-effect:non-scaling-stroke}
+    .average{stroke:#7d858a;stroke-width:1;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
+    .plot-border{fill:none;stroke:var(--ink);stroke-width:1;vector-effect:non-scaling-stroke}
+    .tick{fill:#555d62;font:600 18px/1 var(--sans)}
+    .axis-title{fill:#555d62;font:600 16px/1.2 var(--sans)}
+    .quadrant{fill:#101214;font:700 18px/1.15 var(--sans);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+    .direction-arrow{fill:none;stroke:#101214;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .team-point{cursor:pointer;outline:none}
+    .team-point image{transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 1px 1px rgba(0,0,0,.24)) drop-shadow(0 4px 4px rgba(0,0,0,.16));transition:transform .16s ease,filter .16s ease}
+    .team-point:hover image,.team-point:focus image{transform:translateY(-2px) scale(1.09);filter:drop-shadow(0 2px 1px rgba(0,0,0,.25)) drop-shadow(0 7px 7px rgba(0,0,0,.22))}
+    .tooltip{position:absolute;z-index:5;display:none;pointer-events:none;min-width:140px;padding:8px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.13);color:var(--ink);font:600 12px/1.35 var(--sans)}
+    .tooltip strong{display:block;margin-bottom:2px;font-size:13px}
+    #elway-scatter .tooltip .team-identity{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:6px;margin-bottom:5px;white-space:nowrap}
+    #elway-scatter .tooltip .team-logo{display:block;flex:0 0 22px;width:22px;height:22px;object-fit:contain}
+    #elway-scatter .tooltip .team-code{display:inline-flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:20px;padding:4px 5px;border-radius:999px;background:var(--team);color:var(--team-ink);font:400 12px/1 var(--sans);letter-spacing:.02em;text-align:center}
+    .tooltip span{display:block;color:var(--muted);font:400 12px/1.35 var(--sans)}
+    .loading{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:rgba(255,255,255,.85);color:var(--muted);font:600 11px/1 var(--mono)}
+    .footer{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair);color:#686868;font:500 9.5px/1.35 var(--mono)}
+    .footer-copy{min-width:0;flex:1}
+    .footer-note{max-width:930px}.footer-note strong{font-weight:800}.footer-meta{margin-top:6px;color:#777;font-weight:600}
+    .text-action{-webkit-appearance:none;appearance:none;border:0;border-radius:0;background:transparent;padding:0;margin:0;color:inherit;font:inherit;font-weight:800;vertical-align:baseline;cursor:pointer}.text-action:hover,.text-action:focus-visible{text-decoration:underline;text-underline-offset:2px}
+    .wordmark{display:block;flex:0 0 auto;width:100px;height:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:620px){
+      #elway-scatter{padding:0}
+      h1{font-size:26px}
+      .chart-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+      svg{min-width:900px}
+      .wordmark{width:78px}
+    }
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+/* Header conventions from the supplied Silver Bulletin standings embed. */
+#elway-scatter > .mark,#elway-scatter > .kicker{width:27px;height:0;margin:0 0 5px;padding:0;border:0;border-bottom:5.5px solid var(--green);background:none}
+#elway-scatter > h1{margin:0;color:var(--ink);font-family:var(--headline);font-size:28px;font-style:normal;font-weight:700;line-height:1.15;letter-spacing:0;text-transform:none}
+#elway-scatter > h1 span{color:inherit}
+#elway-scatter > .dek{max-width:680px;margin:10px 0 0;color:#757575;font-family:var(--sans)!important;font-size:16px;font-style:normal;font-weight:400!important;line-height:1.25;letter-spacing:0;font-synthesis:none}
+@media(max-width:620px){
+  #elway-scatter > h1{font-size:26px}
+}
+    .tick{fill:#555d62;font:400 15px/1 var(--mono)}
+    .strong-quadrant{fill:url(#strong-quadrant-gradient)}
+    .quadrant-title{fill:var(--ink);font:400 23px/1 var(--sans);letter-spacing:-.015em;paint-order:stroke;stroke:#fff;stroke-width:6px;stroke-linejoin:round}
+    .quadrant-arrow{fill:var(--green-strong);stroke:none;pointer-events:none}
+    .caption-arrow{fill:var(--green-strong);font-weight:700}
+    .zone-edge{stroke:var(--green-strong);stroke-width:2.5;opacity:.45;vector-effect:non-scaling-stroke}
+    #elway-scatter{--green-strong:#00d936}
+    svg.quadrant-arrow{width:44px;height:44px}
+  </style>
+</head>
+<body>
+<main id="elway-scatter">
+  <div class="mark" aria-hidden="true"></div>
+  <h1>NFL teams on both sides of the ball</h1>
+  <p class="dek">Projected points scored and allowed for every NFL team. Farther <b>right</b> means a better offense; farther <b>up</b> means a better defense</p>
+  <div class="chart-wrap">
+    <svg data-chart viewbox="0 0 1200 960" role="img" aria-label="Projected NFL points scored versus points allowed" aria-describedby="scatter-desc">
+      <desc id="scatter-desc">Each NFL team is represented by its logo. Teams toward the upper right project well on both offense and defense.</desc>
+    </svg>
+    <div class="tooltip" data-tooltip role="status"></div>
+    <div class="loading" data-loading>Updating from Google Sheets…</div>
+  </div>
+  <div class="sr-only" data-table aria-live="polite"></div>
+  <footer class="footer">
+    <div class="footer-copy"><div class="footer-note">Note: ELWAY NFL ratings do <strong>not</strong> solely reflect performance in 2025; there is carryover from season to season. This version of ELWAY builds in an adjustment based on the top-rated healthy QB on a team's depth chart for the forthcoming week, plus other current injuries to non-QB players.</div><div class="footer-meta">Source: ELWAY</div></div>
+    <img class="wordmark" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MjkuMyAxMjYiPgogIDxnIGlkPSJMYWdfMSIgZGF0YS1uYW1lPSJMYWcgMSI+CiAgICA8Zz4KICAgICAgPHBhdGggZD0iTTUzLjUsNTUuMWwtMTQuMi03Yy00LjMtMi4xLTYuNy0zLjktOC02LjMtMS4yLTIuMS0xLjUtNC4xLTEuNS02LjdzLjUtNC4zLDEuNS02YzEuNC0yLjIsMi40LTMuNCw1LjMtMy40LDUuMywwLDcuOSwzLjQsNy45LDEwLjZ2NS41aDI3LjR2LTUuNUM3MS45LDEyLjUsNTkuOCwwLDM2LjcsMFMxMi41LDUuNSw2LjksMTUuMmMtMy40LDYtNS4zLDEzLjUtNS4zLDIyLjJzMS43LDE1LjQsNSwyMWMzLjEsNS4zLDcuNSw5LjQsMTMuNSwxMi4zbDE0LjIsN2M0LjMsMi4xLDYuNywzLjksOCw2LjMsMS4yLDIuMSwxLjUsNC4xLDEuNSw2LjdzLS41LDQuMy0xLjUsNmMtMS40LDIuMi0zLjQsMy40LTYuNywzLjQtNS41LDAtOC4yLTMuNC04LjItMTAuNnYtNS41SDB2NS41YzAsMjMuOCwxMi4zLDM2LjMsMzUuNiwzNi4zczI1LjUtNS41LDMxLjEtMTUuMmMzLjQtNiw1LjMtMTMuNSw1LjMtMjIuMnMtMS43LTE1LjQtNS0yMWMtMy4xLTUuMy03LjUtOS40LTEzLjUtMTIuM2gwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjIwMi4yIDg1LjggMjAyLjIgMTAyLjMgMTk3LjkgMTAyLjMgMTk3LjkgODUuOCAxOTAuNCAzLjIgMTYxLjIgMy4yIDE3NC41IDEyMi45IDIyNS42IDEyMi45IDIzOSAzLjIgMjA5LjcgMy4yIDIwMi4yIDg1LjgiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxMzguNiAzLjIgMTExLjIgMy4yIDExMS4yIDEyMi45IDE2Ny4zIDEyMi45IDE2Ny4zIDk3LjIgMTM4LjYgOTcuMiAxMzguNiAzLjIiLz4KICAgICAgPHJlY3QgeD0iNzcuNSIgeT0iMy4yIiB3aWR0aD0iMjcuNCIgaGVpZ2h0PSIxMTkuNyIvPgogICAgICA8cGF0aCBkPSJNNDgzLjEsNDkuOGMyLjQtNC4xLDMuOC05LjQsMy44LTE1LjRzLTEuNC0xMy00LjEtMTcuOGMtNS4xLTkuMS0xNS43LTEzLjUtMzEtMTMuNWgtMzcuNXYxMTkuN2gzNy41YzE1LjIsMCwyNS44LTQuNCwzMS0xMy41LDIuNy00LjgsNC4xLTEwLjYsNC4xLTE3LjhzLTEuNC0xMS44LTMuOC0xNS45Yy0zLjQtNS44LTkuMi0xMC44LTIxLjctMTAuOHYtNC4zYzEyLDAsMTguMy01LDIxLjctMTAuOHYuMVpNNDU3LjEsOTMuM2MtMS43LDIuOS00LjQsMy45LTguNywzLjloLTYuN3YtMjIuMmg2LjdjMy45LDAsNywxLjUsOC43LDQuNCwxLDEuNywxLjUsMy45LDEuNSw2LjVzLS4zLDUuMy0xLjUsNy40Wk00NTcuMSw0Ni42Yy0xLjcsMi45LTQuOCw0LjQtOC43LDQuNGgtNi43di0yMi4yaDYuN2M0LjMsMCw3LDEsOC43LDMuOSwxLjIsMi4xLDEuNSw0LjMsMS41LDcuNHMtLjUsNC44LTEuNSw2LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik01MzYsODkuNWMwLDYuNS0yLjYsMTAuOC03LjksMTAuOHMtOC4xLTQuNC04LjEtMTAuOFYzLjJoLTI3LjR2ODYuNGMwLDIyLjYsMTIuOSwzNi40LDM1LjQsMzYuNHMzNS4zLTE0LDM1LjMtMzYuNFYzLjJoLTI3LjR2ODYuNGwuMS0uMVoiLz4KICAgICAgPHBhdGggZD0iTTM1Ny43LDcwLjJ2LTMuOGM3LjktMi4xLDE0LjQtNi4zLDE3LjgtMTIuMywyLjctNC42LDQuMy0xMC4zLDQuMy0xNi4ycy0xLjUtMTQuNC00LjYtMTkuN2MtNS44LTkuNy0xNi42LTE1LTMxLjgtMTVoLTk5Ljh2MTE5LjdoNTcuM3YtMjUuN2gtMjkuOXYtMjEuNGgyOC4ydi0yNS43aC0yOC4ydi0yMS40aDM2Ljl2OTQuMWgyNy40di01MC4xaDEuNWwxNS4yLDUwLjFoMzAuNmwtMTUuNy01MC44LTkuMS0xLjktLjEuMVpNMzUwLjUsNDYuOGMtMS45LDMuMi01LjYsNS4xLTkuNyw1LjFoLTUuNnYtMjMuMWg1LjZjNC4zLDAsOCwyLjEsOS45LDUuNSwxLDEuNywxLjUsMy42LDEuNSw2cy0uNyw0LjgtMS43LDYuNWgwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjU5Ny4zIDk3LjIgNTk3LjMgMy4yIDU3MCAzLjIgNTcwIDEyMi45IDYyMC42IDEyMi45IDYyMC42IDk3LjIgNTk3LjMgOTcuMiIvPgogICAgPC9nPgogICAgPHBhdGggZD0iTTgwOC4xLDEyMi45aDI3LjRWMy4yaC0yNy40djExOS43Wk02MjQuOSwxMjIuOWg1MC42di0yNS43aC0yMy4zVjMuMmgtMjcuNHYxMTkuN2guMVoiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjc5LjcgMy4yIDY3OS43IDEyMi45IDczNy41IDEyMi45IDczNy41IDk3LjIgNzA3IDk3LjIgNzA3IDc1LjggNzM1LjggNzUuOCA3MzUuOCA1MC4yIDcwNyA1MC4yIDcwNyAyOC44IDczNy41IDI4LjggNzU0LjUgMjguOCA3NTQuNSAxMjIuOSA3ODEuOSAxMjIuOSA3ODEuOSAyOC44IDgwMy4yIDI4LjggODAzLjIgMy4yIDY3OS43IDMuMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI5MDQuMyAzIDkwNC4zIDEwMi42IDkwMS41IDEwMi42IDg5OS41IDc3LjIgODgxLjEgMyA4NDAuNyAzIDg0MC43IDEyMi44IDg2NS44IDEyMi44IDg2NS44IDIyLjcgODY4LjcgMjIuNyA4NzAuMyA0OC45IDg4OS4xIDEyMi44IDkyOS4zIDEyMi44IDkyOS4zIDMgOTA0LjMgMyIvPgogIDwvZz4KPC9zdmc+" alt="Silver Bulletin" />
+  </footer>
+</main>
+<script>
+(()=>{
+// Google Visualization's responseHandler transport works in cross-origin embeds.
+// Keep this helper inline: pasted embeds cannot depend on a local JS file.
+function markFeedLive(){document.documentElement.dataset.feedStatus='approved'}
+function fetchPublicSheet(source, options={}){
+  return new Promise((resolve,reject)=>{
+    const url=new URL(source);
+    if(url.protocol!=='https:'||url.hostname!=='docs.google.com'||!/^\/spreadsheets\/d\/[\w-]+\/gviz\/tq$/.test(url.pathname)){
+      reject(new Error('Unrecognized Google Sheets data source'));return;
+    }
+    const callback='__elwaySheet_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2);
+    const script=document.createElement('script');let finished=false;
+    const finish=(error,text)=>{
+      if(finished)return;finished=true;clearTimeout(timer);script.remove();
+      options.signal?.removeEventListener('abort',abort);
+      delete window[callback];
+      if(error)reject(error);else resolve({ok:true,status:200,text:async()=>text});
+    };
+    const abort=()=>finish(new Error('Google Sheets request cancelled'));
+    const timer=setTimeout(()=>finish(new Error('Google Sheets request timed out')),5000);
+    window[callback]=payload=>{
+      try{
+        if(payload.status!=='ok'||!Array.isArray(payload.table?.cols)||!Array.isArray(payload.table?.rows))throw new Error('Google Sheets returned an incomplete response');
+        const cols=payload.table.cols,quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+        const rows=[cols.map(c=>c.label||c.id),...payload.table.rows.map(r=>cols.map((_,i)=>r.c?.[i]?.v??''))];
+        finish(null,rows.map(row=>row.map(quote).join(',')).join('\n'));
+      }catch(error){finish(error)}
+    };
+    script.onerror=()=>finish(new Error('Google Sheets could not be loaded'));
+    script.async=true;script.referrerPolicy='no-referrer';
+    url.searchParams.set('tqx','out:json;responseHandler:'+callback);
+    url.searchParams.set('_',Date.now().toString());
+    script.src=url.toString();
+    if(options.signal?.aborted){abort();return}
+    options.signal?.addEventListener('abort',abort,{once:true});
+    document.head.append(script);
+  });
+}
+
+// Bundled approved release fallback. Live approved Sheets remain authoritative.
+const __ELWAY_APPROVED_BUNDLE={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"nickname,net_rating,off_rating,off_rank,def_rating,def_rank,elo,qb_rating,qb_category\nBills,6.108208707475956,27.60765739426132,1,21.49944868678536,7,1633.119046867705,Allen (91.7),Plus\nSeahawks,5.849839885171075,24.55087373217938,10,18.7010338470083,1,1629.616064244525,Darnold (85.7),\n49ers,5.263764063427178,27.32885713924203,2,22.06509307581485,10,1614.318924730438,Purdy (100.7),Plus\nChiefs,5.07637785727912,26.44460846525203,3,21.36823060797292,6,1610.703614895918,Mahomes (88.7),\nJaguars,4.058636371267049,25.97087130128826,5,21.91223493002121,9,1588.264034784799,Lawrence (89.9),\nRavens,3.898985903164146,25.97269015571378,4,22.07370425254963,11,1584.721837961164,Jackson (95.4),Plus\nBroncos,3.411848853399203,24.05779701086474,11,20.64594815746554,3,1574.79343226115,Nix (82.7),\nRams,2.527650196747082,25.39652157597557,7,22.86887137922848,13,1554.755200987184,Stafford (87.5),\nLions,2.457844366946155,25.64579639348076,6,23.18795202653461,17,1553.150077829644,Goff (85.4),\nPatriots,2.376969132225287,23.54399305689603,12,21.16702392467074,5,1552.018013172586,Maye (86.5),\nTexans,2.252365030736318,22.75980049018335,17,20.50743545944703,2,1549.492949559776,Stroud (78.4),\nBengals,1.434162400400748,25.07181329649433,8,23.63765089609359,20,1530.990378217338,Burrow (87.7),\nEagles,1.314060203174083,22.91398542242608,16,21.59992521925199,8,1528.741865026079,Hurts (84.1),\nVikings,0.7772242294173388,21.75419333015974,23,20.9769691007424,4,1517.083739776133,Murray (74.7),\nFalcons,-0.1778442205449906,23.02404787995091,15,23.2018921004959,18,1496.131361816461,Penix (80.2),\nPackers,-0.7521429884101707,23.45965879063237,13,24.21180177904254,24,1483.704898731723,Love (88.2),\nColts,-0.9745299830872902,23.13930908118525,14,24.11383906427254,23,1478.858968491011,Jones (82.6),\nCowboys,-1.041040045784282,24.80668745170049,9,25.84772749748478,32,1477.636485739347,Prescott (91.0),Plus\nRaiders,-1.054456220676229,21.77063092487112,22,22.82508714554735,12,1476.945882862188,Cousins (80.1),\nChargers,-1.134387716140079,21.78874498346026,21,22.92313269960034,15,1475.205513468701,Herbert (78.9),\nSteelers,-1.311236770824443,21.8477562186276,20,23.15899298945204,16,1471.361341016291,Rodgers (73.6),\nSaints,-2.172965138702036,21.4996645487592,24,23.67262968746124,21,1452.523206103434,Shough (80.6),\nCommanders,-2.811467226284506,21.95557896912354,19,24.76704619540805,28,1438.79626980572,Daniels (84.1),\nCardinals,-2.823970648884455,22.19113503383456,18,25.01510568271901,30,1438.609675120103,Brissett (80.0),\nGiants,-3.084796505611095,21.38922554095321,25,24.4740220465643,26,1432.646507633725,Winston (75.1),\nBears,-3.134647169236999,21.11544681051909,27,24.25009397975609,25,1431.45201563704,Keenum (66.6),Minus\nPanthers,-3.588931972803366,21.31395798420168,26,24.90288995700505,29,1421.646763177828,Young (81.9),\nBrowns,-3.718762018376427,19.19541131658276,31,22.91417333495919,14,1417.798953026997,Watson (73.0),\nJets,-3.917364357263331,19.68350307586645,29,23.60086743312979,19,1413.673241673815,Smith (74.5),\nBuccaneers,-4.798493596459796,19.03368365227307,32,23.83217724873286,22,1393.892975591114,Daniels (60.6),Minus\nDolphins,-5.026158838647071,20.02979345162731,28,25.05595229027438,31,1389.520423490947,Willis (78.3),\nTitans,-5.284741783094134,19.2876121586041,30,24.57235394169824,27,1383.324918051352,Ward (72.5),","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"key,value\nupdated_at,2026-09-30T03:30:42.347438+00:00\ndata_version,ratings-v1-2979-75aa369c"};
+const __ELWAY_BUNDLE_ID='c9bee173c52d2186';
+const __elwayNetworkFetchPublicSheet=fetchPublicSheet;
+function __elwayFeedKey(source){
+  const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
+  return match?match[1]+'|'+(url.searchParams.get('sheet')||''):'';
+}
+function __elwayResponse(text){return{ok:true,status:200,text:async()=>text}}
+fetchPublicSheet=async function(source,options={}){
+  const key=__elwayFeedKey(source),bundled=__ELWAY_APPROVED_BUNDLE[key];
+  const cacheKey='silver-bulletin:elway-feed:'+__ELWAY_BUNDLE_ID+':'+key;
+  try{
+    const response=await __elwayNetworkFetchPublicSheet(source,options),text=await response.text();
+    if(!text||/^\s*</.test(text))throw new Error('Approved feed returned invalid content');
+    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    return __elwayResponse(text);
+  }catch(error){
+    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
+    const fallback=cached||bundled;
+    if(!fallback)throw error;
+    document.documentElement.dataset.feedTransport=cached?'cached-approved':'bundled-approved';
+    console.warn('ELWAY embed: live refresh unavailable; using the bundled approved release.',error);
+    return __elwayResponse(fallback);
+  }
+};
+
+  // Injury-adjusted ratings; shared update metadata with the team-ratings embed.
+
+// Same-origin approved-data runtime for the permanent hosted Substack embed.
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+function __sbHostedFeed(source){
+  try{
+    const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
+    if(!match)return null;
+    const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
+    if(!file)return null;
+    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
+    hosted.searchParams.set('_',Date.now().toString());
+    return hosted;
+  }catch(_error){return null;}
+}
+
+const __sbPreviousFetchPublicSheet=fetchPublicSheet;
+fetchPublicSheet=async function(source,options={}){
+  const hosted=__sbHostedFeed(source);
+  if(!hosted)return __sbPreviousFetchPublicSheet(source,options);
+  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  try{
+    const response=await fetch(hosted,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
+    const text=await response.text();
+    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
+    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    return {ok:true,status:200,text:async()=>text};
+  }catch(error){
+    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
+    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return {ok:true,status:200,text:async()=>cached};}
+    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
+    return __sbPreviousFetchPublicSheet(source,options);
+  }
+};
+
+  const SHEET_ID='1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc';
+  const SHEET_CSV=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=1&sheet=_embed_approved_scatter`;
+  const fallback=[["BUF",26.80245989336099,22.14465242301975],["DEN",25.11251906027302,20.57072763608948],["LAR",25.3888816635511,21.21945289985102],["SEA",24.26834811582811,20.15381665227214],["HOU",23.75474406004971,19.76947278762925],["NE",24.83177030883432,21.51989079329772],["BAL",25.97453610373455,22.75534471023879],["KC",25.30992270470288,22.72233321902313],["JAX",25.07791306972294,22.72048846649244],["PHI",24.0878994127975,22.31888366725825],["DET",25.06648724644282,23.389312527814],["SF",25.22498090358257,23.75363467364543],["LAC",23.78193085867357,22.46400888904186],["MIN",22.86679593484745,22.11627425137405],["TB",23.5317077383512,23.08248691692793],["GB",24.01815146286306,23.98062355625612],["CIN",24.33382042799399,24.32577661056009],["DAL",24.76248296673471,24.77512857888517],["IND",23.93513265475378,24.11359122439486],["CHI",23.45426597366033,24.44531468750488],["ATL",22.32682140710786,24.03548242502845],["PIT",21.73836391926813,23.54483549324588],["NYG",22.02769119094526,24.07185401346451],["ARI",22.19842922092252,24.64364491083085],["MIA",22.02103925652902,24.68344173873945],["WAS",22.15399179963876,25.0643189815807],["LV",20.75780848270795,24.06558484638436],["NO",20.83155207867287,24.20730129214897],["TEN",20.19443567171357,24.20160568036067],["CLE",18.7619384169924,23.10717686509449],["NYJ",19.34326216488746,24.53802646514853],["CAR",19.39896974299434,24.83456602953547]].map(([code,ppg,papg])=>({code,ppg,papg}));
+  const names={ARI:'Cardinals',ATL:'Falcons',BAL:'Ravens',BUF:'Bills',CAR:'Panthers',CHI:'Bears',CIN:'Bengals',CLE:'Browns',DAL:'Cowboys',DEN:'Broncos',DET:'Lions',GB:'Packers',HOU:'Texans',IND:'Colts',JAX:'Jaguars',KC:'Chiefs',LV:'Raiders',LAC:'Chargers',LAR:'Rams',MIA:'Dolphins',MIN:'Vikings',NE:'Patriots',NO:'Saints',NYG:'Giants',NYJ:'Jets',PHI:'Eagles',PIT:'Steelers',SEA:'Seahawks',SF:'49ers',TB:'Buccaneers',TEN:'Titans',WAS:'Commanders'};
+  const TEAM_COLORS={"ARI":"#97233f","ATL":"#a71930","BAL":"#241773","BUF":"#01338d","CAR":"#0085ca","CHI":"#0b162a","CIN":"#fb4f14","CLE":"#311D00","DAL":"#041e42","DEN":"#fb4f14","DET":"#0076b6","GB":"#203731","HOU":"#03202f","IND":"#002c5f","JAX":"#006778","KC":"#e31837","LAC":"#0080c6","LAR":"#003594","LV":"#a5acaf","MIA":"#008e97","MIN":"#4f2683","NE":"#002244","NO":"#d3bc8d","NYG":"#0b2265","NYJ":"#125740","PHI":"#004c54","PIT":"#ffb612","SEA":"#69be28","SF":"#aa0000","TB":"#d50a0a","TEN":"#4b92db","WAS":"#5a1414"};
+  const root=document.querySelector('#elway-scatter'),svg=root.querySelector('[data-chart]'),tip=root.querySelector('[data-tooltip]'),table=root.querySelector('[data-table]');
+  const chartWrap=root.querySelector('.chart-wrap');
+  let activePoint=null;
+  function hideTooltip(){activePoint=null;tip.style.display='none'}
+  function positionTooltip(){
+    if(!activePoint||!activePoint.isConnected)return;
+    const wrap=chartWrap.getBoundingClientRect(),point=activePoint.getBoundingClientRect(),pad=8,gap=14;
+    const bounds={left:Math.max(wrap.left,0)+pad,right:Math.min(wrap.right,innerWidth)-pad,top:Math.max(wrap.top,0)+pad,bottom:Math.min(wrap.bottom,innerHeight)-pad};
+    if(point.right<bounds.left||point.left>bounds.right||point.bottom<bounds.top||point.top>bounds.bottom){hideTooltip();return}
+    tip.style.display='block';
+    const {width,height}=tip.getBoundingClientRect(),cx=(point.left+point.right)/2,cy=(point.top+point.bottom)/2;
+    const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+    const centeredX=clamp(cx-width/2,bounds.left,bounds.right-width),centeredY=clamp(cy-height/2,bounds.top,bounds.bottom-height);
+    const candidates=[
+      {side:'right',left:point.right+gap,top:centeredY},
+      {side:'left',left:point.left-gap-width,top:centeredY},
+      {side:'above',left:centeredX,top:point.top-gap-height},
+      {side:'below',left:centeredX,top:point.bottom+gap}
+    ];
+    const fits=c=>c.left>=bounds.left&&c.left+width<=bounds.right&&c.top>=bounds.top&&c.top+height<=bounds.bottom;
+    let chosen=candidates.find(fits);
+    // If only a thin strip of the chart is in view, keep the logo clear even
+    // when the tooltip must extend beyond the viewport (but not the chart).
+    if(!chosen){
+      bounds.top=wrap.top+pad;bounds.bottom=wrap.bottom-pad;
+      for(const c of candidates)if(c.side==='left'||c.side==='right')c.top=clamp(cy-height/2,bounds.top,bounds.bottom-height);
+      chosen=candidates.find(fits);
+    }
+    if(!chosen){tip.style.display='none';return}
+    tip.dataset.placement=chosen.side;
+    // Absolute coordinates belong to the scrolled chart content, not its viewport.
+    tip.style.left=`${chosen.left-wrap.left+chartWrap.scrollLeft}px`;
+    tip.style.top=`${chosen.top-wrap.top+chartWrap.scrollTop}px`;
+  }
+  let teams=fallback.slice();
+  const NS='http://www.w3.org/2000/svg';
+  const el=(name,attrs={},text='')=>{const node=document.createElementNS(NS,name);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,v));if(text)node.textContent=text;return node};
+  const logo=code=>`https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/${code==='LAR'?'LA':code}.png`;
+  function parseCSV(text){text=String(text||'').replace(/^\uFEFF/,'');const rows=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'){if(text[i+1]==='"'){field+='"';i++}else quoted=false}else field+=c}else if(c==='"')quoted=true;else if(c===','){row.push(field);field=''}else if(c==='\n'){row.push(field);rows.push(row);row=[];field=''}else if(c!=='\r')field+=c}if(field.length||row.length){row.push(field);rows.push(row)}if(!rows.length)return[];const head=rows.shift().map(v=>v.trim().toLowerCase());return rows.filter(r=>r.some(v=>String(v).trim())).map(r=>Object.fromEntries(head.map((h,i)=>[h,String(r[i]??'').trim()])))}
+  function render(){
+    hideTooltip();
+    svg.replaceChildren();
+    svg.append(el('desc',{id:'scatter-desc'},'Each NFL team is represented by its logo. Teams toward the upper right project well on both offense and defense.'));
+    const W=1200,H=960,m={top:54,right:44,bottom:78,left:70},pw=W-m.left-m.right,ph=H-m.top-m.bottom;
+    const xMin=Math.floor(Math.min(...teams.map(d=>d.ppg))-.2),xMax=Math.ceil(Math.max(...teams.map(d=>d.ppg))+.2);
+    const yMin=Math.floor(Math.min(...teams.map(d=>d.papg))-.2),yMax=Math.ceil(Math.max(...teams.map(d=>d.papg))+.2);
+    const x=v=>m.left+(v-xMin)/(xMax-xMin)*pw,y=v=>m.top+(v-yMin)/(yMax-yMin)*ph;
+    const leagueAverage=teams.reduce((sum,d)=>sum+d.ppg+d.papg,0)/(2*teams.length);
+    const avgX=leagueAverage,avgY=leagueAverage;
+    const defs=el('defs'),gradient=el('linearGradient',{id:'strong-quadrant-gradient',x1:'0%',y1:'100%',x2:'100%',y2:'0%'});
+    gradient.append(el('stop',{offset:'0%','stop-color':'#04ff40','stop-opacity':'0'}));gradient.append(el('stop',{offset:'58%','stop-color':'#04ff40','stop-opacity':'.035'}));gradient.append(el('stop',{offset:'100%','stop-color':'#04ff40','stop-opacity':'.10'}));defs.append(gradient);svg.append(defs);
+    svg.append(el('rect',{class:'strong-quadrant',x:x(avgX),y:m.top,width:m.left+pw-x(avgX),height:y(avgY)-m.top}));
+    for(let v=xMin;v<=xMax;v++){svg.append(el('line',{class:'grid',x1:x(v),x2:x(v),y1:m.top,y2:m.top+ph}));svg.append(el('text',{class:'tick',x:x(v),y:m.top+ph+27,'text-anchor':'middle'},String(v)))}
+    for(let v=yMin;v<=yMax;v++){svg.append(el('line',{class:'grid',x1:m.left,x2:m.left+pw,y1:y(v),y2:y(v)}));svg.append(el('text',{class:'tick',x:m.left-14,y:y(v)+5,'text-anchor':'end'},String(v)))}
+    svg.append(el('line',{class:'average',x1:x(avgX),x2:x(avgX),y1:m.top,y2:m.top+ph}));
+    svg.append(el('line',{class:'average',x1:m.left,x2:m.left+pw,y1:y(avgY),y2:y(avgY)}));
+    svg.append(el('rect',{class:'plot-border',x:m.left,y:m.top,width:pw,height:ph}));
+    svg.append(el('line',{class:'zone-edge',x1:x(avgX),x2:m.left+pw,y1:m.top,y2:m.top}));
+    const defenseX=m.left+24,defenseY=m.top+55;
+    const defenseArrow=el('svg',{class:'quadrant-arrow','aria-hidden':'true',x:defenseX-22,y:defenseY-22,width:44,height:44,viewBox:'0 -960 960 960'});defenseArrow.append(el('path',{d:'M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z'}));svg.append(defenseArrow);
+    svg.append(el('text',{class:'quadrant-title',x:defenseX+34,y:defenseY-1},'Better defense'));
+    svg.append(el('text',{class:'quadrant-sub',x:defenseX+34,y:defenseY+25},'Fewer projected points allowed'));
+    const offenseX=m.left+pw-24,offenseY=m.top+ph-42;
+    svg.append(el('text',{class:'quadrant-title',x:offenseX-56,y:offenseY+7,'text-anchor':'end'},'Better offense'));
+    const offenseArrow=el('svg',{class:'quadrant-arrow','aria-hidden':'true',x:offenseX-44,y:offenseY-22,width:44,height:44,viewBox:'0 -960 960 960'});offenseArrow.append(el('path',{d:'M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z'}));svg.append(offenseArrow);
+    const xCaption=el('text',{class:'axis-caption',x:m.left+pw,y:H-13,'text-anchor':'end'});xCaption.append(el('tspan',{},'More projected points scored'));xCaption.append(el('tspan',{class:'caption-arrow',dx:8},'→'));svg.append(xCaption);
+    const points=teams.map((d,index)=>({d,index,tx:x(d.ppg),ty:y(d.papg),px:x(d.ppg),py:y(d.papg)}));
+    // Share the smallest necessary displacement between neighboring logos.
+    const spacing=54,inset=29;
+    for(let pass=0;pass<600;pass++){
+      if(pass<400)points.forEach(p=>{p.px+=(p.tx-p.px)*.025;p.py+=(p.ty-p.py)*.025});
+      for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){
+        const a=points[i],b=points[j],dx=b.px-a.px,dy=b.py-a.py;
+        const ox=spacing-Math.abs(dx),oy=spacing-Math.abs(dy);
+        if(ox<=0||oy<=0)continue;
+        if(ox<oy){const push=(ox+.001)/2,sign=dx<0?-1:1;a.px-=sign*push;b.px+=sign*push}
+        else{const push=(oy+.001)/2,sign=dy<0?-1:1;a.py-=sign*push;b.py+=sign*push}
+      }
+      points.forEach(p=>{p.px=Math.max(m.left+inset,Math.min(m.left+pw-inset,p.px));p.py=Math.max(m.top+inset,Math.min(m.top+ph-inset,p.py))});
+    }
+    points.forEach(({d,px,py})=>{
+      const g=el('g',{class:'team-point',tabindex:'0',role:'img','aria-label':`${d.code} ${names[d.code]}: ${d.ppg.toFixed(1)} points scored, ${d.papg.toFixed(1)} points allowed`,transform:`translate(${px} ${py})`});
+      g.append(el('image',{href:logo(d.code),x:-24,y:-24,width:48,height:48,preserveAspectRatio:'xMidYMid meet'}));
+      const show=()=>{activePoint=g;tip.innerHTML=`<strong class="team-identity" aria-label="${names[d.code]}"><img class="team-logo" src="${logo(d.code)}" alt=""><span class="team-code" style="--team:${TEAM_COLORS[d.code]};--team-ink:${['NO','PIT','LV'].includes(d.code)?'#101214':'#fff'}">${d.code}</span></strong><span>${d.ppg.toFixed(1)} points scored</span><span>${d.papg.toFixed(1)} points allowed</span>`;positionTooltip()};
+      g.addEventListener('mouseenter',show);g.addEventListener('focus',show);g.addEventListener('mouseleave',hideTooltip);g.addEventListener('blur',hideTooltip);svg.append(g)
+    });
+    table.textContent=teams.map(d=>`${d.code} ${names[d.code]}, ${d.ppg.toFixed(1)} points scored, ${d.papg.toFixed(1)} points allowed`).join('. ');
+    requestAnimationFrame(reportHeight)
+  }
+  function readTeamProjections(rows){
+    if(rows.length!==32)throw Error(`Expected 32 teams; received ${rows.length}`);
+    const seen=new Set();
+    return rows.map(r=>{
+      const code=Object.keys(names).find(code=>names[code].toLowerCase()===String(r.nickname||'').trim().toLowerCase());
+      if(!Object.hasOwn(names,code)||seen.has(code))throw Error(`Invalid or duplicate team: ${code}`);
+      if(r.off_rating==null||r.def_rating==null||String(r.off_rating).trim()===''||String(r.def_rating).trim()==='')throw Error(`Missing points for ${code}`);
+      const ppg=Number(r.off_rating),papg=Number(r.def_rating);
+      if(!Number.isFinite(ppg)||!Number.isFinite(papg)||ppg<0||papg<0)throw Error(`Invalid points for ${code}`);
+      seen.add(code);return{code,ppg,papg};
+    });
+  }
+  function dataVersion(records){const fields=['nickname','net_rating','elo','off_rating','off_rank','def_rating','def_rank','qb_rating','qb_category'];const rows=records.map(r=>fields.map(k=>{const v=String(r[k]??'').trim();return v!==''&&Number.isFinite(Number(v))?Number(Number(v).toPrecision(12)):v;})).sort((a,b)=>String(a[0]).localeCompare(String(b[0]),'en'));const s=JSON.stringify(rows);let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;return 'ratings-v1-'+s.length+'-'+h.toString(16);}
+  let refreshing=false,hasLiveData=false;
+  function updateTimestamp(){
+    const el=root.querySelector('[data-updated]');if(!el)return;
+    if(!hasLiveData)return;
+    const stamp=root.dataset.updatedAt;
+    if(!stamp){el.removeAttribute('datetime');el.textContent='Updated time unavailable';return;}
+    const date=new Date(stamp),zone={timeZone:'America/New_York'};
+    el.dateTime=stamp;
+    el.textContent='Updated '+new Intl.DateTimeFormat('en-US',{...zone,month:'long',day:'numeric',year:'numeric'}).format(date)+' at '+new Intl.DateTimeFormat('en-US',{...zone,hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(date);
+  }
+  async function sourceDate(records){
+    try{
+      const response=await fetchPublicSheet(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=1&sheet=_embed_approved_scatter_meta`);
+      const metadata=Object.fromEntries(parseCSV(await response.text()).map(r=>[r.key,r.value]));
+      const stamp=metadata.updated_at;
+      return metadata.data_version===dataVersion(records)&&/^\d{4}-\d\d-\d\dT/.test(stamp)&&Number.isFinite(Date.parse(stamp))&&Date.parse(stamp)<=Date.now()+60000?stamp:null;
+    }catch(error){console.warn('ELWAY scatter: source timestamp unavailable.',error);return null}
+  }
+  async function refresh(){
+    if(refreshing)return;refreshing=true;
+    try{
+      const res=await fetchPublicSheet(SHEET_CSV,{cache:'no-store'});if(!res.ok)throw Error(`HTTP ${res.status}`);
+      const records=parseCSV(await res.text()),live=readTeamProjections(records),stamp=await sourceDate(records);
+      teams=live;hasLiveData=true;root.dataset.updatedAt=stamp||'';markFeedLive();render();updateTimestamp();
+    }catch(error){document.documentElement.dataset.feedStatus=hasLiveData?'stale':'fallback';console.warn('ELWAY scatter: keeping the last approved data and timestamp.',error)}
+    finally{refreshing=false}
+  }
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(updateTimestamp,0));
+  setInterval(()=>{if(!document.hidden)refresh()},300000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+  function reportHeight(){if(window.parent===window)return;window.parent.postMessage({type:'silver-bulletin:embed-height',height:Math.ceil(root.getBoundingClientRect().height)},'*')}
+  window.addEventListener('resize',positionTooltip);
+  window.addEventListener('scroll',positionTooltip,true);
+  if('ResizeObserver'in window)new ResizeObserver(positionTooltip).observe(chartWrap);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{render();positionTooltip()});
+  if('ResizeObserver'in window)new ResizeObserver(reportHeight).observe(root);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(reportHeight);window.addEventListener('resize',reportHeight);document.documentElement.dataset.feedStatus='fallback';render();refresh();
+})();
+</script>
+</body>
+</html>
+
+
+<style>
+footer.footer .sb-footer-note{max-width:680px;margin:0 0 9px;font:400 10px/1.4 var(--mono);color:#687178}
+footer.footer .sb-updated{display:block;margin-top:8px;font:400 10px/1.4 var(--mono);color:#687178}
+</style>
+<script>
+(()=>{function simplifyFooter(){
+ const footer=document.querySelector('footer.footer');if(!footer)return;
+ const copy=footer.querySelector('.footer-copy,.notes');if(!copy)return;
+ const scale=copy.querySelector('.scale'),existingNote=copy.querySelector('[data-note]');
+ const note=existingNote||document.createElement('div');note.className='sb-footer-note';
+ if(!existingNote)note.textContent="Note: Injury-adjusted ratings against an average opponent. Dashed lines show league averages.";
+ const updated=document.createElement('time');updated.className='sb-updated';updated.setAttribute('data-updated','');updated.dateTime='2026-09-07';updated.textContent='Updated September 7, 2026';
+ const meta=document.createElement('div');
+ meta.className='sb-updated';updated.className='';meta.append(updated);
+ copy.replaceChildren(...(note.textContent?[note]:[]),...(scale?[scale]:[]),meta);
+ window.dispatchEvent(new Event('resize'));
+ }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',simplifyFooter);else simplifyFooter();})();
+</script>
+
+
+
+
+
+
+
