@@ -113,28 +113,28 @@
     },
     "qbert-career": {
       "path": "data/latest/qbert-career.csv",
-      "rows": 144,
-      "sha256": "e3e49e2ee6899953d30e864cb208ad248b38372f89fda06397b1e27915d2b61f"
+      "rows": 146,
+      "sha256": "82d5dfb1f5a983ba4d82e97226f44e14194072f143f7c9b8959b795229d9100f"
     },
     "qbert-career-roster": {
       "path": "data/latest/qbert-career-roster.csv",
       "rows": 107,
-      "sha256": "91cddca8982c26ea87e6faeab67629c7fecfb9fdcd25ddfccc04d97f3b204956"
+      "sha256": "4c849e7b2c71779d5cbc129160d25cd20a658cf3728a0590403833983a2f0c2c"
     },
     "qbert-game-by-game": {
       "path": "data/latest/qbert-game-by-game.csv",
-      "rows": 98,
-      "sha256": "e5a1f73c7caec7e162ebc885d553c3fb14c35dadf7ddec7da28c5dee4991829a"
+      "rows": 100,
+      "sha256": "ae127f40af79472cf406063490e214659d8c3362d468a0537045444815e5c605"
     },
     "qbert-leaderboard": {
       "path": "data/latest/qbert-leaderboard.csv",
       "rows": 5,
-      "sha256": "04533456f040686297863ec8e92f1532bf470d4cfb7e50d34e38ffa34cad53eb"
+      "sha256": "dc3ae9e5021134f50eefe346d9d6de424722b5c07454fd9d4e52b94ce9d089f0"
     },
     "qbert-leaderboard-roster": {
       "path": "data/latest/qbert-leaderboard-roster.csv",
       "rows": 107,
-      "sha256": "91cddca8982c26ea87e6faeab67629c7fecfb9fdcd25ddfccc04d97f3b204956"
+      "sha256": "4c849e7b2c71779d5cbc129160d25cd20a658cf3728a0590403833983a2f0c2c"
     },
     "qbert-projection-week": {
       "path": "data/latest/qbert-projection-week.csv",
@@ -142,6 +142,6 @@
       "sha256": "55a6cdfa6cb35f9713710e31beb599c9e94438b63042dfda45c4cd9332e4e2bd"
     }
   },
-  "published_at": "2026-09-30T17:57:49.314596+00:00",
+  "published_at": "pending-approval",
   "schema": 1
 }
