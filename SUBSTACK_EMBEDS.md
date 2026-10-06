@@ -20,3 +20,4 @@ Substack editing.
 | QBERT leaderboard | `direct/SUBSTACK_08_QBERT_LEADERBOARD.html` |
 | QBERT game-by-game | `direct/SUBSTACK_09_QBERT_GAME_BY_GAME.html` |
 | Compare QB careers | `direct/SUBSTACK_10_QBERT_COMPARE_CAREERS.html` |
+| ELWAY team rating trends | `direct/SUBSTACK_11_ELWAY_RATING_TRENDS.html` |

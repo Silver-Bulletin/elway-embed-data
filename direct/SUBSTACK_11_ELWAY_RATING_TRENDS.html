@@ -1,0 +1,153 @@
+<meta charset="utf-8">
+<style>
+html,body{margin:0;background:#fff}
+#rating-trends{--ink:#101214;--muted:#687178;--hair:#d6dbde;--grid:#e8ebed;--green:#04ff40;--up:#168b38;--down:#d05a32;--sans:"Geist",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif;box-sizing:border-box;width:100%;max-width:760px;margin:0 auto;padding:8px;color:var(--ink);background:#fff;font-family:var(--sans);color-scheme:light}
+#rating-trends *{box-sizing:border-box}
+@font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
+#rating-trends .mark{width:27px;height:0;margin:0 0 5px;border-bottom:5.5px solid var(--green)}
+#rating-trends h1{margin:0;font-family:var(--headline);font-size:28px;font-weight:700;line-height:1.15}
+#rating-trends .dek{max-width:690px;margin:10px 0 0;color:#757575;font-size:16px;line-height:1.3}
+#rating-trends .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:17px}
+#rating-trends .team-picker{position:relative;min-width:0;padding:10px;border:1px solid var(--hair);border-radius:4px;background:#fff}
+#rating-trends .team-picker[hidden]{display:none}
+#rating-trends .compare-add{order:99;min-height:60px;padding:10px 14px;border:1px dashed #aeb6bb;border-radius:4px;background:#fafafa;color:var(--ink);font:700 12px/1.2 var(--sans);cursor:pointer}
+#rating-trends .compare-add[hidden]{display:none}
+#rating-trends .compare-add:hover{border-color:var(--ink);background:#fff}
+#rating-trends .compare-add:focus,#rating-trends .remove-team:focus{outline:2px solid var(--green);outline-offset:1px}
+#rating-trends .remove-team{position:absolute;z-index:2;top:5px;right:6px;width:24px;height:24px;padding:0;border:0;background:transparent;color:var(--muted);font:700 17px/1 var(--mono);cursor:pointer}
+#rating-trends .team-head{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:8px}
+#rating-trends .team-logo{width:34px;height:34px;object-fit:contain}
+#rating-trends .team-stats{text-align:right;white-space:nowrap}
+#rating-trends .team-rating{display:block;font:700 20px/1 var(--headline);font-variant-numeric:tabular-nums}
+#rating-trends .team-change{display:block;margin-top:3px;color:var(--muted);font:600 9px/1 var(--mono)}
+#rating-trends .select-label{display:block;color:var(--muted);font:600 10px/1.2 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+#rating-trends select{display:block;width:100%;min-width:0;min-height:38px;margin-top:7px;padding:7px 30px 7px 9px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 13px/1.2 var(--sans)}
+#rating-trends select:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--ink)}
+#rating-trends .chart-wrap{position:relative;width:100%;margin-top:13px}
+#rating-trends svg{display:block;width:100%;height:auto;overflow:visible}
+#rating-trends .plot-frame{fill:#fff;stroke:var(--hair);stroke-width:1}
+#rating-trends .grid{stroke:var(--grid);stroke-width:1}
+#rating-trends .zero{stroke:#9ca4a9;stroke-width:1;stroke-dasharray:4 4}
+#rating-trends .axis-text{fill:var(--muted);font:500 10px/1 var(--mono)}
+#rating-trends .axis-title{fill:var(--ink);font:500 11px/1 var(--sans)}
+#rating-trends .trend{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+#rating-trends .series-a{stroke:var(--team-a)}
+#rating-trends .series-b{stroke:var(--team-b)}
+#rating-trends .series-c{stroke:var(--team-c)}
+#rating-trends .series-d{stroke:var(--team-d)}
+#rating-trends .point{fill:#fff;stroke-width:2.5}
+#rating-trends .point.current.series-a{fill:var(--team-a)}
+#rating-trends .point.current.series-b{fill:var(--team-b)}
+#rating-trends .point.current.series-c{fill:var(--team-c)}
+#rating-trends .point.current.series-d{fill:var(--team-d)}
+#rating-trends .value-label{font:700 11px/1 var(--mono);text-anchor:end;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+#rating-trends .hit{fill:transparent;stroke:none;pointer-events:all;cursor:crosshair}
+#rating-trends .focus-ring{fill:none;stroke:var(--green);stroke-width:3;display:none}
+#rating-trends .hit:focus+.focus-ring{display:block}
+#rating-trends .tooltip{position:absolute;z-index:5;min-width:155px;max-width:230px;padding:9px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;box-shadow:0 3px 12px rgba(16,18,20,.12);color:var(--ink);font:500 11px/1.35 var(--mono);pointer-events:none;opacity:0;transform:translate(-50%,-100%)}
+#rating-trends .tooltip.show{opacity:1}
+#rating-trends .tooltip strong{display:block;margin-bottom:3px;font:700 13px/1.2 var(--sans)}
+#rating-trends .tooltip .move{font-weight:700}
+#rating-trends .tooltip .move.up{color:var(--up)}
+#rating-trends .tooltip .move.down{color:var(--down)}
+#rating-trends .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:7px;color:var(--muted);font:500 10px/1.3 var(--mono)}
+#rating-trends .legend span{display:inline-flex;align-items:center;gap:6px}
+#rating-trends .legend img{width:20px;height:20px;object-fit:contain}
+#rating-trends .legend i{display:inline-block;width:14px;height:3px;background:var(--swatch)}
+#rating-trends .footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:13px;padding-top:10px;border-top:1px solid var(--hair);color:var(--muted);font:500 9px/1.45 var(--mono)}
+#rating-trends .source{min-width:0}
+#rating-trends .wordmark{flex:0 0 auto;color:#000;font:700 19px/.85 var(--headline);letter-spacing:-.03em;text-transform:uppercase}
+#rating-trends .error{display:none;margin-top:12px;padding:10px;border:1px solid #e0a18d;color:#8f351c;font:600 11px/1.4 var(--mono)}
+#rating-trends .error.show{display:block}
+@media(max-width:520px){
+  #rating-trends h1{font-size:26px}
+  #rating-trends .controls{grid-template-columns:1fr;gap:9px}
+  #rating-trends .wordmark{font-size:16px}
+  #rating-trends .tooltip{max-width:190px}
+}
+</style>
+<main id="rating-trends" style="--team-a:#01338d;--team-b:#e31837;--team-c:#003594;--team-d:#004c54">
+  <div class="mark"></div>
+  <h1>ELWAY team rating trends</h1>
+  <p class="dek">Track a team’s underlying performance rating through the season, then optionally add up to three more teams for comparison. Each point is ELWAY’s net rating after that week—not the game’s scoring margin.</p>
+  <section class="controls" aria-label="Chart controls">
+    <div class="team-picker" data-team-picker="0">
+      <div class="team-head"><img class="team-logo" data-logo-a alt=""><label class="select-label">Team<select data-team-a aria-label="Choose team"></select></label><div class="team-stats" aria-live="polite"><span class="team-rating" data-current-a>—</span><span class="team-change" data-total-a>—</span></div></div>
+    </div>
+    <div class="team-picker" data-team-picker="1" hidden>
+      <button class="remove-team" type="button" data-remove-team="1" aria-label="Remove comparison team">×</button>
+      <div class="team-head"><img class="team-logo" data-logo-b alt=""><label class="select-label">Team 2<select data-team-b aria-label="Choose second team"></select></label><div class="team-stats" aria-live="polite"><span class="team-rating" data-current-b>—</span><span class="team-change" data-total-b>—</span></div></div>
+    </div>
+    <div class="team-picker" data-team-picker="2" hidden>
+      <button class="remove-team" type="button" data-remove-team="2" aria-label="Remove third team">×</button>
+      <div class="team-head"><img class="team-logo" data-logo-c alt=""><label class="select-label">Team 3<select data-team-c aria-label="Choose third team"></select></label><div class="team-stats" aria-live="polite"><span class="team-rating" data-current-c>—</span><span class="team-change" data-total-c>—</span></div></div>
+    </div>
+    <div class="team-picker" data-team-picker="3" hidden>
+      <button class="remove-team" type="button" data-remove-team="3" aria-label="Remove fourth team">×</button>
+      <div class="team-head"><img class="team-logo" data-logo-d alt=""><label class="select-label">Team 4<select data-team-d aria-label="Choose fourth team"></select></label><div class="team-stats" aria-live="polite"><span class="team-rating" data-current-d>—</span><span class="team-change" data-total-d>—</span></div></div>
+    </div>
+    <button class="compare-add" type="button" data-add-team>+ Add team to compare</button>
+  </section>
+  <div class="chart-wrap" data-chart-wrap>
+    <svg data-chart role="img" aria-labelledby="trend-title trend-desc"><title id="trend-title">ELWAY team net-rating trend</title><desc id="trend-desc">Choose a team to see its net rating after every completed week.</desc></svg>
+    <div class="tooltip" data-tooltip role="tooltip"></div>
+  </div>
+  <div class="legend" data-legend aria-label="Chart legend"></div>
+  <div class="error" data-error role="alert">The latest approved trend data could not be loaded. Showing the embedded snapshot.</div>
+  <footer class="footer"><span class="source" data-source>2026 season · Latest approved ELWAY ratings</span><span class="wordmark" aria-label="Silver Bulletin">Silver Bulletin</span></footer>
+</main>
+<script>
+(()=>{
+const root=document.getElementById('rating-trends');
+const selects=['a','b','c','d'].map(slot=>root.querySelector('[data-team-'+slot+']')),svg=root.querySelector('[data-chart]'),wrap=root.querySelector('[data-chart-wrap]');
+const tooltip=root.querySelector('[data-tooltip]'),source=root.querySelector('[data-source]'),errorBox=root.querySelector('[data-error]');
+const currents=['a','b','c','d'].map(slot=>root.querySelector('[data-current-'+slot+']')),totals=['a','b','c','d'].map(slot=>root.querySelector('[data-total-'+slot+']'));
+const logos=['a','b','c','d'].map(slot=>root.querySelector('[data-logo-'+slot+']')),pickers=[...root.querySelectorAll('[data-team-picker]')],legend=root.querySelector('[data-legend]');
+const addTeam=root.querySelector('[data-add-team]'),removeTeams=[...root.querySelectorAll('[data-remove-team]')];
+const DATA_URL='https://silver-bulletin.github.io/elway-embed-data/data/latest/elway-rating-trends.csv';
+const MANIFEST_URL='https://silver-bulletin.github.io/elway-embed-data/data/latest/manifest.json';
+const CACHE_KEY='silver-bulletin:elway-rating-trends:v2';
+const FALLBACK_UPDATED='2026-10-06T19:49:29.016208+00:00';
+const fallback=[
+{week:0,week_status:'complete',games_completed:0,Bears:-.475684,Bengals:-.518408,Bills:4.064592,Broncos:3.436018,Browns:-4.265993,Buccaneers:.510333,Cardinals:-2.704712,Chargers:.904347,Chiefs:1.982478,Colts:.091255,Commanders:-1.388066,Cowboys:-.914247,Dolphins:-3.267577,Eagles:2.669149,Falcons:-1.627719,Giants:-2.106616,Jaguars:1.670863,Jets:-5.006217,Lions:3.084862,Niners:1.542913,Packers:1.393750,Panthers:-3.427149,Patriots:3.114953,Raiders:-4.464392,Rams:4.823158,Ravens:2.082105,Saints:-3.071656,Seahawks:4.162622,Steelers:-1.404534,Texans:3.259636,Titans:-4.542325,Vikings:.028026},
+{week:1,week_status:'complete',games_completed:16,Bears:.013573,Bengals:.158165,Bills:4.692549,Broncos:2.317589,Browns:-5.140236,Buccaneers:.075749,Cardinals:-1.677816,Chargers:-.056460,Chiefs:3.185127,Colts:-1.335396,Commanders:-1.572110,Cowboys:-2.064824,Dolphins:-3.919455,Eagles:2.813004,Falcons:-2.074992,Giants:-.553687,Jaguars:2.556584,Jets:-3.972388,Lions:3.183159,Niners:2.554093,Packers:1.754771,Panthers:-3.888378,Patriots:2.726728,Raiders:-3.794275,Rams:3.459903,Ravens:3.168069,Saints:-3.037380,Seahawks:4.550066,Steelers:-1.278831,Texans:2.522825,Titans:-5.712159,Vikings:-.197129},
+{week:2,week_status:'complete',games_completed:16,Bears:-.584714,Bengals:.663323,Bills:5.725619,Broncos:2.618045,Browns:-4.653851,Buccaneers:-.277273,Cardinals:-3.020730,Chargers:-.908744,Chiefs:3.599133,Colts:-1.785348,Commanders:-1.726521,Cowboys:-1.343352,Dolphins:-4.819459,Eagles:2.652462,Falcons:-3.097949,Giants:-2.205467,Jaguars:1.780391,Jets:-3.616673,Lions:2.485714,Niners:3.463812,Packers:1.647125,Panthers:-2.606561,Patriots:3.217119,Raiders:-3.454981,Rams:4.996258,Ravens:2.854548,Saints:-2.421918,Seahawks:5.592331,Steelers:-2.058971,Texans:2.413972,Titans:-5.717608,Vikings:-.148433},
+{week:3,week_status:'complete',games_completed:16,Bears:.314427,Bengals:.445483,Bills:5.596721,Broncos:2.336430,Browns:-4.687268,Buccaneers:-.553617,Cardinals:-3.655638,Chargers:-1.004669,Chiefs:3.886204,Colts:-1.433017,Commanders:-1.760608,Cowboys:-1.456113,Dolphins:-5.385375,Eagles:1.751218,Falcons:-1.715271,Giants:-2.189274,Jaguars:2.677861,Jets:-3.837235,Lions:3.037257,Niners:4.330311,Packers:.205851,Panthers:-2.564849,Patriots:2.434155,Raiders:-3.208925,Rams:5.871854,Ravens:2.651236,Saints:-2.609322,Seahawks:5.996479,Steelers:-1.549279,Texans:2.066599,Titans:-6.361084,Vikings:.369456},
+{week:4,week_status:'partial',games_completed:1,Bears:.314427,Bengals:.445483,Bills:5.596721,Broncos:2.336430,Browns:-4.193352,Buccaneers:-.553617,Cardinals:-3.655638,Chargers:-1.004669,Chiefs:3.886204,Colts:-1.433017,Commanders:-1.760608,Cowboys:-1.456113,Dolphins:-5.385375,Eagles:1.751218,Falcons:-1.715271,Giants:-2.189274,Jaguars:2.677861,Jets:-3.837235,Lions:3.037257,Niners:4.330311,Packers:.205851,Panthers:-2.564849,Patriots:2.434155,Raiders:-3.208925,Rams:5.871854,Ravens:2.651236,Saints:-2.609322,Seahawks:5.996479,Steelers:-1.706725,Texans:2.066599,Titans:-6.361084,Vikings:.369456}
+];
+const logoBase='https://silver-bulletin.github.io/elway-embed-data/assets/team-logos/';
+const teams={Cardinals:{abbr:'ARI',full:'Arizona Cardinals',color:'#97233f'},Falcons:{abbr:'ATL',full:'Atlanta Falcons',color:'#a71930'},Ravens:{abbr:'BAL',full:'Baltimore Ravens',color:'#241773'},Bills:{abbr:'BUF',full:'Buffalo Bills',color:'#01338d'},Panthers:{abbr:'CAR',full:'Carolina Panthers',color:'#0085ca'},Bears:{abbr:'CHI',full:'Chicago Bears',color:'#c83803'},Bengals:{abbr:'CIN',full:'Cincinnati Bengals',color:'#fb4f14'},Browns:{abbr:'CLE',full:'Cleveland Browns',color:'#7a3b00'},Cowboys:{abbr:'DAL',full:'Dallas Cowboys',color:'#003594'},Broncos:{abbr:'DEN',full:'Denver Broncos',color:'#fb4f14'},Lions:{abbr:'DET',full:'Detroit Lions',color:'#0076b6'},Packers:{abbr:'GB',full:'Green Bay Packers',color:'#203731'},Texans:{abbr:'HOU',full:'Houston Texans',color:'#03202f'},Colts:{abbr:'IND',full:'Indianapolis Colts',color:'#002c5f'},Jaguars:{abbr:'JAX',full:'Jacksonville Jaguars',color:'#006778'},Chiefs:{abbr:'KC',full:'Kansas City Chiefs',color:'#e31837'},Chargers:{abbr:'LAC',full:'Los Angeles Chargers',color:'#0073cf'},Rams:{abbr:'LAR',full:'Los Angeles Rams',color:'#003594'},Raiders:{abbr:'LV',full:'Las Vegas Raiders',color:'#111'},Dolphins:{abbr:'MIA',full:'Miami Dolphins',color:'#008e97'},Vikings:{abbr:'MIN',full:'Minnesota Vikings',color:'#4f2683'},Patriots:{abbr:'NE',full:'New England Patriots',color:'#002244'},Saints:{abbr:'NO',full:'New Orleans Saints',color:'#8a6d1d'},Giants:{abbr:'NYG',full:'New York Giants',color:'#0b2265'},Jets:{abbr:'NYJ',full:'New York Jets',color:'#125740'},Eagles:{abbr:'PHI',full:'Philadelphia Eagles',color:'#004c54'},Steelers:{abbr:'PIT',full:'Pittsburgh Steelers',color:'#8a6d00'},Niners:{abbr:'SF',full:'San Francisco 49ers',color:'#aa0000'},Seahawks:{abbr:'SEA',full:'Seattle Seahawks',color:'#002244'},Buccaneers:{abbr:'TB',full:'Tampa Bay Buccaneers',color:'#d50a0a'},Titans:{abbr:'TEN',full:'Tennessee Titans',color:'#0c2340'},Commanders:{abbr:'WAS',full:'Washington Commanders',color:'#773141'}};
+Object.values(teams).forEach(t=>t.logo=logoBase+t.abbr+'.webp');
+let rows=fallback,selected=['Bills'],resizeTimer;
+function parseCSV(text){text=String(text||'').replace(/^\uFEFF/,'');const out=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'){if(text[i+1]==='"'){field+='"';i++}else quoted=false}else field+=c}else if(c==='"')quoted=true;else if(c===','){row.push(field);field=''}else if(c==='\n'){row.push(field);out.push(row);row=[];field=''}else if(c!=='\r')field+=c}if(field||row.length){row.push(field);out.push(row)}const head=out.shift()||[];return out.filter(r=>r.some(v=>String(v).trim())).map(r=>Object.fromEntries(head.map((h,i)=>[h,String(r[i]??'').trim()]))) }
+function normalize(records){const valid=records.map(r=>{const item={week:Number(r.week),week_status:String(r.week_status||''),games_completed:Number(r.games_completed)};Object.keys(teams).forEach(t=>item[t]=Number(r[t]));return item}).filter(r=>Number.isInteger(r.week)&&Object.keys(teams).every(t=>Number.isFinite(r[t]))).sort((a,b)=>a.week-b.week);if(valid.length<2||valid[0].week!==0)throw Error('Trend feed is incomplete');return valid}
+function fmt(v,digits=1){return (v>0?'+':'')+v.toFixed(digits)}
+function updatedLabel(iso){const d=new Date(iso),tz={timeZone:'America/New_York'};if(!Number.isFinite(d.valueOf()))return null;return 'Updated '+new Intl.DateTimeFormat('en-US',{...tz,month:'long',day:'numeric',year:'numeric'}).format(d)+' at '+new Intl.DateTimeFormat('en-US',{...tz,hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d)}
+function saveTeam(){try{localStorage.setItem(CACHE_KEY+':team',selected[0])}catch(_){}}
+function syncControls(){pickers.forEach((picker,i)=>{picker.hidden=i>=selected.length;if(i<selected.length)selects[i].value=selected[i]});addTeam.hidden=selected.length>=4;saveTeam();draw()}
+function initSelect(){const names=Object.keys(teams).sort((a,b)=>teams[a].full.localeCompare(teams[b].full));selects.forEach((select,i)=>{select.innerHTML='';names.forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=teams[name].full;select.appendChild(o)});select.addEventListener('change',()=>{const next=select.value,other=selected.indexOf(next);if(other>=0&&other!==i){const previous=selected[i];selected[i]=next;selected[other]=previous}else selected[i]=next;syncControls()})});try{const saved=localStorage.getItem(CACHE_KEY+':team');if(saved&&teams[saved])selected[0]=saved}catch(_){}addTeam.addEventListener('click',()=>{const preferred=['Chiefs','Bills','Rams','Eagles','Niners'],next=preferred.find(team=>!selected.includes(team))||names.find(team=>!selected.includes(team));if(!next||selected.length>=4)return;selected.push(next);syncControls();selects[selected.length-1].focus()});removeTeams.forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.removeTeam);if(index>0&&index<selected.length){selected.splice(index,1);syncControls();addTeam.focus()}}));syncControls()}
+function draw(){
+ const classes=['series-a','series-b','series-c','series-d'],vars=['--team-a','--team-b','--team-c','--team-d'],palette=['#164a9f','#d62f45','#e69f00','#00876c'];const series=selected.map((team,i)=>({team,cls:classes[i],slot:i,color:palette[i],values:rows.map(r=>({week:r.week,value:r[team]}))}));if(!series[0].values.length)return;
+ series.forEach((s,i)=>root.style.setProperty(vars[i],s.color));
+ const updateCard=(s,i)=>{const current=s.values.at(-1).value,total=current-s.values[0].value;currents[i].textContent=fmt(current);totals[i].textContent=fmt(total)+' since preseason';totals[i].style.color=total>0?'var(--up)':total<0?'var(--down)':'var(--muted)';logos[i].src=teams[s.team].logo;logos[i].alt=teams[s.team].full+' logo';logos[i].onerror=()=>logos[i].style.visibility='hidden';logos[i].style.visibility='visible'};series.forEach(updateCard);
+ legend.innerHTML=series.map(s=>'<span style="--swatch:'+s.color+'"><img src="'+teams[s.team].logo+'" alt=""><i aria-hidden="true"></i>'+teams[s.team].full+'</span>').join('');
+ const W=Math.max(320,Math.round(wrap.getBoundingClientRect().width||720)),H=W<520?330:358,m={top:34,right:22,bottom:52,left:53},iw=W-m.left-m.right,ih=H-m.top-m.bottom;
+ const all=series.flatMap(s=>s.values.map(d=>d.value));let lo=Math.min(0,...all),hi=Math.max(0,...all);let pad=Math.max(1,(hi-lo)*.14);lo-=pad;hi+=pad;if(hi-lo<4){lo-=2;hi+=2}
+ const firstWeek=series[0].values[0].week,lastWeek=series[0].values.at(-1).week,x=w=>m.left+(w-firstWeek)/(lastWeek-firstWeek)*iw,y=v=>m.top+(hi-v)/(hi-lo)*ih;
+ const ns='http://www.w3.org/2000/svg',names=series.map(s=>teams[s.team].full),nameList=new Intl.ListFormat('en',{style:'long',type:'conjunction'}).format(names);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='<title id="trend-title">'+nameList+' ELWAY rating trend'+(series.length>1?'s':'')+'</title><desc id="trend-desc">Net rating after each completed week for the selected team'+(series.length>1?'s':'')+'.</desc>';
+ const add=(tag,attrs,parent=svg)=>{const el=document.createElementNS(ns,tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,v));parent.appendChild(el);return el};
+ add('rect',{x:m.left,y:m.top,width:iw,height:ih,class:'plot-frame'});
+ const ticks=5;for(let i=0;i<ticks;i++){const v=lo+(hi-lo)*i/(ticks-1),yy=y(v);add('line',{x1:m.left,x2:m.left+iw,y1:yy,y2:yy,class:Math.abs(v)<(hi-lo)/100?'zero':'grid'});const t=add('text',{x:m.left-8,y:yy+3,class:'axis-text','text-anchor':'end'});t.textContent=(Math.abs(v)<.05?0:v).toFixed(1)}
+ if(lo<0&&hi>0)add('line',{x1:m.left,x2:m.left+iw,y1:y(0),y2:y(0),class:'zero'});
+ series[0].values.forEach(d=>{const xx=x(d.week),label=add('text',{x:xx,y:H-m.bottom+22,class:'axis-text','text-anchor':'middle'});label.textContent=d.week===0?'Preseason':'W'+d.week});
+ const endYs=series.map(s=>y(s.values.at(-1).value)),labelYs=endYs.map(v=>v-10),order=labelYs.map((_,i)=>i).sort((a,b)=>labelYs[a]-labelYs[b]);for(let j=1;j<order.length;j++)labelYs[order[j]]=Math.max(labelYs[order[j]],labelYs[order[j-1]]+15);if(order.length){const bottom=labelYs[order.at(-1)]-(m.top+ih-4);if(bottom>0)order.forEach(i=>labelYs[i]-=bottom);const top=(m.top+10)-labelYs[order[0]];if(top>0)order.forEach(i=>labelYs[i]+=top)}const labelOffsets=labelYs.map((v,i)=>v-endYs[i]);
+ series.forEach((s,si)=>{const path=s.values.map((d,i)=>(i?'L':'M')+x(d.week)+','+y(d.value)).join(' ');add('path',{d:path,class:'trend '+s.cls});s.values.forEach((d,i)=>{const xx=x(d.week),yy=y(d.value),isLast=i===s.values.length-1;add('circle',{cx:xx,cy:yy,r:isLast?5.5:4.5,class:'point '+s.cls+(isLast?' current':'')});if(isLast){const label=add('text',{x:xx-9,y:yy+labelOffsets[si],class:'value-label',fill:s.color});label.textContent=teams[s.team].abbr+' '+fmt(d.value)}const delta=i?d.value-s.values[i-1].value:null;const hit=add('circle',{cx:xx,cy:yy,r:20,class:'hit',tabindex:'0','aria-label':teams[s.team].full+', '+(d.week===0?'preseason':'week '+d.week)+': net rating '+fmt(d.value)+(delta===null?'':'; change '+fmt(delta))});const ring=add('circle',{cx:xx,cy:yy,r:9,class:'focus-ring',style:'stroke:'+s.color});const show=()=>{tooltip.innerHTML='<strong>'+teams[s.team].full+'</strong>'+(d.week===0?'Preseason baseline':'Week '+d.week)+'<br>Net rating: '+fmt(d.value)+(delta===null?'':'<br><span class="move '+(delta>=0?'up':'down')+'">Change: '+fmt(delta)+'</span>');tooltip.classList.add('show');const box=wrap.getBoundingClientRect(),left=Math.max(90,Math.min(box.width-90,xx)),top=Math.max(60,yy-10);tooltip.style.left=left+'px';tooltip.style.top=top+'px'};const hide=()=>tooltip.classList.remove('show');hit.addEventListener('mouseenter',show);hit.addEventListener('mouseleave',hide);hit.addEventListener('focus',show);hit.addEventListener('blur',hide);hit.addEventListener('touchstart',show,{passive:true})})});
+ const xt=add('text',{x:m.left+iw/2,y:H-7,class:'axis-title','text-anchor':'middle'});xt.textContent='2026 season';const yt=add('text',{x:13,y:m.top+ih/2,class:'axis-title','text-anchor':'middle',transform:`rotate(-90 13 ${m.top+ih/2})`});yt.textContent='Net rating (points)';reportHeight();
+}
+async function refresh(){try{const response=await fetch(DATA_URL+'?v='+Date.now(),{cache:'no-store',credentials:'omit'});if(!response.ok)throw Error('HTTP '+response.status);const live=normalize(parseCSV(await response.text()));rows=live;try{localStorage.setItem(CACHE_KEY,JSON.stringify({rows:live,savedAt:new Date().toISOString()}))}catch(_){};errorBox.classList.remove('show');try{const mr=await fetch(MANIFEST_URL+'?v='+Date.now(),{cache:'no-store',credentials:'omit'}),manifest=mr.ok?await mr.json():null;if(manifest?.files?.['elway-rating-trends'])source.textContent=updatedLabel(manifest.published_at)||source.textContent}catch(_){};draw()}catch(err){let cached=null;try{cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null')}catch(_){};if(cached?.rows){try{rows=normalize(cached.rows)}catch(_){rows=fallback}}else rows=fallback;source.textContent=updatedLabel(FALLBACK_UPDATED)||source.textContent;errorBox.classList.remove('show');draw();console.warn('ELWAY rating trends: using fallback snapshot',err)}}
+function reportHeight(){if(window.parent===window)return;const h=Math.ceil(Math.max(root.scrollHeight,root.getBoundingClientRect().height));window.parent.postMessage({type:'substack-code-embed',source:'height',height:h},'*');window.parent.postMessage({type:'silver-bulletin:embed-height',height:h},'*')}
+initSelect();draw();refresh();if('ResizeObserver'in window)new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(draw,80)}).observe(wrap);if(document.fonts?.ready)document.fonts.ready.then(()=>{draw();reportHeight()});window.addEventListener('load',reportHeight);window.addEventListener('online',refresh);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});setInterval(()=>{if(!document.hidden)refresh()},300000);
+})();
+</script>
