@@ -44,7 +44,7 @@
     "elway-rating-trends": {
       "path": "data/latest/elway-rating-trends.csv",
       "rows": 5,
-      "sha256": "250d733258df5c5f8dd2f46fff1f9c94162136abd5b47a80e22524e1e76548d8"
+      "sha256": "13530d2fefaecc864714ef820e70316e06266633553648b4bbd5d6896ca09756"
     },
     "elway-scatter": {
       "path": "data/latest/elway-scatter.csv",
@@ -147,6 +147,6 @@
       "sha256": "55a6cdfa6cb35f9713710e31beb599c9e94438b63042dfda45c4cd9332e4e2bd"
     }
   },
-  "published_at": "2026-10-06T19:49:29.016208+00:00",
+  "published_at": "2026-10-06T21:25:30.956063+00:00",
   "schema": 1
 }
