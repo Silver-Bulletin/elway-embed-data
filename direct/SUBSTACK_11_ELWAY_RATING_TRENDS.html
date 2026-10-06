@@ -3,8 +3,9 @@
 @font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
 @font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
 @font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
-#sb-elway-paths{font-family:Geist,Arial,sans-serif;color:#101214;background:#fff;max-width:1100px;margin:auto;font-size:13px;font-weight:400;color-scheme:light;padding:20px 0}
+#sb-elway-paths{--green:#04ff40;font-family:Geist,Arial,sans-serif;color:#101214;background:#fff;max-width:1100px;margin:auto;font-size:13px;font-weight:400;color-scheme:light;padding:20px 0}
 #sb-elway-paths *{box-sizing:border-box}
+#sb-elway-paths .kicker{width:27px;height:0;margin:0 0 5px;border-bottom:5.5px solid var(--green)}
 #sb-elway-paths h2{font-family:'Archivo Narrow',Arial,sans-serif;font-size:28px;line-height:1.15;margin:0 0 8px;font-weight:700}
 #sb-elway-paths .intro{font-size:16px;color:#757575;line-height:1.45;margin:0 0 18px}
 #sb-elway-paths .toolbar{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap}
@@ -16,13 +17,14 @@
 #sb-elway-paths select{min-width:210px}
 #sb-elway-paths button[aria-pressed=true],#sb-elway-paths .add{background:#101214;color:white;border-color:#101214}
 #sb-elway-paths button:disabled{opacity:.45;cursor:default}
+#sb-elway-paths button:focus-visible,#sb-elway-paths select:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 #sb-elway-paths .guide{font-size:12px;color:#68685f}
 #sb-elway-paths .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 24px}
 #sb-elway-paths .grid.single{grid-template-columns:1fr}
 #sb-elway-paths .panel{position:relative;border-top:1px solid #cfd5d9;padding:12px 0 0;min-width:0;background:white;width:100%}
 #sb-elway-paths .panel:hover{background:#fafbfb}
 #sb-elway-paths .panel-open{display:block;border:0;padding:0;text-align:left;background:transparent;width:100%;min-height:0}
-#sb-elway-paths .panel-open:focus-visible{outline:2px solid #101214;outline-offset:4px}
+#sb-elway-paths .panel-open:focus-visible{outline:2px solid var(--green);outline-offset:4px}
 #sb-elway-paths .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;gap:8px}
 #sb-elway-paths .identity{display:flex;align-items:center;gap:7px;font-size:13px}
 #sb-elway-paths .team-logo{width:26px;height:26px;object-fit:contain}
@@ -40,7 +42,7 @@
 #sb-elway-paths .error{display:none;color:#8b2f1c;margin:10px 0;font-size:12px}
 #sb-elway-paths .error.show{display:block}
 #sb-elway-paths footer{border-top:1px solid #cfd5d9;margin-top:24px;padding-top:12px;display:flex;gap:12px;justify-content:space-between;align-items:center;color:#68685f;font-size:11px;line-height:1.5}
-#sb-elway-paths .wordmark{font:700 20px/.9 'Archivo Narrow',Arial,sans-serif;color:#000;text-transform:uppercase;white-space:nowrap}
+#sb-elway-paths .wordmark{display:block;width:100px;height:auto;margin-left:auto;flex:0 0 auto}
 #sb-elway-paths dialog{font:400 13px Geist,Arial,sans-serif;color:#101214;background:white;border:1px solid #cfd5d9;border-radius:3px;max-width:720px;width:calc(100% - 28px);max-height:90vh;padding:24px}
 #sb-elway-paths dialog::backdrop{background:#10121480}
 #sb-elway-paths .detail-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
@@ -51,9 +53,10 @@
 #sb-elway-paths th:first-child,#sb-elway-paths td:first-child{text-align:left}
 #sb-elway-paths .table-scroll{max-height:240px;overflow:auto}
 #sb-elway-paths th{position:sticky;top:0;background:white}
-@media(max-width:620px){#sb-elway-paths svg text{font-size:15px}#sb-elway-paths dialog svg text{font-size:20px}#sb-elway-paths .grid{grid-template-columns:1fr;gap:22px}#sb-elway-paths h2{font-size:26px}#sb-elway-paths .toolbar{align-items:flex-start}#sb-elway-paths .intro{font-size:14px}#sb-elway-paths .rating{font-size:17px}#sb-elway-paths .team-logo{width:22px;height:22px}#sb-elway-paths select{min-width:190px;max-width:calc(100vw - 120px)}#sb-elway-paths .wordmark{font-size:17px}}
+@media(max-width:620px){#sb-elway-paths svg text{font-size:15px}#sb-elway-paths dialog svg text{font-size:20px}#sb-elway-paths .grid{grid-template-columns:1fr;gap:22px}#sb-elway-paths h2{font-size:26px}#sb-elway-paths .toolbar{align-items:flex-start}#sb-elway-paths .intro{font-size:14px}#sb-elway-paths .rating{font-size:17px}#sb-elway-paths .team-logo{width:22px;height:22px}#sb-elway-paths select{min-width:190px;max-width:calc(100vw - 120px)}#sb-elway-paths .wordmark{width:78px}}
 </style>
 <section id="sb-elway-paths">
+  <div class="kicker" aria-hidden="true"></div>
   <h2>ELWAY team performance over time</h2>
   <p class="intro">2026 season · Team ratings without QB or injury adjustments.</p>
   <div class="toolbar">
@@ -65,7 +68,7 @@
   </div>
   <div class="error" role="alert" data-error></div>
   <div class="grid" aria-live="polite"></div>
-  <footer><span data-source>Latest approved ELWAY ratings<br />Lines connect across weeks.</span><span class="wordmark">Silver Bulletin</span></footer>
+  <footer><span data-source>Latest approved ELWAY ratings<br />Lines connect across weeks.</span><img class="wordmark" src="https://silver-bulletin.github.io/elway-embed-data/assets/silver-bulletin-wordmark.svg" alt="Silver Bulletin" /></footer>
   <dialog><div class="detail-head"><span class="detail-title"></span><button class="close" type="button" aria-label="Close team details">Close ×</button></div><div class="detail-stats"></div><div class="detail-chart"></div><div class="table-scroll"><table><thead><tr><th>Week</th><th>Rating</th><th>Change*</th></tr></thead><tbody></tbody></table></div><p class="guide">*From the previous available rating.</p></dialog>
 </section>
 <script>
