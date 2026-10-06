@@ -1,7 +1,9 @@
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
 @font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
-@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
 @font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
 html,body{margin:0!important;padding:0!important;width:100%!important;max-width:100%!important;overflow-x:hidden!important;background:#fff}
 #sb-elway-paths{--green:#04ff40;font-family:Geist,Arial,sans-serif;color:#101214;background:#fff;width:100%;max-width:1100px;margin:auto;font-size:13px;font-weight:400;color-scheme:light;padding:20px 0;overflow-x:clip}
@@ -31,6 +33,9 @@ html,body{margin:0!important;padding:0!important;width:100%!important;max-width:
 #sb-elway-paths .identity{display:flex;align-items:center;gap:7px;font-size:13px}
 #sb-elway-paths .team-logo{width:26px;height:26px;object-fit:contain}
 #sb-elway-paths .pill{display:inline-flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:20px;padding:4px 5px;border-radius:999px;background:var(--team);color:var(--team-ink);font:400 12px/1 Geist,Arial,sans-serif;letter-spacing:.02em;text-align:center}
+#sb-elway-paths .team-logo,#sb-elway-paths .pill{transition:transform 140ms ease,filter 140ms ease}
+@media(hover:hover){#sb-elway-paths .identity:hover .team-logo,#sb-elway-paths .identity:hover .pill{transform:translateY(-1px);filter:drop-shadow(0 2px 2px rgba(16,18,20,.16))}}
+@media(prefers-reduced-motion:reduce){#sb-elway-paths .team-logo,#sb-elway-paths .pill{transition:none}#sb-elway-paths .identity:hover .team-logo,#sb-elway-paths .identity:hover .pill{transform:none}}
 #sb-elway-paths .rating{font-size:19px;font-weight:400;font-variant-numeric:tabular-nums;padding-right:34px}
 #sb-elway-paths .grid.single .rating{padding-right:0}
 #sb-elway-paths .remove{position:absolute;right:0;top:9px;z-index:3;border:0;background:transparent!important;color:#68685f!important;padding:4px 7px;min-height:28px;font-size:17px;line-height:1}
