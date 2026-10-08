@@ -794,7 +794,7 @@ function drawChart(){
     guide.style("display",null).attr("x1",best.cx).attr("x2",best.cx);
     hdot.style("display",null).attr("cx",best.cx).attr("cy",best.cy).attr("stroke",best.c);
     let when;
-    if(best.proj)when=`${best.d.pj.s} WEEK ${best.d.pj.w} PROJECTION`;
+    if(best.proj)when=`${best.d.pj.s} NEXT GAME · WEEK ${best.d.pj.w} PROJECTION`;
     else{
       const p=best.p;
       when=`${p[S]} ${p[PF]?"PLAYOFFS":"WEEK"} ${p[W]} \u00b7 START #${best.k+1} \u00b7 ${fmtDate(dnum(p[D]))}`;
@@ -823,21 +823,14 @@ function renderPredictions(){
   const section=predictionsEl.closest(".qc-predictions");
   section.hidden=!selected.length;
   if(!selected.length)return;
-  const projectionWeeks=[...new Set(selected.filter(item=>item.d.pj).map(item=>`${item.d.pj.s}|${item.d.pj.w}`))];
-  if(projectionWeeks.length===1){
-    const [season,week]=projectionWeeks[0].split("|");
-    predictionsLabelEl.textContent=`Week ${week} projection`;
-    predictionsEl.closest(".qc-predictions").setAttribute("aria-label",`${season} Week ${week} projections`);
-  }else{
-    predictionsLabelEl.textContent="Next-week projection";
-    predictionsEl.closest(".qc-predictions").setAttribute("aria-label","Next-week projections");
-  }
+  predictionsLabelEl.textContent="Upcoming game projections";
+  predictionsEl.closest(".qc-predictions").setAttribute("aria-label","Upcoming game projections by each quarterback's next scheduled game");
   selected.forEach(({d,c})=>{
     const item=document.createElement("div");
     item.className="qc-prediction";
     item.style.setProperty("--pc",c);
     const projection=d.pj?fmt1(d.pj.v):"—";
-    item.innerHTML=`<span class="qc-prediction-name">${d.n}</span><span class="qc-prediction-meta">${d.tm}</span><strong class="qc-prediction-value">${projection}</strong>`;
+    item.innerHTML=`<span class="qc-prediction-name">${d.n}</span><span class="qc-prediction-meta">${d.tm} · WK ${d.pj.w}</span><strong class="qc-prediction-value">${projection}</strong>`;
     predictionsEl.appendChild(item);
   });
 }
