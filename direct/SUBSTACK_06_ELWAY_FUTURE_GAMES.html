@@ -143,65 +143,96 @@ function fetchPublicSheet(source, options={}){
   });
 }
 
-// Bundled approved release fallback. Live approved Sheets remain authoritative.
-const __ELWAY_APPROVED_BUNDLE={"1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"week,home_sb_fran_id,pf_home,win_home,away_sb_fran_id,pf_away,win_away,point_spread,total,neutral,extra\n4,CLE,20.2309,50.63,PIT,19.9409,48.89,-0.5,40,No,0\n4,WAS,22.6228,43.77,IND,24.5345,55.635,2.5,46.5,Yes,0\n4,BAL,29.19525,81.305,TEN,17.4741,18.345,-10.5,46.5,No,0\n4,BUF,26.07415,64.25,NE,20.90355,35.07,-4.5,46.5,No,0\n4,CHI,22.5473,59.56,NYJ,19.36605,39.925,-3,41.5,No,0\n4,CIN,25.2993,48.6,JAX,25.67565,50.785,1,50.5,No,0\n4,HOU,27.1042,64.24499999999999,DAL,22.4509,35.35,-4,49,No,0\n4,NYG,23.7507,53.66,ARI,22.4806,45.855,-2,46,No,0\n4,PHI,24.2866,56.505,LAR,22.10595,42.805,-2.5,46,No,0\n4,TB,20.44515,40.655,GB,23.45085,58.83000000000001,3,43.5,No,0\n4,MIN,26.4088,77.85499999999999,MIA,16.76845,21.795,-8,43,No,0\n4,LV,21.3272,33.92,KC,26.60685,65.61,4.5,47.5,No,0\n4,SEA,25.6589,77.815,LAC,16.0412,21.81,-8,41,No,0\n4,SF,26.05005,60.09999999999999,DEN,22.57775,39.365,-3,48,No,0\n4,CAR,22.56715,36.935,DET,26.97495,62.535,4,49,No,0\n4,NO,24.50505,57.035,ATL,22.167,42.535,-2.5,46,No,0\n5,DAL,27.724,68,TB,21.4832,31.505,-6,48.5,No,0\n5,JAX,24.0361,56.63,PHI,21.8152,42.77,-2.5,45,Yes,0\n5,GB,25.7876,61.905,CHI,21.6831,37.515,-3.5,47,No,0\n5,MIA,20.6281,33.38,CIN,26.17245,66.21000000000001,5,46.5,No,0\n5,NE,25.2103,71.35000000000001,LV,18.0586,28.17,-6.5,43,No,0\n5,NO,21.7805,49.455,MIN,21.9478,50.08000000000001,0.5,43,No,0\n5,NYJ,19.76915,51.585,CLE,19.2574,47.97,-1,38.5,No,0\n5,PIT,24.6701,57.30499999999999,IND,22.37355,42.195,-2.5,46.5,No,0\n5,TEN,16.9945,27.45,HOU,24.32935,72.18,6.5,41,No,0\n5,WAS,24.46425,58.41,NYG,21.62805,41.035,-3,45.5,No,0\n5,LAC,20.7193,39.42,DEN,24.2485,60.085,3,44.5,No,0\n5,ARI,23.94065,38.555,DET,27.887,60.85,3.5,51.5,No,0\n5,SEA,25.14575,59.215,SF,22.1573,40.265,-3,47,No,0\n5,ATL,23.4537,41.58,BAL,26.42005,57.875,3,49.5,No,0\n5,LAR,27.0377,52.23999999999999,BUF,26.31885,47.11,-1.5,53,No,0\n6,DEN,20.84095,49.8,SEA,20.73845,49.675,Pick,41,No,0\n6,JAX,23.15755,54.87,HOU,21.28325,44.6,-2.5,44,Yes,0\n6,ATL,25.0893,54.12,CHI,23.78785,45.36,-2,48.5,No,0\n6,CLE,19.55655,35.34,BAL,24.4466,64.13499999999999,4,43.5,No,0\n6,IND,26.7679,69.935,TEN,19.8593,29.7,-6.5,46.5,No,0\n6,NE,25.1611,74.245,NYJ,16.8285,25.35,-7,41.5,No,0\n6,NYG,22.38015,49.58,NO,22.4207,49.9,0.5,44,No,0\n6,PHI,25.28895,66.745,CAR,19.56545,32.67,-5.5,44,No,0\n6,TB,22.31975,53.725,PIT,21.04145,45.815,-2,43,No,0\n6,LAR,29.02815,69.57,ARI,21.97335,29.935,-6.5,50.5,No,0\n6,KC,28.5152,80.08999999999999,LAC,17.44865,19.57,-10,45.5,No,0\n6,LV,22.04975,34.39,BUF,27.52455,64.9,5,49,No,0\n6,GB,27.1622,59.575,DAL,23.83235,39.87,-3,50.5,No,0\n6,SF,30.67765,79.79,WAS,19.3626,19.83,-10,49.5,No,0\n7,CHI,23.1366,53.66999999999999,NE,21.8255,45.805,-1.5,44.5,No,0\n7,NO,22.2034,49.36,PIT,22.31635,50.14999999999999,0.5,44,Yes,0\n7,ATL,23.7275,40.84,SF,26.9379,58.62,3,50.5,No,0\n7,BAL,27.14645,60.215,CIN,23.54075,39.13,-3.5,50.5,No,0\n7,CAR,22.77785,50.67,TB,22.4101,48.86499999999999,-0.5,44.5,No,0\n7,HOU,25.2881,69.055,NYG,18.9966,30.57,-6,44,No,0\n7,MIN,25.9584,68.11500000000001,IND,19.9283,31.46,-5.5,45.5,No,0\n7,NYJ,21.87425,55.47499999999999,MIA,19.9952,43.97499999999999,-2.5,41,No,0\n7,TEN,19.68585,46.57,CLE,20.73175,52.955,1.5,40,No,0\n7,ARI,21.15375,34.1,DEN,26.47545,65.42999999999999,4.5,47,No,0\n7,DET,29.46465,67.625,GB,23.08495,31.905,-6,52,No,0\n7,LV,22.1143,38.24,LAR,26.0155,61.155,3.5,47.5,No,0\n7,SEA,25.11105,63.79,KC,20.4791,35.675,-4,45,No,0\n7,PHI,26.68305,61.395,DAL,22.55755,38.105,-3.5,48.5,No,0\n8,GB,26.62755,70.575,CAR,19.49765,28.97,-6.5,45.5,No,0\n8,BUF,28.2251,66.56,BAL,22.2372,32.645,-5.5,50,No,0\n8,CIN,28.19885,76.35499999999999,TEN,18.7029,23.255,-8,46.5,No,0\n8,DAL,28.6874,64.64999999999999,ARI,23.50665,34.89,-4.5,51.5,No,0\n8,DET,25.9116,61.745,MIN,21.6709,37.7,-3.5,47,No,0\n8,JAX,28.26315,71.44,IND,20.68815,28.055,-7,48.5,No,0\n8,NYJ,20.49005,48.68,LV,20.7991,50.79,0.5,40.5,No,0\n8,PIT,23.27795,64.455,CLE,18.5737,35.135,-4,41,No,0\n8,TB,22.78305,50.18,ATL,22.65655,49.415,-0.5,45,No,0\n8,LAR,26.19865,62.11,LAC,21.8075,37.37,-4,47.5,No,0\n8,DEN,23.00075,48.92,KC,23.20375,50.505,0.5,45.5,No,0\n8,MIA,17.32,28.58,NE,24.4789,71,6.5,41,No,0\n8,WAS,22.42755,49.48,PHI,22.5119,49.945,0.5,44.5,No,0\n8,SEA,27.12685,75.94,CHI,18.03405,23.62,-7.5,44.5,No,0\n9,BAL,25.87355,57.465,JAX,23.2307,41.835,-3,48.5,No,0\n9,ATL,24.33155,45.92,CIN,25.8189,53.665,2,50,Yes,0\n9,CAR,20.4037,38.625,DEN,24.17315,60.84500000000001,3.5,44,No,0\n9,IND,27.0847,54.405,DAL,25.4964,45.18,-2.5,52,No,0\n9,KC,28.4275,83.325,NYJ,15.80285,16.32,-12,44,No,0\n9,MIA,19.62775,30.07,DET,26.60045,69.345,6.5,45.5,No,0\n9,NO,24.8186,68.33500000000001,CLE,18.63805,31.15,-6,43,No,0\n9,PHI,24.6137,65.28,NYG,19.4365,34.13,-4.5,43.5,No,0\n9,WAS,22.5025,42.35,LAR,25.05255,57.125,3,47,No,0\n9,LAC,19.40765,35.55,HOU,23.9252,64.08,4,43,No,0\n9,SF,29.114,77.635,LV,18.81525,21.91,-9,47.5,No,0\n9,NE,25.01085,61.825,GB,20.9401,37.685,-3.5,45.5,No,0\n9,SEA,28.79745,83.97,ARI,15.81795,15.7,-12.5,44,No,0\n9,CHI,25.1338,63.73999999999999,TB,20.3975,35.745,-4,45,No,0\n9,MIN,23.3001,47.06,BUF,24.45155,52.27500000000001,1,47.5,No,0\n10,NYG,23.23185,54.155,WAS,21.7799,45.215,-2,44.5,No,0\n10,DET,23.48165,49.45,NE,23.26505,49.89,0.5,46.5,Yes,0\n10,ATL,22.7587,39.28,KC,26.4137,60.29,3.5,48.5,No,0\n10,CLE,17.2138,37.505,HOU,20.9389,62.02999999999999,3.5,37.5,No,0\n10,GB,22.5218,55.535,MIN,20.44685,43.84,-2.5,42.5,No,0\n10,IND,27.09895,69.455,MIA,20.20625,30.055,-6.5,47,No,0\n10,NO,25.77595,64.275,CAR,21.02765,35.3,-4,46.5,No,0\n10,NYJ,18.5335,25.5,BUF,27.4401,74.03,7.5,45.5,No,0\n10,TEN,18.9595,27.36,JAX,26.86275,72.225,7,45.5,No,0\n10,ARI,22.02395,34.54,LAR,27.434,64.9,5,49,No,0\n10,LV,18.37485,30.83,SEA,24.7905,68.755,6,42.5,No,0\n10,DAL,24.8092,37.93,SF,28.92845,61.475,3.5,53.5,No,0\n10,CIN,25.6797,61.355,PIT,21.7421,38.125,-3.5,47,No,0\n10,BAL,26.6638,69.965,LAC,19.5086,29.575,-6.5,45.5,No,0\n11,HOU,25.814,68.21000000000001,IND,19.7901,31.355,-5.5,45,No,0\n11,BUF,31.1012,86.45,MIA,15.91475,13.205,-14.5,47,No,0\n11,CAR,21.0965,32.81,BAL,26.9247,66.675,5.5,47.5,No,0\n11,CHI,25.29375,63.82,NO,20.4547,35.69,-4,45,No,0\n11,DAL,28.4278,71.25,TEN,20.87865,28.405,-6.5,49,No,0\n11,DET,27.8277,65.91,TB,21.9663,33.495,-5.5,49.5,No,0\n11,KC,30.07385,82.265,ARI,17.5971,17.325,-12,47,No,0\n11,NYG,21.12525,37.92,JAX,25.1007,61.52999999999999,3.5,45.5,No,0\n11,LAC,23.37045,59.755,NYJ,20.2181,39.835,-3,43,No,0\n11,DEN,26.1266,76.21,LV,16.79015,23.405,-7.5,42.5,No,0\n11,PHI,25.4984,70.465,PIT,18.42435,29.085,-6.5,43.5,No,0\n11,SF,26.7656,68.73,MIN,19.9495,30.79,-6.5,46,Yes,0\n11,WAS,23.5116,46.075,CIN,24.73035,53.335,1.5,47.5,No,0\n12,LAR,28.0785,65.635,GB,22.31185,33.82,-5.5,50,No,0\n12,DET,28.5956,64.19,CHI,23.4436,35.2,-4.5,51.5,No,0\n12,DAL,25.0735,50.84,PHI,24.84115,48.575,-1,49.5,No,0\n12,BUF,26.16035,57.955,KC,23.1033,41.39,-3,48.5,No,0\n12,PIT,21.0781,43.76,DEN,23.1399,55.765,2.5,43.5,No,0\n12,CIN,26.4259,63.51,NO,21.6985,36.04,-4,47.5,No,0\n12,CLE,21.44625,60.16,LV,18.1791,39.365,-3,39,No,0\n12,HOU,23.40565,51.05499999999999,BAL,23.1874,48.445,-1,46,No,0\n12,IND,25.5901,59.84,NYG,22.3393,39.685,-3,47.5,No,0\n12,MIA,20.37505,49.15,NYJ,20.5954,50.45500000000001,0.5,40.5,No,0\n12,MIN,23.3278,56.06,ATL,21.30825,43.465,-2.5,44,No,0\n12,JAX,28.69235,80.01,TEN,17.2685,19.65,-10.5,45.5,No,0\n12,ARI,24.6869,52.97500000000001,WAS,23.64485,46.5,-1.5,48,No,0\n12,SF,23.3911,51.69,SEA,22.6071,47.73,-1,45.5,No,0\n12,LAC,20.78925,41.045,NE,23.6628,58.43000000000001,3,44,No,0\n12,TB,23.6754,59.14,CAR,20.754,40.345,-3,44,No,0\n13,LAR,25.4195,52.515,KC,24.42025,46.915,-1.5,49.5,No,0\n13,ATL,24.24635,45.725,DET,25.87735,53.66999999999999,2,49.5,No,0\n13,CHI,22.96395,47.29,JAX,23.72455,52.17,1,46.5,No,0\n13,CLE,20.46075,42.87,CIN,22.79795,56.61000000000001,2.5,43,No,0\n13,NO,24.84705,51.925,GB,24.23935,47.515,-1,48.5,No,0\n13,NYG,20.49955,33.235,SF,26.26365,66.235,5.5,46.5,No,0\n13,TB,23.0087,57.23,LAC,20.5761,42.355,-3,43,No,0\n13,TEN,21.0628,43.99,WAS,23.06285,55.535,2.5,43.5,No,0\n13,ARI,21.47575,38.015,PHI,25.4508,61.44500000000001,3.5,46.5,No,0\n13,DEN,28.1726,84.45,MIA,14.73815,15.25,-13.5,42.5,No,0\n13,MIN,25.7688,71.165,CAR,18.37335,28.42,-6.5,43.5,No,0\n13,NE,22.2614,45.335,BUF,24.0381,54.1,2,46,No,0\n13,PIT,19.935,43.6,HOU,21.902,56.005,2.5,41,No,0\n13,SEA,28.69635,77.41,DAL,18.41675,22.16,-9,46.5,No,0\n14,NE,21.95385,60.62,MIN,18.3344,38.975,-3.5,39.5,No,0\n14,BAL,28.4917,77.535,TB,18.162,22.015,-8.5,46,No,0\n14,CAR,22.24245,46.77,NO,23.14965,52.835,1.5,45,No,0\n14,CLE,19.771,46.185,ATL,20.9071,53.335,1.5,40,No,0\n14,DET,30.3719,80.66,TEN,18.3435,18.97,-11,48,No,0\n14,MIA,20.0245,35.49,CHI,24.97435,64.05,4.5,44.5,No,0\n14,NYJ,17.87365,33.61,DEN,23.2854,65.865,5,40.5,No,0\n14,PHI,24.9379,62.825,IND,20.4252,36.67,-4,45,No,0\n14,WAS,19.9848,40.025,HOU,22.8955,59.535,3,42.5,No,0\n14,LV,24.0316,59.7,LAC,20.67405,39.905,-3,44,No,0\n14,CIN,23.52015,43.65,KC,25.585,55.82,2.5,48.5,No,0\n14,SEA,26.63255,79.845,NYG,15.8068,19.825,-10,41.5,No,0\n14,SF,26.47735,61.475,LAR,22.3436,37.87,-3.5,48,No,0\n14,GB,23.00355,46.54499999999999,BUF,24.3145,52.78,1.5,47,No,0\n14,JAX,27.00065,70.28999999999999,PIT,19.7342,29.15,-6.5,46.5,No,0\n15,LAC,20.4063,28.21,SF,28.47825,71.31,7,48,No,0\n15,PHI,19.58435,44.83,SEA,21.09425,54.575,2,40,No,0\n15,BUF,28.33885,72.84,CHI,19.7546,26.585,-7,47.5,No,0\n15,CAR,22.17255,38.995,CIN,25.86875,60.55,3.5,47.5,No,0\n15,GB,27.27665,78.845,MIA,16.54015,20.855,-10,43.5,No,0\n15,HOU,22.9231,50.95,JAX,22.8602,48.575,-1,45,No,0\n15,NYG,21.63775,56.93,CLE,19.26535,42.555,-3,40.5,No,0\n15,PIT,21.5661,38.76,BAL,25.4636,60.785,3.5,46.5,No,0\n15,TB,22.471,51.28,NO,22.0405,48.295,-1,44,No,0\n15,TEN,20.7056,38.97,IND,24.36215,60.565,3.5,44.5,No,0\n15,WAS,22.3941,47.095,ATL,23.1953,52.41,1.5,45,No,0\n15,ARI,24.4657,61.105,NYJ,20.73065,38.485,-3.5,44.5,No,0\n15,LAR,28.1868,62.805,DAL,23.4214,36.66,-4,51,No,0\n15,LV,20.3413,37.225,DEN,24.5698,62.22499999999999,3.5,44.5,No,0\n15,MIN,24.48035,55.775,DET,22.80225,43.725,-2.5,47,No,0\n15,KC,25.07585,68.675,NE,18.59965,30.895,-6,43.5,No,0\n16,PHI,21.1825,52.95,HOU,19.8121,46.56,-1.5,40.5,No,0\n16,CHI,24.3852,56.555,GB,22.08755,42.965,-2.5,46,No,0\n16,DEN,23.11065,49.76,BUF,23.29225,49.575,Pick,46,No,0\n16,SEA,23.8336,64.235,LAR,18.9978,35.235,-4,42.5,No,0\n16,ATL,25.28465,61.795,TB,21.24565,37.83000000000001,-3.5,46,No,0\n16,BAL,27.67455,79.68499999999999,CLE,16.38865,19.875,-10,43.5,No,0\n16,IND,24.9781,47.20500000000001,CIN,25.83305,52.215,1.5,50.5,No,0\n16,MIA,19.81135,42.255,LAC,22.3016,57.335,3,41.5,No,0\n16,MIN,25.8398,69.48,WAS,19.12535,30.115,-6.5,44.5,No,0\n16,NO,27.1436,67.33,ARI,21.0604,32.23,-5.5,47.5,No,0\n16,NYJ,16.9818,30.85,NE,23.37015,68.695,6,40,No,0\n16,PIT,24.551,63.725,CAR,19.9844,35.915,-4,44,No,0\n16,LV,25.2807,67.545,TEN,19.1192,32.025,-6,44,No,0\n16,KC,24.69775,54.15,SF,23.2419,45.285,-2,47.5,No,0\n16,DAL,25.6038,46.09500000000001,JAX,26.8352,53.36,1.5,52,No,0\n16,DET,28.47275,71.3,NYG,20.67375,28.07,-7,48.5,No,0\n17,CIN,24.21455,48.085,BAL,24.8472,51.295,1,48.5,No,0\n17,ATL,25.06655,58.785,NO,22.0313,40.78,-3,46.5,No,0\n17,CAR,17.0174,26.005,SEA,25.28305,73.64500000000001,7,41.5,No,0\n17,CLE,21.05135,51.9,IND,20.5472,47.615,-1,41,No,0\n17,DAL,26.8598,60.6,NYG,23.1057,38.98,-3.5,49.5,No,0\n17,JAX,27.8863,73.165,WAS,19.3401,26.38,-7,47,No,0\n17,MIA,17.16785,20.59,BUF,28.7015,78.97,10.5,45,No,0\n17,NE,21.9557,56.3,DEN,19.8609,43.11,-2.5,41,No,0\n17,NYJ,17.1437,35.005,MIN,21.96385,64.55,4,38.5,No,0\n17,TB,19.8318,36.28,LAR,24.62805,63.23999999999999,4,44,No,0\n17,TEN,19.67895,39.295,PIT,23.14535,60.34500000000001,3,42.5,No,0\n17,ARI,23.117,48.78,LV,23.44385,50.715,0.5,46,No,0\n17,CHI,23.31545,49.585,DET,23.55865,49.81,Pick,46.5,No,0\n17,LAC,20.0765,29.17,KC,27.4464,70.45,6.5,47,No,0\n17,SF,27.79815,73.175,PHI,19.2578,26.325,-7,46.5,No,0\n17,GB,21.47595,53.51000000000001,HOU,19.9742,45.97,-1.5,41,No,0\n18,BAL,27.8941,76.03999999999999,PIT,17.9989,23.59,-8.5,45.5,No,0\n18,BUF,28.62445,82.99,NYJ,14.91065,16.57,-13.5,43,No,0\n18,CAR,21.83635,44.715,ATL,23.5429,54.895,2.5,44.5,No,0\n18,CIN,26.21205,72.785,CLE,17.88695,26.77,-7,43.5,No,0\n18,GB,23.62785,52.36499999999999,DET,22.8117,47.06,-1.5,46,No,0\n18,HOU,26.8623,80.5,TEN,15.5101,19.245,-10.5,42,No,0\n18,IND,23.18965,40.63,JAX,26.4213,58.815,3,49,No,0\n18,KC,27.768,79.485,LV,16.4023,20.185,-10.5,43.5,No,0\n18,MIN,25.07405,62.44,CHI,20.8607,37.135,-3.5,45.5,No,0\n18,NE,27.3765,83.365,MIA,14.499,16.385,-12.5,41,No,0\n18,NO,25.3892,62.025,TB,21.198,37.57,-3.5,46,No,0\n18,NYG,20.0039,43.035,PHI,22.2966,56.44,2.5,41.5,No,0\n18,WAS,23.98935,48.415,DAL,24.41675,51.085,1,48,No,0\n18,ARI,20.99885,30.36,SF,28.36085,69.14,6.5,49,No,0\n18,DEN,25.90915,75.74,LAC,16.4103,23.8,-8,41.5,No,0\n18,LAR,21.7318,48.42,SEA,22.02125,50.975,1,43,No,0","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"key,value\nupdated_at,2026-09-30T03:30:42.347438+00:00\ndata_version,forecasts-v1-13747-762fd9d1"};
-const __ELWAY_BUNDLE_ID='70cacda677f929cc';
-const __elwayNetworkFetchPublicSheet=fetchPublicSheet;
-function __elwayFeedKey(source){
-  const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
-  return match?match[1]+'|'+(url.searchParams.get('sheet')||''):'';
-}
-function __elwayResponse(text){return{ok:true,status:200,text:async()=>text}}
-fetchPublicSheet=async function(source,options={}){
-  const key=__elwayFeedKey(source),bundled=__ELWAY_APPROVED_BUNDLE[key];
-  const cacheKey='silver-bulletin:elway-feed:'+__ELWAY_BUNDLE_ID+':'+key;
-  try{
-    const response=await __elwayNetworkFetchPublicSheet(source,options),text=await response.text();
-    if(!text||/^\s*</.test(text))throw new Error('Approved feed returned invalid content');
-    try{localStorage.setItem(cacheKey,text)}catch(_error){}
-    return __elwayResponse(text);
-  }catch(error){
-    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
-    const fallback=cached||bundled;
-    if(!fallback)throw error;
-    document.documentElement.dataset.feedTransport=cached?'cached-approved':'bundled-approved';
-    console.warn('ELWAY embed: live refresh unavailable; using the bundled approved release.',error);
-    return __elwayResponse(fallback);
-  }
-};
+
 
 
 // Same-origin approved-data runtime for the permanent hosted Substack embed.
-const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","1BNTLzkQjvR6K0aRkUolDUMSyoMolYYplg5mfzlq-a2c|Data":"elway-rating-trends.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_RELEASE_ROOT=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/');
+const __SB_MANIFEST_URL=new URL('manifest.json',__SB_RELEASE_ROOT);
+const __SB_CACHE_PREFIX='silver-bulletin:verified-release:v3:';
+const __SB_CACHE_MAX_AGE_MS=24*60*60*1000;
+let __sbManifestPromise=null;
+document.documentElement.dataset.sbRelease='pending';
+const __sbStatusStyle=document.createElement('style');
+__sbStatusStyle.textContent=`html[data-sb-release="pending"] body>*:not(script):not(style):not(#sb-release-status){display:none!important}#sb-release-status{box-sizing:border-box;margin:0 auto;padding:26px 18px;max-width:760px;background:#fff;color:#60686e;font:600 14px/1.45 Arial,sans-serif;text-align:center}html:not([data-sb-release="pending"]) #sb-release-status{display:none}`;
+document.head.append(__sbStatusStyle);
+const __sbStatus=document.createElement('div');
+__sbStatus.id='sb-release-status';__sbStatus.setAttribute('role','status');__sbStatus.textContent='Loading the latest approved data…';document.body.prepend(__sbStatus);
+function __sbUnavailable(){__sbStatus.textContent='Current data is temporarily unavailable. Please refresh shortly.'}
+const __sbStatusObserver=new MutationObserver(()=>{if(document.documentElement.dataset.feedStatus==='approved'){document.documentElement.dataset.sbRelease='ready';__sbStatusObserver.disconnect()}});
+__sbStatusObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-feed-status']});
+try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i)||'';if(key.startsWith('silver-bulletin:hosted-feed:')||key.startsWith('silver-bulletin:elway-ratings:'))localStorage.removeItem(key)}}catch(_error){}
 function __sbHostedFeed(source){
   try{
     const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
     if(!match)return null;
     const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
     if(!file)return null;
-    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
-    hosted.searchParams.set('_',Date.now().toString());
-    return hosted;
+    return {file,feed:file.replace(/\.csv$/,''),url:new URL(file,__SB_RELEASE_ROOT)};
   }catch(_error){return null;}
+}
+async function __sbSha256(body){
+  if(!globalThis.crypto?.subtle)throw new Error('Browser cannot verify approved data');
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(body));
+  return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('');
+}
+async function __sbManifest(){
+  if(!__sbManifestPromise)__sbManifestPromise=(async()=>{
+    const url=new URL(__SB_MANIFEST_URL);url.searchParams.set('_',Date.now().toString());
+    const response=await fetch(url,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Release manifest returned HTTP '+response.status);
+    const manifest=await response.json();
+    const published=Date.parse(manifest?.published_at||'');
+    if(manifest?.schema!==1||!manifest.files||!Number.isFinite(published)||published>Date.now()+60000)throw new Error('Release manifest is invalid');
+    return manifest;
+  })().catch(error=>{__sbManifestPromise=null;throw error});
+  return __sbManifestPromise;
+}
+function __sbReadCache(feed,expected=null){
+  try{
+    const cached=JSON.parse(localStorage.getItem(__SB_CACHE_PREFIX+feed)||'null');
+    if(!cached||cached.schema!==3||!cached.text||!cached.sha256||!cached.savedAt)return null;
+    if(Date.now()-Date.parse(cached.savedAt)>__SB_CACHE_MAX_AGE_MS)return null;
+    if(expected&&(cached.release!==expected.release||cached.sha256!==expected.sha256))return null;
+    return cached.text;
+  }catch(_error){return null}
+}
+function __sbWriteCache(feed,release,sha256,body){
+  try{localStorage.setItem(__SB_CACHE_PREFIX+feed,JSON.stringify({schema:3,release,sha256,text:body,savedAt:new Date().toISOString()}))}catch(_error){}
+}
+async function __sbApprovedText(info,options={}){
+  let expected=null,primaryError=null;
+  try{
+    const manifest=await __sbManifest(),entry=manifest.files?.[info.feed];
+    if(!entry?.sha256||entry.path!=='data/latest/'+info.file)throw new Error(info.feed+': missing from release manifest');
+    expected={release:manifest.published_at,sha256:entry.sha256};
+    const url=new URL(info.url);url.searchParams.set('release',entry.sha256.slice(0,16));
+    const response=await fetch(url,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Approved feed returned HTTP '+response.status);
+    const body=await response.text();
+    if(!body||/^\s*</.test(body))throw new Error('Approved feed returned invalid content');
+    const actual=await __sbSha256(body);
+    if(actual!==entry.sha256)throw new Error('Approved feed checksum mismatch');
+    __sbWriteCache(info.feed,manifest.published_at,actual,body);
+    return body;
+  }catch(error){primaryError=error}
+  const cached=__sbReadCache(info.feed,expected);
+  if(cached){document.documentElement.dataset.feedTransport='verified-cache';return cached}
+  throw primaryError||new Error('Approved feed unavailable');
 }
 
 const __sbPreviousFetchPublicSheet=fetchPublicSheet;
 fetchPublicSheet=async function(source,options={}){
-  const hosted=__sbHostedFeed(source);
-  if(!hosted)return __sbPreviousFetchPublicSheet(source,options);
-  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  const info=__sbHostedFeed(source);
+  if(!info)return __sbPreviousFetchPublicSheet(source,options);
   try{
-    const response=await fetch(hosted,{...options,cache:'no-store',credentials:'omit'});
-    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
-    const text=await response.text();
-    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
-    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    const text=await __sbApprovedText(info,options);
     return {ok:true,status:200,text:async()=>text};
   }catch(error){
-    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
-    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return {ok:true,status:200,text:async()=>cached};}
-    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
-    return __sbPreviousFetchPublicSheet(source,options);
+    console.warn('Verified approved feed unavailable; trying the source Sheet.',error);
+    try{return await __sbPreviousFetchPublicSheet(source,options)}
+    catch(sheetError){document.documentElement.dataset.feedStatus='unavailable';__sbUnavailable();throw new AggregateError([error,sheetError],'No current approved data source is available')}
   }
 };
 
