@@ -8,6 +8,12 @@ These files are permanent. Their JavaScript fetches the explicitly approved
 CSV release from this repository, so future weekly releases do not require any
 Substack editing.
 
+The team-ratings embed verifies each downloaded CSV against the release
+manifest, keeps only a 24-hour verified emergency cache, and clears legacy
+unversioned caches. If neither the hosted release nor its approved Google Sheet
+can be verified, it shows a temporary-unavailable message instead of rendering
+the historical rows bundled with the original chart shell.
+
 | Chart | Direct-paste file |
 | --- | --- |
 | ELWAY team ratings | `direct/SUBSTACK_01_ELWAY_TEAM_RATINGS.html` |
