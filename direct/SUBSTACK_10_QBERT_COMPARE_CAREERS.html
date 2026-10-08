@@ -309,35 +309,91 @@ function ymd(v){
 function fetchGoogleSheet(source){return new Promise((resolve,reject)=>{const url=new URL(source),callback="__qbertSheet_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2),script=document.createElement("script");let done=false;const finish=(error,value)=>{if(done)return;done=true;clearTimeout(timer);script.remove();delete window[callback];error?reject(error):resolve(value)};const timer=setTimeout(()=>finish(new Error("Google Sheets request timed out")),20000);window[callback]=payload=>{try{if(payload.status!=="ok"||!Array.isArray(payload.table?.cols)||!Array.isArray(payload.table?.rows))throw new Error("Google Sheets returned an incomplete response");const headers=payload.table.cols.map(col=>String(col.label||col.id||"").trim().toLowerCase());const rows=payload.table.rows.map(row=>Object.fromEntries(headers.map((header,index)=>{const cell=row.c?.[index];return[header,String(cell?.f??cell?.v??"").trim()]}))).filter(row=>Object.values(row).some(Boolean));finish(null,rows)}catch(error){finish(error)}};script.onerror=()=>finish(new Error("Google Sheets could not be loaded"));url.searchParams.set("tqx","out:json;responseHandler:"+callback);url.searchParams.set("_",Date.now().toString());script.src=url.toString();document.head.append(script)})}
 
 // Same-origin approved-data runtime for the permanent hosted Substack embed.
-const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","1BNTLzkQjvR6K0aRkUolDUMSyoMolYYplg5mfzlq-a2c|Data":"elway-rating-trends.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_RELEASE_ROOT=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/');
+const __SB_MANIFEST_URL=new URL('manifest.json',__SB_RELEASE_ROOT);
+const __SB_CACHE_PREFIX='silver-bulletin:verified-release:v3:';
+const __SB_CACHE_MAX_AGE_MS=24*60*60*1000;
+let __sbManifestPromise=null;
+document.documentElement.dataset.sbRelease='pending';
+const __sbStatusStyle=document.createElement('style');
+__sbStatusStyle.textContent=`html[data-sb-release="pending"] body>*:not(script):not(style):not(#sb-release-status){display:none!important}#sb-release-status{box-sizing:border-box;margin:0 auto;padding:26px 18px;max-width:760px;background:#fff;color:#60686e;font:600 14px/1.45 Arial,sans-serif;text-align:center}html:not([data-sb-release="pending"]) #sb-release-status{display:none}`;
+document.head.append(__sbStatusStyle);
+const __sbStatus=document.createElement('div');
+__sbStatus.id='sb-release-status';__sbStatus.setAttribute('role','status');__sbStatus.textContent='Loading the latest approved data…';document.body.prepend(__sbStatus);
+function __sbUnavailable(){__sbStatus.textContent='Current data is temporarily unavailable. Please refresh shortly.'}
+const __sbStatusObserver=new MutationObserver(()=>{if(document.documentElement.dataset.feedStatus==='approved'){document.documentElement.dataset.sbRelease='ready';__sbStatusObserver.disconnect()}});
+__sbStatusObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-feed-status']});
+try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i)||'';if(key.startsWith('silver-bulletin:hosted-feed:')||key.startsWith('silver-bulletin:elway-ratings:'))localStorage.removeItem(key)}}catch(_error){}
 function __sbHostedFeed(source){
   try{
     const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
     if(!match)return null;
     const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
     if(!file)return null;
-    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
-    hosted.searchParams.set('_',Date.now().toString());
-    return hosted;
+    return {file,feed:file.replace(/\.csv$/,''),url:new URL(file,__SB_RELEASE_ROOT)};
   }catch(_error){return null;}
+}
+async function __sbSha256(body){
+  if(!globalThis.crypto?.subtle)throw new Error('Browser cannot verify approved data');
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(body));
+  return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('');
+}
+async function __sbManifest(){
+  if(!__sbManifestPromise)__sbManifestPromise=(async()=>{
+    const url=new URL(__SB_MANIFEST_URL);url.searchParams.set('_',Date.now().toString());
+    const response=await fetch(url,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Release manifest returned HTTP '+response.status);
+    const manifest=await response.json();
+    const published=Date.parse(manifest?.published_at||'');
+    if(manifest?.schema!==1||!manifest.files||!Number.isFinite(published)||published>Date.now()+60000)throw new Error('Release manifest is invalid');
+    return manifest;
+  })().catch(error=>{__sbManifestPromise=null;throw error});
+  return __sbManifestPromise;
+}
+function __sbReadCache(feed,expected=null){
+  try{
+    const cached=JSON.parse(localStorage.getItem(__SB_CACHE_PREFIX+feed)||'null');
+    if(!cached||cached.schema!==3||!cached.text||!cached.sha256||!cached.savedAt)return null;
+    if(Date.now()-Date.parse(cached.savedAt)>__SB_CACHE_MAX_AGE_MS)return null;
+    if(expected&&(cached.release!==expected.release||cached.sha256!==expected.sha256))return null;
+    return cached.text;
+  }catch(_error){return null}
+}
+function __sbWriteCache(feed,release,sha256,body){
+  try{localStorage.setItem(__SB_CACHE_PREFIX+feed,JSON.stringify({schema:3,release,sha256,text:body,savedAt:new Date().toISOString()}))}catch(_error){}
+}
+async function __sbApprovedText(info,options={}){
+  let expected=null,primaryError=null;
+  try{
+    const manifest=await __sbManifest(),entry=manifest.files?.[info.feed];
+    if(!entry?.sha256||entry.path!=='data/latest/'+info.file)throw new Error(info.feed+': missing from release manifest');
+    expected={release:manifest.published_at,sha256:entry.sha256};
+    const url=new URL(info.url);url.searchParams.set('release',entry.sha256.slice(0,16));
+    const response=await fetch(url,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Approved feed returned HTTP '+response.status);
+    const body=await response.text();
+    if(!body||/^\s*</.test(body))throw new Error('Approved feed returned invalid content');
+    const actual=await __sbSha256(body);
+    if(actual!==entry.sha256)throw new Error('Approved feed checksum mismatch');
+    __sbWriteCache(info.feed,manifest.published_at,actual,body);
+    return body;
+  }catch(error){primaryError=error}
+  const cached=__sbReadCache(info.feed,expected);
+  if(cached){document.documentElement.dataset.feedTransport='verified-cache';return cached}
+  throw primaryError||new Error('Approved feed unavailable');
 }
 
 async function fetchSheet(source){
-  const hosted=__sbHostedFeed(source);
-  if(!hosted)return fetchGoogleSheet(source);
-  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  const info=__sbHostedFeed(source);
+  if(!info)return fetchGoogleSheet(source);
   try{
-    const response=await fetch(hosted,{cache:'no-store',credentials:'omit'});
-    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
-    const text=await response.text();
-    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
-    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    const text=await __sbApprovedText(info);
     return parseCSV(text);
   }catch(error){
-    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
-    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return parseCSV(cached);}
-    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
-    return fetchGoogleSheet(source);
+    console.warn('Verified approved feed unavailable; trying the source Sheet.',error);
+    try{return await fetchGoogleSheet(source)}
+    catch(sheetError){document.documentElement.dataset.feedStatus='unavailable';__sbUnavailable();throw new AggregateError([error,sheetError],'No current approved data source is available')}
   }
 }
 
@@ -816,13 +872,12 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(reportHeight);
 window.addEventListener("resize",reportHeight);
 window.addEventListener("load",reportHeight);
 
-applyCareerRows(CURRENT_FALLBACK_ROWS,[]);
-render();
-document.documentElement.dataset.feedStatus="fallback-current";
+document.documentElement.dataset.feedStatus="loading";
 Promise.allSettled([fetchSheet(SHEET_CAREER),fetchSheet(SHEET_ROSTER)]).then(([career,roster])=>{
-  if(career.status!=="fulfilled"){console.warn("QBERT career chart: showing embedded data.",career.reason&&career.reason.message);return;}
-  const changed=applyCareerRows(career.value,roster.status==="fulfilled"?roster.value:[]);
+  if(career.status!=="fulfilled"||!career.value.length||roster.status!=="fulfilled"||!roster.value.length){document.documentElement.dataset.feedStatus="unavailable";__sbUnavailable();console.warn("QBERT career chart: current approved data is incomplete.");return;}
+  const changed=applyCareerRows(career.value,roster.value);
+  if(!changed){document.documentElement.dataset.feedStatus="unavailable";__sbUnavailable();return;}
+  render();
   document.documentElement.dataset.feedStatus="approved";
-  if(changed)render();
 });
 </script>
