@@ -1,0 +1,465 @@
+<style>
+@font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
+@font-face{font-family:"Geist";src:url("https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2") format("woff2");font-style:normal;font-weight:400 900;font-display:swap}
+#qbert-depth{--ink:#101214;--muted:#60686e;--hair:#cfd5d9;--paper:#f4f4f1;--green:#04ff40;--sans:"Geist",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif;max-width:760px;margin:0 auto;color:var(--ink);font-family:var(--sans)}
+#qbert-depth *{box-sizing:border-box}
+#qbert-depth button,#qbert-depth input,#qbert-depth select{font:inherit}
+#qbert-depth .qbd-mark{width:27px;height:0;margin-bottom:5px;border-bottom:5.5px solid var(--green)}
+#qbert-depth h1{margin:0;font-family:var(--headline);font-size:28px;font-weight:700;line-height:1.15}
+#qbert-depth .qbd-dek{max-width:680px;margin:10px 0 0;color:#757575;font-family:var(--sans)!important;font-size:16px;font-style:normal;font-weight:400!important;line-height:1.25;font-synthesis:none}
+#qbert-depth .qbd-key{display:flex;flex-wrap:wrap;gap:3px 9px;max-width:720px;margin:7px 0 0;color:var(--muted);font-family:var(--sans);font-size:12px;font-style:normal;font-weight:400;line-height:1.35;font-synthesis:none}
+#qbert-depth .qbd-key-item{white-space:nowrap}
+#qbert-depth .qbd-key b{color:inherit;font-weight:400}
+#qbert-depth .qbd-risk-scale{display:inline-flex;flex-wrap:wrap;gap:4px 7px}
+#qbert-depth .qbd-risk-scale .qbd-key-item{display:inline-flex;align-items:center}
+#qbert-depth .qbd-controls{display:grid;grid-template-columns:190px minmax(190px,1fr);gap:8px;margin-top:15px}
+#qbert-depth label{display:block}
+#qbert-depth .qbd-label{display:block;margin-bottom:4px;color:var(--muted);font:700 9px/1 var(--sans)}
+#qbert-depth .qbd-select,#qbert-depth .qbd-search{width:100%;min-height:36px;padding:8px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 12px/1.2 var(--sans)}
+#qbert-depth .qbd-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23101214' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+#qbert-depth .qbd-select:focus,#qbert-depth .qbd-search:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--ink)}
+#qbert-depth .qbd-table-wrap{margin-top:15px}
+#qbert-depth table{width:100%;border-collapse:collapse;table-layout:fixed}
+#qbert-depth th{padding:9px 9px;border-bottom:1px solid var(--hair);background:#fff;font:400 12.5px/1.1 var(--sans);text-align:center}
+#qbert-depth th:first-child{width:64px}
+#qbert-depth td{height:78px;padding:0;border-bottom:1px solid #fff;vertical-align:stretch}
+#qbert-depth td:not(:first-child){border-left:1px solid #fff}
+#qbert-depth .qbd-team{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px;background:#fff;color:var(--ink);font:600 10px/1 var(--sans)}
+#qbert-depth .qbd-team-logo{display:block;width:22px;height:22px;object-fit:contain}
+#qbert-depth .qbd-player{position:relative;display:flex;height:100%;min-width:0;flex-direction:column;justify-content:center;padding:8px 14px;background:var(--heat);color:var(--heat-ink)}
+#qbert-depth .qbd-name{display:flex;align-items:baseline;gap:4px;overflow:hidden;font:500 12px/1.08 var(--sans)}
+#qbert-depth .qbd-name-text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#qbert-depth .qbd-rookie{display:inline-block;margin-right:3px;color:#101214;font-size:.72em;line-height:1;vertical-align:.08em}
+#qbert-depth .qbd-key .qbd-rookie{font-size:.85em}
+#qbert-depth .qbd-rating{display:flex;align-items:baseline;gap:3px;margin-top:4px;font:500 12px/1 var(--mono);font-variant-numeric:tabular-nums}
+#qbert-depth .qbd-rating i,#qbert-depth .qbd-mobile-rating i{flex:0 0 auto;font:400 8.5px/1 var(--sans);font-style:normal;letter-spacing:.04em;opacity:.62}
+#qbert-depth .qbd-sep{flex:0 0 auto;margin:0 1px;font:400 11px/1 var(--sans);opacity:.38}
+#qbert-depth .qbd-risk{margin-top:4px;color:currentColor;font:400 12px/1 var(--sans);font-variant-numeric:tabular-nums}
+#qbert-depth .qbd-status{margin-top:4px;color:currentColor;font:500 10px/1.1 var(--sans);font-variant-numeric:tabular-nums;opacity:.76}
+#qbert-depth .qbd-risk-mark,#qbert-depth .qbd-legend-mark{display:inline-block;width:8px;height:8px;margin-right:5px;border:0;border-radius:50%;background:var(--risk);vertical-align:0}
+#qbert-depth .qbd-legend-mark{margin-left:2px}
+#qbert-depth .qbd-empty-cell{height:100%;background:#fafafa}
+#qbert-depth .qbd-no-results{display:none;padding:22px 0;border-bottom:1px solid var(--hair);color:var(--muted);font:700 10px/1.4 var(--mono);text-align:center}
+#qbert-depth .qbd-expand-wrap{display:flex;justify-content:center;padding-top:10px}
+#qbert-depth .qbd-expand{display:none;width:auto;min-width:190px;padding:9px 14px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 11px/1 var(--sans);cursor:pointer}
+#qbert-depth .qbd-expand:hover{border-color:var(--ink);background:#f7f8f8}
+#qbert-depth .qbd-expand:focus-visible{border-color:var(--ink);outline:2px solid var(--green);outline-offset:2px}
+#qbert-depth .qbd-mobile{display:none}
+#qbert-depth .qbd-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair);color:#687178;font:500 8px/1.45 var(--mono)}
+#qbert-depth .qbd-footer-copy{min-width:0}
+#qbert-depth .qbd-source{white-space:nowrap}
+#qbert-depth .qbd-wordmark{display:block;flex:0 0 auto;width:100px;height:auto}
+@media(max-width:620px){
+  #qbert-depth h1{font-size:26px}
+  #qbert-depth .qbd-dek{font-size:16px;line-height:1.25}
+  #qbert-depth .qbd-key{font-size:12px}
+  #qbert-depth .qbd-controls{grid-template-columns:1fr}
+  #qbert-depth .qbd-search-field{display:none}
+  #qbert-depth .qbd-table-wrap{display:none}
+  #qbert-depth .qbd-expand-wrap{display:flex}
+  #qbert-depth .qbd-mobile{display:block;margin-top:13px;border-top:1px solid var(--hair)}
+  #qbert-depth .qbd-mobile-head{border-bottom:1px solid var(--hair)}
+  #qbert-depth .qbd-team-title{display:flex;align-items:center;gap:10px;min-width:0;padding:9px 10px}
+  #qbert-depth .qbd-team-chip{display:flex;flex:0 0 auto;align-items:center;gap:6px;color:var(--ink);font:600 11px/1 var(--sans)}
+  #qbert-depth .qbd-team-chip .qbd-team-logo{width:22px;height:22px}
+  #qbert-depth .qbd-team-name{overflow:hidden;font:500 14px/1.1 var(--sans);text-overflow:ellipsis;white-space:nowrap}
+  #qbert-depth .qbd-room{display:grid;grid-template-columns:1fr 1fr}
+  #qbert-depth .qbd-mobile-player{position:relative;min-height:112px;padding:10px 12px;border-right:1px solid #fff;border-bottom:1px solid #fff;background:var(--heat);color:var(--heat-ink)}
+  #qbert-depth .qbd-mobile-player:nth-child(even){border-right:0}
+  #qbert-depth .qbd-depth{color:currentColor;font:600 8px/1 var(--mono);letter-spacing:.05em}
+  #qbert-depth .qbd-mobile-name{margin-top:6px;font:500 12px/1.1 var(--sans)}
+  #qbert-depth .qbd-mobile-rating{display:flex;align-items:baseline;gap:3px;margin-top:7px;font:500 12px/1 var(--mono);font-variant-numeric:tabular-nums}
+  #qbert-depth .qbd-mobile-risk{margin-top:5px;color:currentColor;font:400 12px/1.2 var(--sans)}
+  #qbert-depth .qbd-mobile-status{margin-top:5px;color:currentColor;font:500 10px/1.2 var(--sans);font-variant-numeric:tabular-nums;opacity:.76}
+  #qbert-depth .qbd-source{display:block;margin-top:4px;white-space:normal}
+  #qbert-depth .qbd-wordmark{width:88px}
+}
+</style>
+
+<main id="qbert-depth" aria-labelledby="qbd-title">
+  <div class="qbd-mark" aria-hidden="true"></div>
+  <h1 id="qbd-title">QBERT’s 2026 quarterback depth charts</h1>
+  <p class="qbd-dek">Compare every projected NFL quarterback room, ordered from QB1 to QB4, with QBERT ratings, the points each adds to his team’s expected margin, weekly injury risk and current availability.</p>
+  <div class="qbd-key" aria-label="Chart key"><span class="qbd-key-item">Deeper color = stronger QBERT</span><span class="qbd-key-item">PTS = points added to expected margin vs. a 68-rated replacement</span><span class="qbd-key-item">Status = current injury designation and chance to play</span><span class="qbd-key-item"><span class="qbd-rookie" aria-hidden="true">★</span>Rookie</span><span class="qbd-risk-scale"><span class="qbd-key-item">Injury Risk:</span><span class="qbd-key-item"><span class="qbd-legend-mark" style="--risk:#04ff40"></span>Iron man</span><span class="qbd-key-item"><span class="qbd-legend-mark" style="--risk:#00bfff"></span>Below average</span><span class="qbd-key-item"><span class="qbd-legend-mark" style="--risk:#ffd400"></span>Average</span><span class="qbd-key-item"><span class="qbd-legend-mark" style="--risk:#ff7a00"></span>Injury-prone</span><span class="qbd-key-item"><span class="qbd-legend-mark" style="--risk:#ff2d2d"></span>High</span></span></div>
+  <section class="qbd-controls" aria-label="Depth chart controls">
+    <label><span class="qbd-label">VIEW BY TEAM</span><select class="qbd-select" data-team></select></label>
+    <label class="qbd-search-field"><span class="qbd-label">Search</span><input class="qbd-search" data-search type="search" placeholder="Quarterback or team" /></label>
+  </section>
+  <div class="qbd-table-wrap">
+    <table aria-label="Projected NFL quarterback depth charts">
+      <thead><tr><th>Team</th><th>QB1</th><th>QB2</th><th>QB3</th><th>QB4</th></tr></thead>
+      <tbody data-body></tbody>
+    </table>
+  </div>
+  <section class="qbd-mobile" data-mobile aria-live="polite"></section>
+  <div class="qbd-no-results" data-empty>No matching quarterbacks or teams.</div>
+  <div class="qbd-expand-wrap"><button class="qbd-expand" data-expand type="button">Show all 32 teams ↓</button></div>
+  <footer class="qbd-footer"><div class="qbd-footer-copy"><span class="qbd-source" data-source>Source: QBERT model</span></div><img class="qbd-wordmark" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MjkuMyAxMjYiPgogIDxnIGlkPSJMYWdfMSIgZGF0YS1uYW1lPSJMYWcgMSI+CiAgICA8Zz4KICAgICAgPHBhdGggZD0iTTUzLjUsNTUuMWwtMTQuMi03Yy00LjMtMi4xLTYuNy0zLjktOC02LjMtMS4yLTIuMS0xLjUtNC4xLTEuNS02LjdzLjUtNC4zLDEuNS02YzEuNC0yLjIsMi40LTMuNCw1LjMtMy40LDUuMywwLDcuOSwzLjQsNy45LDEwLjZ2NS41aDI3LjR2LTUuNUM3MS45LDEyLjUsNTkuOCwwLDM2LjcsMFMxMi41LDUuNSw2LjksMTUuMmMtMy40LDYtNS4zLDEzLjUtNS4zLDIyLjJzMS43LDE1LjQsNSwyMWMzLjEsNS4zLDcuNSw5LjQsMTMuNSwxMi4zbDE0LjIsN2M0LjMsMi4xLDYuNywzLjksOCw2LjMsMS4yLDIuMSwxLjUsNC4xLDEuNSw2LjdzLS41LDQuMy0xLjUsNmMtMS40LDIuMi0zLjQsMy40LTYuNywzLjQtNS41LDAtOC4yLTMuNC04LjItMTAuNnYtNS41SDB2NS41YzAsMjMuOCwxMi4zLDM2LjMsMzUuNiwzNi4zczI1LjUtNS41LDMxLjEtMTUuMmMzLjQtNiw1LjMtMTMuNSw1LjMtMjIuMnMtMS43LTE1LjQtNS0yMWMtMy4xLTUuMy03LjUtOS40LTEzLjUtMTIuM2gwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjIwMi4yIDg1LjggMjAyLjIgMTAyLjMgMTk3LjkgMTAyLjMgMTk3LjkgODUuOCAxOTAuNCAzLjIgMTYxLjIgMy4yIDE3NC41IDEyMi45IDIyNS42IDEyMi45IDIzOSAzLjIgMjA5LjcgMy4yIDIwMi4yIDg1LjgiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxMzguNiAzLjIgMTExLjIgMy4yIDExMS4yIDEyMi45IDE2Ny4zIDEyMi45IDE2Ny4zIDk3LjIgMTM4LjYgOTcuMiAxMzguNiAzLjIiLz4KICAgICAgPHJlY3QgeD0iNzcuNSIgeT0iMy4yIiB3aWR0aD0iMjcuNCIgaGVpZ2h0PSIxMTkuNyIvPgogICAgICA8cGF0aCBkPSJNNDgzLjEsNDkuOGMyLjQtNC4xLDMuOC05LjQsMy44LTE1LjRzLTEuNC0xMy00LjEtMTcuOGMtNS4xLTkuMS0xNS43LTEzLjUtMzEtMTMuNWgtMzcuNXYxMTkuN2gzNy41YzE1LjIsMCwyNS44LTQuNCwzMS0xMy41LDIuNy00LjgsNC4xLTEwLjYsNC4xLTE3LjhzLTEuNC0xMS44LTMuOC0xNS45Yy0zLjQtNS44LTkuMi0xMC44LTIxLjctMTAuOHYtNC4zYzEyLDAsMTguMy01LDIxLjctMTAuOHYuMVpNNDU3LjEsOTMuM2MtMS43LDIuOS00LjQsMy45LTguNywzLjloLTYuN3YtMjIuMmg2LjdjMy45LDAsNywxLjUsOC43LDQuNCwxLDEuNywxLjUsMy45LDEuNSw2LjVzLS4zLDUuMy0xLjUsNy40Wk00NTcuMSw0Ni42Yy0xLjcsMi45LTQuOCw0LjQtOC43LDQuNGgtNi43di0yMi4yaDYuN2M0LjMsMCw3LDEsOC43LDMuOSwxLjIsMi4xLDEuNSw0LjMsMS41LDcuNHMtLjUsNC44LTEuNSw2LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik01MzYsODkuNWMwLDYuNS0yLjYsMTAuOC03LjksMTAuOHMtOC4xLTQuNC04LjEtMTAuOFYzLjJoLTI3LjR2ODYuNGMwLDIyLjYsMTIuOSwzNi40LDM1LjQsMzYuNHMzNS4zLTE0LDM1LjMtMzYuNFYzLjJoLTI3LjR2ODYuNGwuMS0uMVoiLz4KICAgICAgPHBhdGggZD0iTTM1Ny43LDcwLjJ2LTMuOGM3LjktMi4xLDE0LjQtNi4zLDE3LjgtMTIuMywyLjctNC42LDQuMy0xMC4zLDQuMy0xNi4ycy0xLjUtMTQuNC00LjYtMTkuN2MtNS44LTkuNy0xNi42LTE1LTMxLjgtMTVoLTk5Ljh2MTE5LjdoNTcuM3YtMjUuN2gtMjkuOXYtMjEuNGgyOC4ydi0yNS43aC0yOC4ydi0yMS40aDM2Ljl2OTQuMWgyNy40di01MC4xaDEuNWwxNS4yLDUwLjFoMzAuNmwtMTUuNy01MC44LTkuMS0xLjktLjEuMVpNMzUwLjUsNDYuOGMtMS45LDMuMi01LjYsNS4xLTkuNyw1LjFoLTUuNnYtMjMuMWg1LjZjNC4zLDAsOCwyLjEsOS45LDUuNSwxLDEuNywxLjUsMy42LDEuNSw2cy0uNyw0LjgtMS43LDYuNWgwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjU5Ny4zIDk3LjIgNTk3LjMgMy4yIDU3MCAzLjIgNTcwIDEyMi45IDYyMC42IDEyMi45IDYyMC42IDk3LjIgNTk3LjMgOTcuMiIvPgogICAgPC9nPgogICAgPHBhdGggZD0iTTgwOC4xLDEyMi45aDI3LjRWMy4yaC0yNy40djExOS43Wk02MjQuOSwxMjIuOWg1MC42di0yNS43aC0yMy4zVjMuMmgtMjcuNHYxMTkuN2guMVoiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjc5LjcgMy4yIDY3OS43IDEyMi45IDczNy41IDEyMi45IDczNy41IDk3LjIgNzA3IDk3LjIgNzA3IDc1LjggNzM1LjggNzUuOCA3MzUuOCA1MC4yIDcwNyA1MC4yIDcwNyAyOC44IDczNy41IDI4LjggNzU0LjUgMjguOCA3NTQuNSAxMjIuOSA3ODEuOSAxMjIuOSA3ODEuOSAyOC44IDgwMy4yIDI4LjggODAzLjIgMy4yIDY3OS43IDMuMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI5MDQuMyAzIDkwNC4zIDEwMi42IDkwMS41IDEwMi42IDg5OS41IDc3LjIgODgxLjEgMyA4NDAuNyAzIDg0MC43IDEyMi44IDg2NS44IDEyMi44IDg2NS44IDIyLjcgODY4LjcgMjIuNyA4NzAuMyA0OC45IDg4OS4xIDEyMi44IDkyOS4zIDEyMi44IDkyOS4zIDMgOTA0LjMgMyIvPgogIDwvZz4KPC9zdmc+" alt="Silver Bulletin" /></footer>
+</main>
+<script>
+(()=>{
+/* ---- Data feed ----
+   Two Google Sheets, both read as CSV through the gviz endpoint:
+     qbert_depth_charts  -> the quarterback rooms (team,order,player,displayname,rookie,qbert,
+                            qb_value_points,qb_injury_risk,injury_risk_category,current_injury)
+     nfl_teams           -> team display name, colour and logo URL (team,team_name,color,logo)
+   qb_value_points is points of expected scoring margin, defined as (qbert - 68) x 0.234937: 68.0 QBERT is
+   the zero point and roughly 4.26 QBERT is worth one point of margin. Note this is margin, not a
+   betting spread, which runs the opposite sign: positive here means the quarterback helps his team.
+   Each sheet must be shared as "Anyone with the link can view" or the fetch returns a sign-in
+   page instead of CSV. The FALLBACK_ blocks below are rendered first and kept if a fetch fails,
+   so the embed always has something to show. */
+const SB_SHEET_URL=(id,opts={})=>{let u="https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&headers=1"+(opts.sheet?"&sheet="+encodeURIComponent(opts.sheet):"&gid="+(opts.gid||0));if(opts.query)u+="&tq="+encodeURIComponent(opts.query);return u;};
+
+// Same-origin approved-data runtime for the permanent hosted Substack embed.
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","1BNTLzkQjvR6K0aRkUolDUMSyoMolYYplg5mfzlq-a2c|Data":"elway-rating-trends.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_depth_charts":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_RELEASE_ROOT=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/');
+const __SB_MANIFEST_URL=new URL('manifest.json',__SB_RELEASE_ROOT);
+const __SB_CACHE_PREFIX='silver-bulletin:verified-release:v3:';
+const __SB_CACHE_MAX_AGE_MS=24*60*60*1000;
+let __sbManifestPromise=null;
+document.documentElement.dataset.sbRelease='pending';
+const __sbStatusStyle=document.createElement('style');
+__sbStatusStyle.textContent=`html[data-sb-release="pending"] body>*:not(script):not(style):not(#sb-release-status){display:none!important}#sb-release-status{box-sizing:border-box;margin:0 auto;padding:26px 18px;max-width:760px;background:#fff;color:#60686e;font:600 14px/1.45 Arial,sans-serif;text-align:center}html:not([data-sb-release="pending"]) #sb-release-status{display:none}`;
+document.head.append(__sbStatusStyle);
+const __sbStatus=document.createElement('div');
+__sbStatus.id='sb-release-status';__sbStatus.setAttribute('role','status');__sbStatus.textContent='Loading the latest approved data…';document.body.prepend(__sbStatus);
+function __sbUnavailable(){__sbStatus.textContent='Current data is temporarily unavailable. Please refresh shortly.'}
+const __sbStatusObserver=new MutationObserver(()=>{if(document.documentElement.dataset.feedStatus==='approved'){document.documentElement.dataset.sbRelease='ready';__sbStatusObserver.disconnect()}});
+__sbStatusObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-feed-status']});
+try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i)||'';if(key.startsWith('silver-bulletin:hosted-feed:')||key.startsWith('silver-bulletin:elway-ratings:'))localStorage.removeItem(key)}}catch(_error){}
+function __sbHostedFeed(source){
+  try{
+    const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
+    if(!match)return null;
+    const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
+    if(!file)return null;
+    return {file,feed:file.replace(/\.csv$/,''),url:new URL(file,__SB_RELEASE_ROOT)};
+  }catch(_error){return null;}
+}
+async function __sbSha256(body){
+  if(!globalThis.crypto?.subtle)throw new Error('Browser cannot verify approved data');
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(body));
+  return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('');
+}
+async function __sbManifest(){
+  if(!__sbManifestPromise)__sbManifestPromise=(async()=>{
+    const url=new URL(__SB_MANIFEST_URL);url.searchParams.set('_',Date.now().toString());
+    const response=await fetch(url,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Release manifest returned HTTP '+response.status);
+    const manifest=await response.json();
+    const published=Date.parse(manifest?.published_at||'');
+    if(manifest?.schema!==1||!manifest.files||!Number.isFinite(published)||published>Date.now()+60000)throw new Error('Release manifest is invalid');
+    return manifest;
+  })().catch(error=>{__sbManifestPromise=null;throw error});
+  return __sbManifestPromise;
+}
+function __sbReadCache(feed,expected=null){
+  try{
+    const cached=JSON.parse(localStorage.getItem(__SB_CACHE_PREFIX+feed)||'null');
+    if(!cached||cached.schema!==3||!cached.text||!cached.sha256||!cached.savedAt)return null;
+    if(Date.now()-Date.parse(cached.savedAt)>__SB_CACHE_MAX_AGE_MS)return null;
+    if(expected&&(cached.release!==expected.release||cached.sha256!==expected.sha256))return null;
+    return cached.text;
+  }catch(_error){return null}
+}
+function __sbWriteCache(feed,release,sha256,body){
+  try{localStorage.setItem(__SB_CACHE_PREFIX+feed,JSON.stringify({schema:3,release,sha256,text:body,savedAt:new Date().toISOString()}))}catch(_error){}
+}
+async function __sbApprovedText(info,options={}){
+  let expected=null,primaryError=null;
+  try{
+    const manifest=await __sbManifest(),entry=manifest.files?.[info.feed];
+    if(!entry?.sha256||entry.path!=='data/latest/'+info.file)throw new Error(info.feed+': missing from release manifest');
+    expected={release:manifest.published_at,sha256:entry.sha256};
+    const url=new URL(info.url);url.searchParams.set('release',entry.sha256.slice(0,16));
+    const response=await fetch(url,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Approved feed returned HTTP '+response.status);
+    const body=await response.text();
+    if(!body||/^\s*</.test(body))throw new Error('Approved feed returned invalid content');
+    const actual=await __sbSha256(body);
+    if(actual!==entry.sha256)throw new Error('Approved feed checksum mismatch');
+    __sbWriteCache(info.feed,manifest.published_at,actual,body);
+    return body;
+  }catch(error){primaryError=error}
+  const cached=__sbReadCache(info.feed,expected);
+  if(cached){document.documentElement.dataset.feedTransport='verified-cache';return cached}
+  throw primaryError||new Error('Approved feed unavailable');
+}
+
+async function fetchSheet(source){
+  const info=__sbHostedFeed(source);
+  if(!info)return fetchGoogleSheet(source);
+  try{
+    const text=await __sbApprovedText(info);
+    return parseCSV(text);
+  }catch(error){
+    console.warn('Verified approved feed unavailable; trying the source Sheet.',error);
+    try{return await fetchGoogleSheet(source)}
+    catch(sheetError){document.documentElement.dataset.feedStatus='unavailable';__sbUnavailable();throw new AggregateError([error,sheetError],'No current approved data source is available')}
+  }
+}
+
+const SHEET_DEPTH=SB_SHEET_URL("1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M",{sheet:"_embed_approved_qbert_depth_charts"});
+const SHEET_TEAMS=SB_SHEET_URL("1eo-5kxojTmrymMI_TjZqbT8IbLv3bgQUACEgY21hk1M");
+const FALLBACK_TEAMS_CSV=`team,team_name,color,logo
+ARI,Arizona Cardinals,#97233f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/ARI.png
+ATL,Atlanta Falcons,#a71930,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/ATL.png
+BAL,Baltimore Ravens,#241773,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/BAL.png
+BUF,Buffalo Bills,#01338d,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/BUF.png
+CAR,Carolina Panthers,#0085ca,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CAR.png
+CHI,Chicago Bears,#0b162a,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CHI.png
+CIN,Cincinnati Bengals,#fb4f14,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CIN.png
+CLE,Cleveland Browns,#311D00,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/CLE.png
+DAL,Dallas Cowboys,#041e42,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DAL.png
+DEN,Denver Broncos,#fb4f14,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DEN.png
+DET,Detroit Lions,#0076b6,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/DET.png
+GB,Green Bay Packers,#203731,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/GB.png
+HOU,Houston Texans,#03202f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/HOU.png
+IND,Indianapolis Colts,#002c5f,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/IND.png
+JAX,Jacksonville Jaguars,#006778,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/JAX.png
+KC,Kansas City Chiefs,#e31837,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/KC.png
+LAC,Los Angeles Chargers,#0080c6,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LAC.png
+LAR,Los Angeles Rams,#003594,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LA.png
+LV,Las Vegas Raiders,#a5acaf,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/LV.png
+MIA,Miami Dolphins,#008e97,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/MIA.png
+MIN,Minnesota Vikings,#4f2683,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/MIN.png
+NE,New England Patriots,#002244,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NE.png
+NO,New Orleans Saints,#d3bc8d,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NO.png
+NYG,New York Giants,#0b2265,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NYG.png
+NYJ,New York Jets,#125740,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/NYJ.png
+PHI,Philadelphia Eagles,#004c54,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/PHI.png
+PIT,Pittsburgh Steelers,#ffb612,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/PIT.png
+SEA,Seattle Seahawks,#69be28,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/SEA.png
+SF,San Francisco 49ers,#aa0000,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/SF.png
+TB,Tampa Bay Buccaneers,#d50a0a,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/TB.png
+TEN,Tennessee Titans,#4b92db,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/TEN.png
+WAS,Washington Commanders,#5a1414,https://raw.githubusercontent.com/shoenot/NFL-Team-Logos-Transparent-Squared/main/logos/WAS.png`;
+const FALLBACK_DEPTH_CSV=`team,order,player,displayname,rookie,qbert,qb_value_points,qb_injury_risk,injury_risk_category,current_injury
+ARI,QB1,Jacoby Brissett,Brissett,,77.729,2.286,0.06446,Injury-prone,Healthy
+ARI,QB2,Gardner Minshew II,Minshew,,72.657,1.094,0.0809,High risk,Healthy
+ARI,QB3,Carson Beck,Beck,R,65.531,-0.58,0.04923,Average,Healthy
+ATL,QB1,Tua Tagovailoa,Tagovailoa,,79.474,2.696,0.06259,Injury-prone,Healthy
+ATL,QB2,Michael Penix Jr.,Penix,,78.443,2.453,0.05772,Injury-prone,Questionable
+ATL,QB3,Cooper Rush,Rush,,69.49,0.35,0.0383,Below average,Healthy
+ATL,QB4,Jack Strand,Strand,R,62.934,-1.19,0.04707,Average,Healthy
+BAL,QB1,Lamar Jackson,Jackson,,93.465,5.983,0.04208,Average,Healthy
+BAL,QB2,Tyler Huntley,Huntley,,79.914,2.799,0.099,High risk,Healthy
+BAL,QB3,Joe Fagnano,Fagnano,R,59.401,-2.02,0.05155,Average,Healthy
+BAL,QB4,Skylar Thompson,Thompson,,63.494,-1.059,0.11803,High risk,Out
+BUF,QB1,Josh Allen,Allen,,93.666,6.03,0.01946,Iron man,Healthy
+BUF,QB2,Kyle Allen,Allen,,63.937,-0.955,0.06585,Injury-prone,Healthy
+BUF,QB3,Shane Buechele,Buechele,,62.857,-1.208,0.05642,Injury-prone,Healthy
+CAR,QB1,Bryce Young,Young,,78.505,2.468,0.05589,Injury-prone,Healthy
+CAR,QB2,Kenny Pickett,Pickett,,69.098,0.258,0.09404,High risk,Healthy
+CAR,QB3,Haynes King,King,R,59.118,-2.087,0.05187,Average,Questionable
+CHI,QB1,Caleb Williams,Williams,,81.88,3.261,0.02744,Iron man,Healthy
+CHI,QB2,Tyson Bagent,Bagent,,68.527,0.124,0.04391,Average,Healthy
+CHI,QB3,Case Keenum,Keenum,,60.998,-1.645,0.07683,High risk,Healthy
+CIN,QB1,Joe Burrow,Burrow,,86.996,4.463,0.05464,Average,Healthy
+CIN,QB2,Joe Flacco,Flacco,,73.415,1.272,0.03387,Below average,Healthy
+CIN,QB3,Josh Johnson,Johnson,,72.955,1.164,0.05863,Injury-prone,Healthy
+CIN,QB4,Sean Clifford,Clifford,,64.827,-0.745,0.05562,Injury-prone,Healthy
+CLE,QB1,Deshaun Watson,Watson,,69.837,0.432,0.10515,High risk,Healthy
+CLE,QB2,Shedeur Sanders,Sanders,,71.014,0.708,0.05328,Average,Healthy
+CLE,QB3,Dillon Gabriel,Gabriel,,72.253,0.999,0.08018,High risk,Out
+CLE,QB4,Taylen Green,Green,R,65.13,-0.674,0.04935,Average,Healthy
+DAL,QB1,Dak Prescott,Prescott,,88.777,4.881,0.04114,Average,Healthy
+DAL,QB2,Joe Milton III,Milton,,67.733,-0.063,0.05311,Average,Healthy
+DEN,QB1,Bo Nix,Nix,,86.986,4.461,0.03104,Below average,Healthy
+DEN,QB2,Jarrett Stidham,Stidham,,70.886,0.678,0.06082,Injury-prone,Healthy
+DEN,QB3,Sam Ehlinger,Ehlinger,,69.633,0.384,0.05755,Injury-prone,Healthy
+DET,QB1,Jared Goff,Goff,,86.487,4.343,0.02488,Iron man,Healthy
+DET,QB2,Joshua Dobbs,Dobbs,,71.325,0.781,0.04613,Average,Healthy
+DET,QB3,Luke Altmyer,Altmyer,R,61.253,-1.585,0.04934,Average,Healthy
+GB,QB1,Jordan Love,Love,,90.78,5.352,0.03847,Below average,Healthy
+GB,QB2,Tyrod Taylor,Taylor,,75.315,1.718,0.13345,High risk,Healthy
+GB,QB3,Kedon Slovis,Slovis,,62.575,-1.275,0.0515,Average,Healthy
+HOU,QB1,C.J. Stroud,Stroud,,80.981,3.05,0.05203,Average,Healthy
+HOU,QB2,Davis Mills,Mills,,70.979,0.7,0.03159,Below average,Healthy
+HOU,QB3,Graham Mertz,Mertz,,62.863,-1.207,0.05201,Average,Out
+IND,QB1,Daniel Jones,Jones,,83.528,3.648,0.08517,High risk,Healthy
+IND,QB2,Anthony Richardson Sr.,Richardson,,76.601,2.021,0.0785,High risk,Healthy
+IND,QB3,Riley Leonard,Leonard,,73.228,1.228,0.04701,Average,Healthy
+JAX,QB1,Trevor Lawrence,Lawrence,,88.969,4.926,0.03863,Below average,Healthy
+JAX,QB2,Quinn Ewers,Ewers,,71.858,0.906,0.04784,Average,Healthy
+JAX,QB3,Nick Mullens,Mullens,,71.902,0.917,0.06517,Injury-prone,Healthy
+JAX,QB4,Carter Bradley,Bradley,,61.631,-1.496,0.0531,Average,Out
+JAX,QB5,Joey Aguilar,Aguilar,R,59.666,-1.958,0.05124,Average,Healthy
+KC,QB1,Patrick Mahomes,Mahomes,,87.928,4.682,0.03677,Below average,Probable
+KC,QB2,Justin Fields,Fields,,70.879,0.676,0.13153,High risk,Healthy
+KC,QB3,Garrett Nussmeier,Nussmeier,R,62.824,-1.216,0.05033,Average,Healthy
+KC,QB4,Chris Oladokun,Oladokun,,62.472,-1.299,0.05842,Injury-prone,Out
+LAC,QB1,Justin Herbert,Herbert,,82.895,3.499,0.04142,Average,Healthy
+LAC,QB2,Trey Lance,Lance,,69.615,0.379,0.09774,High risk,Healthy
+LAC,QB3,DJ Uiagalelei,Uiagalelei,,61.275,-1.58,0.05148,Average,Healthy
+LAR,QB1,Matthew Stafford,Stafford,,89.439,5.037,0.03896,Below average,Healthy
+LAR,QB2,Stetson Bennett IV,Bennett,,64.322,-0.864,0.05673,Injury-prone,Healthy
+LAR,QB3,Ty Simpson,Simpson,R,63.263,-1.113,0.04911,Average,Healthy
+LAR,QB4,Matthew Caldwell,Caldwell,R,61.871,-1.44,0.04853,Average,Out
+LV,QB1,Kirk Cousins,Cousins,,75.588,1.783,0.02249,Iron man,Healthy
+LV,QB2,Fernando Mendoza,Mendoza,R,64.841,-0.742,0.04805,Average,Healthy
+LV,QB3,Aidan O'Connell,O'Connell,,73.175,1.216,0.06131,Injury-prone,Healthy
+MIA,QB1,Malik Willis,Willis,,81.559,3.186,0.07837,High risk,Healthy
+MIA,QB2,Kyle McCord,McCord,,65.335,-0.626,0.04946,Average,Healthy
+MIA,QB3,Brady Cook,Cook,,64.26,-0.879,0.05418,Average,Healthy
+MIN,QB1,Kyler Murray,Murray,,77.735,2.287,0.04995,Average,Healthy
+MIN,QB2,J.J. McCarthy,McCarthy,,78.29,2.417,0.09012,High risk,Healthy
+MIN,QB3,Carson Wentz,Wentz,,66.744,-0.295,0.07273,Injury-prone,Healthy
+MIN,QB4,Max Brosmer,Brosmer,,61.608,-1.502,0.06513,Injury-prone,Healthy
+NE,QB1,Drake Maye,Maye,,89.169,4.973,0.04118,Average,Healthy
+NE,QB2,Tommy DeVito,DeVito,,64.842,-0.742,0.09822,High risk,Healthy
+NE,QB3,Behren Morton,Morton,R,62.36,-1.325,0.0504,Average,Healthy
+NO,QB1,Tyler Shough,Shough,,78.561,2.481,0.0542,Average,Healthy
+NO,QB2,Spencer Rattler,Rattler,,75.601,1.786,0.04395,Average,Healthy
+NO,QB3,Zach Wilson,Wilson,,61.728,-1.473,0.08554,High risk,Healthy
+NYG,QB1,Jaxson Dart,Dart,,81.228,3.108,0.07393,Injury-prone,Healthy
+NYG,QB2,Jameis Winston,Winston,,77.346,2.196,0.06593,Injury-prone,Healthy
+NYG,QB3,Jake Haener,Haener,,62.776,-1.227,0.05685,Injury-prone,Healthy
+NYJ,QB1,Geno Smith,Smith,,73.053,1.187,0.07604,High risk,Healthy
+NYJ,QB2,Cade Klubnik,Klubnik,R,65.554,-0.575,0.04801,Average,Healthy
+NYJ,QB3,Bailey Zappe,Zappe,,70.375,0.558,0.05233,Average,Healthy
+PHI,QB1,Jalen Hurts,Hurts,,84.847,3.958,0.05182,Average,Healthy
+PHI,QB2,Tanner McKee,McKee,,71.233,0.76,0.04973,Average,Healthy
+PHI,QB3,Andy Dalton,Dalton,,67.424,-0.135,0.05978,Injury-prone,Healthy
+PHI,QB4,Cole Payton,Payton,R,61.943,-1.423,0.04932,Average,Healthy
+PIT,QB1,Aaron Rodgers,Rodgers,,75.612,1.788,0.04497,Average,Healthy
+PIT,QB2,Mason Rudolph,Rudolph,,76.505,1.998,0.05638,Injury-prone,Healthy
+PIT,QB3,Will Howard,Howard,,65.89,-0.496,0.05085,Average,Healthy
+PIT,QB4,Drew Allar,Allar,R,66.104,-0.445,0.04746,Average,Healthy
+SEA,QB1,Sam Darnold,Darnold,,84.593,3.898,0.05472,Average,Healthy
+SEA,QB2,Drew Lock,Lock,,67.551,-0.105,0.06966,Injury-prone,Healthy
+SEA,QB3,Jalen Milroe,Milroe,,63.673,-1.017,0.04914,Average,Healthy
+SF,QB1,Brock Purdy,Purdy,,93.615,6.018,0.04813,Average,Healthy
+SF,QB2,Mac Jones,Jones,,76.494,1.996,0.04464,Average,Healthy
+SF,QB3,Kurtis Rourke,Rourke,,62.905,-1.197,0.05217,Average,Questionable
+TB,QB1,Baker Mayfield,Mayfield,,82.215,3.34,0.03752,Below average,Healthy
+TB,QB2,Jalon Daniels,Daniels,R,61.274,-1.58,0.04931,Average,Healthy
+TB,QB3,Easton Stick,Stick,,69.07,0.251,0.0575,Injury-prone,Healthy
+TEN,QB1,Cam Ward,Ward,,74.866,1.613,0.0467,Average,Healthy
+TEN,QB2,Mitchell Trubisky,Trubisky,,75.197,1.691,0.04969,Average,Questionable
+TEN,QB3,Hendon Hooker,Hooker,,64.678,-0.78,0.0564,Injury-prone,Healthy
+WAS,QB1,Jayden Daniels,Daniels,,81.281,3.12,0.07217,Injury-prone,Healthy
+WAS,QB2,Marcus Mariota,Mariota,,79.335,2.663,0.09527,High risk,Healthy
+WAS,QB3,Athan Kaliakmanis,Kaliakmanis,R,64.146,-0.905,0.0482,Average,Healthy
+WAS,QB4,Sam Hartman,Hartman,,60.772,-1.698,0.05402,Average,Healthy`;
+function parseCSV(text){
+  text=String(text||"").replace(/^\uFEFF/,"");
+  const rows=[];let row=[],field="",q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){if(c==='"'){if(text[i+1]==='"'){field+='"';i++;}else q=false;}else field+=c;}
+    else if(c==='"')q=true;
+    else if(c===","){row.push(field);field="";}
+    else if(c==="\n"){row.push(field);rows.push(row);row=[];field="";}
+    else if(c!=="\r")field+=c;}
+  if(field.length||row.length){row.push(field);rows.push(row);}
+  if(!rows.length)return [];
+  const head=rows.shift().map(h=>h.trim().toLowerCase());
+  return rows.filter(r=>r.some(v=>v.trim()!=="")).map(r=>{const o={};head.forEach((h,i)=>{o[h]=(r[i]==null?"":r[i]).trim();});return o;});
+}
+const num=value=>{if(value==null)return null;const s=String(value).trim().replace(/,/g,"");if(!s)return null;const n=Number(s);return Number.isFinite(n)?n:null;};
+function fetchGoogleSheet(source){return new Promise((resolve,reject)=>{const url=new URL(source),callback="__qbertSheet_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2),script=document.createElement("script");let done=false;const finish=(error,value)=>{if(done)return;done=true;clearTimeout(timer);script.remove();delete window[callback];error?reject(error):resolve(value)};const timer=setTimeout(()=>finish(new Error("Google Sheets request timed out")),20000);window[callback]=payload=>{try{if(payload.status!=="ok"||!Array.isArray(payload.table?.cols)||!Array.isArray(payload.table?.rows))throw new Error("Google Sheets returned an incomplete response");const headers=payload.table.cols.map(col=>String(col.label||col.id||"").trim().toLowerCase());const rows=payload.table.rows.map(row=>Object.fromEntries(headers.map((header,index)=>{const cell=row.c?.[index];return[header,String(cell?.f??cell?.v??"").trim()]}))).filter(row=>Object.values(row).some(Boolean));finish(null,rows)}catch(error){finish(error)}};script.onerror=()=>finish(new Error("Google Sheets could not be loaded"));url.searchParams.set("tqx","out:json;responseHandler:"+callback);url.searchParams.set("_",Date.now().toString());script.src=url.toString();document.head.append(script)})}
+/* both sheets use the same codes as the chart; alias the Pro-Football-Reference variants just in case */
+const TEAM_ALIAS={SFO:"SF",GNB:"GB",KAN:"KC",NWE:"NE",LVR:"LV",NOR:"NO",TAM:"TB",WSH:"WAS",OAK:"LV",SDG:"LAC",STL:"LAR"};
+const canonTeam=code=>{const c=String(code||"").trim().toUpperCase();return TEAM_ALIAS[c]||c;};
+const RISK_STYLE={"iron man":"#04ff40","below average":"#00bfff","average":"#ffd400","injury-prone":"#ff7a00","high risk":"#ff2d2d"};
+const INJURY_STATUS={
+  "":{label:"Healthy",availability:1},
+  "healthy":{label:"Healthy",availability:1},
+  "probable":{label:"Probable",availability:.90},
+  "questionable":{label:"Questionable",availability:.70},
+  "toss-up":{label:"Toss-up",availability:.50},
+  "improbable":{label:"Improbable",availability:.30},
+  "doubtful":{label:"Doubtful",availability:.07},
+  "out":{label:"Out",availability:0}
+};
+const injuryStatus=value=>{const raw=String(value||"").trim();const key=raw.toLowerCase().replace(/[–—]/g,"-");return INJURY_STATUS[key]||{label:raw||"Healthy",availability:null};};
+const tierFor=rating=>rating>=90?"Elite":rating>=80?"Above average":rating>=70?"Below average":"Reserve";
+const shortName=(full,display)=>{const first=String(full||"").trim().split(/\s+/)[0]||"";const last=display||full||"";return first.includes(".")?`${first} ${last}`:`${first.charAt(0)}. ${last}`;};
+function buildPlayer(record){
+  const rating=num(record.qbert);if(rating==null)return null;
+  const margin=num(record.qb_value_points),risk=num(record.qb_injury_risk);
+  const depth=parseInt(String(record.order||"").replace(/\D+/g,""),10);
+  const injury=injuryStatus(record.current_injury);
+  return {depth:Number.isFinite(depth)?depth:99,
+    display:shortName(record.player,record.displayname),
+    name:(record.player||"").trim(),
+    rating:Math.round(rating*10)/10,
+    margin:margin==null?null:Math.round(margin*100)/100,
+    risk:risk==null?0:Math.round(risk*1000)/10,
+    riskColor:RISK_STYLE[String(record.injury_risk_category||"").trim().toLowerCase()]||"#ffd400",
+    tier:tierFor(rating),
+    rookie:/^r$/i.test(String(record.rookie||"").trim()),
+    injury};
+}
+function buildTeams(depthRecords,teamRecords){
+  const chrome=new Map();
+  teamRecords.forEach(record=>{const code=canonTeam(record.team);if(!code)return;
+    chrome.set(code,{code,team:(record.team_name||code).trim(),color:(record.color||"").trim(),logo:(record.logo||"").trim()});});
+  const rooms=new Map();
+  depthRecords.forEach(record=>{const code=canonTeam(record.team);if(!chrome.has(code))return;
+    const player=buildPlayer(record);if(!player)return;
+    if(!rooms.has(code))rooms.set(code,[]);rooms.get(code).push(player);});
+  const out=[];
+  chrome.forEach((info,code)=>{const players=rooms.get(code);
+    if(players&&players.length)out.push({...info,players:players.sort((a,b)=>a.depth-b.depth)});});
+  return out.length?out.sort((a,b)=>a.code.localeCompare(b.code)):null;
+}
+let teams=buildTeams(parseCSV(FALLBACK_DEPTH_CSV),parseCSV(FALLBACK_TEAMS_CSV))||[];
+
+const root=document.getElementById('qbert-depth');
+const select=root.querySelector('[data-team]');
+const search=root.querySelector('[data-search]');
+const body=root.querySelector('[data-body]');
+const empty=root.querySelector('[data-empty]');
+const expandButton=root.querySelector('[data-expand]');
+const mobile=root.querySelector('[data-mobile]');
+const sourceLine=root.querySelector('[data-source]');
+const INITIAL_TEAMS=8;
+let expanded=false;
+const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const escapeAttr=value=>escapeHtml(value).replace(/`/g,'&#96;');
+const heatStops=[[60,'#F6FCFD'],[70,'#D7F2F6'],[80,'#B4E6EE'],[90,'#86D4E3'],[100,'#4B99D5'],[110,'#1318B2']];
+const rgb=hex=>[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16));
+const hex=values=>'#'+values.map(value=>Math.round(value).toString(16).padStart(2,'0')).join('');
+const heat=value=>{const clamped=Math.max(60,Math.min(110,value));let upper=heatStops.findIndex(stop=>stop[0]>=clamped);if(upper<=0)upper=1;const [lowValue,lowHex]=heatStops[upper-1];const [highValue,highHex]=heatStops[upper];const amount=(clamped-lowValue)/(highValue-lowValue);const low=rgb(lowHex);const high=rgb(highHex);const color=hex(low.map((channel,index)=>channel+(high[index]-channel)*amount));const [r,g,b]=rgb(color).map(channel=>{channel/=255;return channel<=.04045?channel/12.92:Math.pow((channel+.055)/1.055,2.4);});const luminance=.2126*r+.7152*g+.0722*b;return [color,luminance<.18?'#fff':'#101214'];};
+const MARGIN_PER_QBERT=0.234937,MARGIN_ZERO=68;
+const marginOf=player=>player.margin!=null?player.margin:(player.rating-MARGIN_ZERO)*MARGIN_PER_QBERT;
+const signedPts=value=>(value>=0?'+':'\u2212')+Math.abs(value).toFixed(1);
+const teamLogo=team=>team.logo?`<img class="qbd-team-logo" src="${escapeAttr(team.logo)}" alt="" loading="lazy" referrerpolicy="no-referrer" />`:'';
+const playerCell=(player,compact=false)=>{if(!player)return `<div class="qbd-empty-cell"></div>`;const [bg,ink]=heat(player.rating);const rookie=player.rookie?'<span class="qbd-rookie" aria-hidden="true">★</span>':'';const riskMark=`<span class="qbd-risk-mark" aria-hidden="true" style="--risk:${player.riskColor}"></span>`;const pts=signedPts(marginOf(player));const availability=player.injury.availability==null?'':` · ${Math.round(player.injury.availability*100)}%`;const status=`Status: ${escapeHtml(player.injury.label)}${availability}`;if(compact)return `<article class="qbd-mobile-player" style="--heat:${bg};--heat-ink:${ink}"><div class="qbd-depth">QB${player.depth}</div><div class="qbd-mobile-name">${rookie}${escapeHtml(player.name)}</div><div class="qbd-mobile-rating">${player.rating.toFixed(1)}<i>QBERT</i><span class="qbd-sep">·</span>${pts}<i>PTS</i></div><div class="qbd-mobile-risk">${riskMark}${player.risk.toFixed(1)}% weekly injury risk</div><div class="qbd-mobile-status">${status}</div></article>`;return `<div class="qbd-player" title="${escapeAttr(player.name)}" style="--heat:${bg};--heat-ink:${ink}"><span class="qbd-name"><span class="qbd-name-text">${rookie}${escapeHtml(player.display)}</span></span><span class="qbd-rating">${player.rating.toFixed(1)}<i>QBERT</i><span class="qbd-sep">·</span>${pts}<i>PTS</i></span><span class="qbd-risk">${riskMark}${player.risk.toFixed(1)}% risk</span><span class="qbd-status">${status}</span></div>`;};
+const visibleTeams=()=>{const term=(search.value||'').trim().toLowerCase();return teams.filter(team=>{if(select.value&&select.value!=='ALL'&&team.code!==select.value)return false;if(!term)return true;return team.code.toLowerCase().includes(term)||team.team.toLowerCase().includes(term)||team.players.some(p=>p.name.toLowerCase().includes(term)||p.display.toLowerCase().includes(term));});};
+const renderMobile=visible=>{mobile.innerHTML=visible.map(team=>`<section class="qbd-mobile-team"><div class="qbd-mobile-head"><div class="qbd-team-title"><span class="qbd-team-chip">${teamLogo(team)}${escapeHtml(team.code)}</span><span class="qbd-team-name">${escapeHtml(team.team)}</span></div></div><div class="qbd-room">${[1,2,3,4].map(depth=>playerCell(team.players.find(p=>p.depth===depth),true)).join('')}</div></section>`).join('');};
+const buildOptions=()=>{const current=select.value;select.innerHTML=`<option value="ALL">ALL ${teams.length} TEAMS</option>`+teams.map(team=>`<option value="${escapeAttr(team.code)}">${escapeHtml(team.code)} \u2014 ${escapeHtml(team.team)}</option>`).join('');select.value=current&&teams.some(t=>t.code===current)?current:'ALL';};
+const render=()=>{const filtered=visibleTeams();const defaultList=select.value==='ALL'&&!(search.value||'').trim();const visible=defaultList&&!expanded?filtered.slice(0,INITIAL_TEAMS):filtered;body.innerHTML=visible.map(team=>`<tr><td><span class="qbd-team">${teamLogo(team)}${escapeHtml(team.code)}</span></td>${[1,2,3,4].map(depth=>`<td>${playerCell(team.players.find(p=>p.depth===depth))}</td>`).join('')}</tr>`).join('');empty.style.display=filtered.length?'none':'block';expandButton.style.display=defaultList&&filtered.length>INITIAL_TEAMS?'block':'none';expandButton.textContent=expanded?'Show first 8 teams \u2191':`Show all ${filtered.length} teams \u2193`;renderMobile(visible);scheduleHeightReport();};
+buildOptions();
+select.addEventListener('change',()=>{expanded=false;render();});
+search.addEventListener('input',()=>{expanded=false;render();});
+expandButton.addEventListener('click',()=>{expanded=!expanded;render();});
+let heightFrame=0,heightTimer=0;
+function reportHeight(){if(window.parent===window)return;const style=getComputedStyle(document.body);const height=Math.ceil(root.getBoundingClientRect().height+parseFloat(style.paddingTop||0)+parseFloat(style.paddingBottom||0));window.parent.postMessage({type:'substack-code-embed',source:'height',height},'*');window.parent.postMessage({type:'silver-bulletin:embed-height',height},'*');}
+function scheduleHeightReport(){if(window.parent===window)return;if(heightFrame)cancelAnimationFrame(heightFrame);clearTimeout(heightTimer);heightFrame=requestAnimationFrame(()=>{heightFrame=requestAnimationFrame(()=>{heightFrame=0;reportHeight();});});heightTimer=setTimeout(()=>{heightTimer=0;reportHeight();},160);}
+if('ResizeObserver' in window)new ResizeObserver(scheduleHeightReport).observe(root);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(scheduleHeightReport);
+window.addEventListener('resize',scheduleHeightReport);
+window.addEventListener('load',scheduleHeightReport);
+render();
+
+document.documentElement.dataset.feedStatus="fallback";
+Promise.allSettled([fetchSheet(SHEET_DEPTH),Promise.resolve(parseCSV(FALLBACK_TEAMS_CSV))]).then(([depth,chrome])=>{
+  if(depth.status!=="fulfilled"){console.warn("QBERT depth charts: showing embedded rooms.",depth.reason&&depth.reason.message);return;}
+  if(chrome.status!=="fulfilled")console.warn("QBERT depth charts: showing embedded team chrome.",chrome.reason&&chrome.reason.message);
+  const chromeRows=chrome.status==="fulfilled"?chrome.value:parseCSV(FALLBACK_TEAMS_CSV);
+  const live=buildTeams(depth.value,chromeRows);
+  if(!live){console.warn("QBERT depth charts: sheet returned no usable rows.");return;}
+  teams=live;
+  document.documentElement.dataset.feedStatus="approved";
+  if(sourceLine)sourceLine.textContent="Source: QBERT model";
+  expanded=false;
+  buildOptions();
+  render();
+});
+})();
+</script>
