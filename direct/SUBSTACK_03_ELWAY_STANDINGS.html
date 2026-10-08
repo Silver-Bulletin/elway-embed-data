@@ -171,72 +171,94 @@ function fetchPublicSheet(source, options={}){
 }
 
 
-// Bundled approved release fallback. Live approved Sheets remain authoritative.
-const __ELWAY_APPROVED_BUNDLE={"1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"nickname,home_division,team_record,wpct,pf,pa,made_playoffs,won_division,won_superbowl\nBills,AFC East,12-5,71.114708,27.97679411764706,21.84050294117647,92.439995,77.970001,14.01\nPatriots,AFC East,9-8,53.897942,21.23737058823529,19.78934705882353,53.930004,19.795,2.6949999\nJets,AFC East,6-11,35.930588,19.12460588235294,22.94604411764706,8.9499998,1.8050001,0.025\nDolphins,AFC East,4-13,23.758087,17.03626764705882,26.41962352941177,1.395,0.43000001,0.0049999999\nRavens,AFC North,11-6,63.985588,26.96859705882353,22.10716764705882,78.5,51.174999,6.5399995\nBengals,AFC North,10-7,58.803089,25.54780588235294,22.4922,63.120003,29.07,2.4400001\nSteelers,AFC North,8-9,49.405735,20.73069705882353,22.46723529411765,34.615002,11.985001,0.39499998\nBrowns,AFC North,8-9,46.137501,19.08661470588235,22.46080294117647,24.709999,7.7699995,0.16499999\nJaguars,AFC South,10-7,61.728973,25.98512647058823,20.12161764705882,76.275002,63.055004,4.895\nTexans,AFC South,8-9,49.293381,22.37987352941176,21.00865,36.684998,21.275,1.4299999\nColts,AFC South,8-9,45.789265,23.4916794117647,25.01052352941176,27.074999,14.615,0.30500001\nTitans,AFC South,4-13,24.466618,17.72020294117647,25.01713235294118,2.0150001,1.0549999,0\nChiefs,AFC West,12-5,69.290146,26.45979411764706,20.38039117647059,90.315002,63.384998,12.045\nBroncos,AFC West,10-7,61.241764,23.26420882352941,20.86756470588236,71.985001,27.57,4.5149999\nRaiders,AFC West,8-9,49.397503,22.00047352941177,23.32780294117647,33.994999,8.3599997,0.51999998\nChargers,AFC West,5-12,29.875734,19.03161470588235,24.92803529411765,3.9949999,0.685,0.075000003\nEagles,NFC East,10-7,57.080002,22.54405294117647,21.95507647058824,63.620003,54.240002,2.835\nCowboys,NFC East,8-9,45.362793,25.63397647058824,25.9109205882353,28.82,18.75,0.80500001\nGiants,NFC East,8-9,44.963234,20.03622647058824,23.32522058823529,25.924999,17.515001,0.34\nCommanders,NFC East,7-10,41.339264,22.54191764705882,25.55001176470588,17.955,9.4949999,0.255\nVikings,NFC North,11-6,63.364853,23.26302352941176,20.04089705882353,77.150002,43.549999,3.8849998\nLions,NFC North,11-6,61.871616,27.27283529411764,24.07374117647059,71.580002,37.32,4.875\nBears,NFC North,9-8,51.019119,24.01848823529412,22.61477941176471,38.990002,10.175,1.0150001\nPackers,NFC North,8-9,49.132206,22.91751764705882,24.25481764705883,33.34,8.9549999,1.12\nSaints,NFC South,8-9,49.206032,24.07404117647059,23.49849411764706,47.84,42.494999,1.37\nFalcons,NFC South,8-9,46.31588,22.27855294117647,23.59706176470588,39.049999,32.115002,1.3299999\nPanthers,NFC South,6-11,36.49044,22.25390882352941,25.47146470588235,16.27,13.245,0.145\nBuccaneers,NFC South,6-11,35.221909,21.37632941176471,24.51625882352941,14.78,12.145,0.23\n49ers,NFC West,12-5,69.916618,27.80248235294118,20.89402941176471,89.224998,52.439999,15.805\nSeahawks,NFC West,11-6,66.520882,24.85512352941177,18.62890588235294,83.885002,39.035,12.264999\nRams,NFC West,9-8,51.741619,24.30932647058824,22.72615,44.25,8.0050001,3.5750003\nCardinals,NFC West,6-11,36.33691,21.6058,26.58285882352941,7.3200002,0.51999998,0.089999996","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"key,value\nupdated_at,2026-09-30T03:30:42.347438+00:00\ndata_version,standings-v1-3089-f5f7f1bc","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"nickname,home_conference,slot_1,slot_2,slot_3,slot_4,slot_5,slot_6,slot_7,no_playoffs\nBills,AFC,31.924999,20.305,16.300001,9.4400005,6.1299996,4.71,3.6299999,7.5600014\nChiefs,AFC,25.134998,18.700001,13.224999,6.3249998,13.869999,7.7449999,5.3149996,9.6850033\nRavens,AFC,12.184999,15.02,14.049999,9.9200001,9.1599998,10.045,8.1200008,21.499994\nBroncos,AFC,9.1549997,8.5349998,6.3800001,3.5,21.699999,12.75,9.9650002,28.015003\nJaguars,AFC,7.75,13.240001,17.145,24.92,2.885,4.8200002,5.5149999,23.724997\nBengals,AFC,5.9400001,8.5100002,8.3199997,6.3000002,10.674999,12.885,10.49,36.879997\nPatriots,AFC,3.3500001,4.7200003,5.7449999,5.98,11.63,11.240001,11.265,46.07\nRaiders,AFC,1.52,2.3099999,2.585,1.9449999,7.5350003,8.6450005,9.4549999,66.004997\nSteelers,AFC,1.1900001,2.5049999,4.0750003,4.2149997,5.5300002,7.9250002,9.1750002,65.384995\nBrowns,AFC,0.65500003,1.6950001,2.47,2.95,3.625,5.9400001,7.3749995,75.289993\nTexans,AFC,0.65000004,2.5,5.4000001,12.725,2.77,5.2200003,7.4199996,63.314999\nColts,AFC,0.41,1.495,3.1750002,9.5349998,2.0350001,4.2049999,6.2199998,72.925003\nJets,AFC,0.115,0.315,0.60500002,0.76999998,1.6349999,2.355,3.1550002,91.050003\nChargers,AFC,0.02,0.105,0.25,0.31,0.63,1.005,1.6750001,96.005013\nDolphins,AFC,0,0.02,0.085000001,0.32500002,0.094999999,0.25,0.62,98.605003\nTitans,AFC,0,0.025,0.19,0.83999997,0.094999999,0.25999999,0.60500002,97.985001\n49ers,NFC,33.125,13.054999,5.0149999,1.245,21.065001,9.8400002,5.8800001,10.775002\nSeahawks,NFC,21.304998,11.645,4.9200001,1.165,23.965,12.645,8.2399998,16.114994\nVikings,NFC,14.765,18.77,7.6350002,2.3800001,11.215,12.639999,9.7449999,22.849997\nLions,NFC,12.1,16.93,6.2950001,1.995,11.13,12.51,10.62,28.419998\nEagles,NFC,5.96,10.719999,21.789999,15.77,1.6850001,3.2450001,4.4500003,36.380001\nRams,NFC,3.3050001,2.8050001,1.48,0.41499999,11.57,12.67,12.005,55.75\nBears,NFC,2.1199999,4.9649997,2.23,0.86000001,6.6200004,10.665,11.53,61.009998\nSaints,NFC,1.7449999,4.8850002,13.82,22.045,0.70000005,1.62,3.0250001,52.16\nFalcons,NFC,1.705,4.1100001,9.5799999,16.719999,1.005,2.3050001,3.625,60.949993\nPackers,NFC,1.2900001,4.0700002,2.49,1.105,5.2049999,9.1899996,9.9899998,66.659996\nCowboys,NFC,0.89499998,2.7249999,7.4900002,7.6399999,1.62,3.1550002,5.2950001,71.18\nGiants,NFC,0.80000001,2.3399999,7.0550003,7.3200002,1.2,2.6100001,4.5999999,74.074997\nCommanders,NFC,0.45500001,1.4050001,3.9050002,3.7300003,1.3150001,2.895,4.25,82.045006\nPanthers,NFC,0.185,0.82999998,3.22,9.0100002,0.285,0.94,1.8,83.730003\nCardinals,NFC,0.155,0.185,0.145,0.035,1.165,2.2849998,3.3500001,92.679993\nBuccaneers,NFC,0.089999996,0.56,2.9300001,8.5649996,0.255,0.78499997,1.595,85.220001","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"key,value\nupdated_at,2026-09-30T03:30:42.347438+00:00\ndata_version,standings-v1-2857-c481c4cd"};
-const __ELWAY_BUNDLE_ID='950689a805cf6af5';
-const __elwayNetworkFetchPublicSheet=fetchPublicSheet;
-function __elwayFeedKey(source){
-  const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
-  return match?match[1]+'|'+(url.searchParams.get('sheet')||''):'';
-}
-function __elwayResponse(text){return{ok:true,status:200,text:async()=>text}}
-fetchPublicSheet=async function(source,options={}){
-  const key=__elwayFeedKey(source),bundled=__ELWAY_APPROVED_BUNDLE[key];
-  const cacheKey='silver-bulletin:elway-feed:'+__ELWAY_BUNDLE_ID+':'+key;
-  try{
-    const response=await __elwayNetworkFetchPublicSheet(source,options),text=await response.text();
-    if(!text||/^\s*</.test(text))throw new Error('Approved feed returned invalid content');
-    try{localStorage.setItem(cacheKey,text)}catch(_error){}
-    return __elwayResponse(text);
-  }catch(error){
-    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
-    const fallback=cached||bundled;
-    if(!fallback)throw error;
-    document.documentElement.dataset.feedTransport=cached?'cached-approved':'bundled-approved';
-    console.warn('ELWAY embed: live refresh unavailable; using the bundled approved release.',error);
-    return __elwayResponse(fallback);
-  }
-};
-
-// Inlined into the standalone standings embed; no companion script is required.
-// Source metadata and bounded reads are recorded in work/standings-feeds-verified.json.
-const STANDINGS_SOURCES={
-  standings:{id:'1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc',gid:440814372},
-  seeds:{id:'1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o',gid:699170565}
-};
-const identityByName=new Map(teams.map(team=>[team.team.toLowerCase(),team]));
 
 // Same-origin approved-data runtime for the permanent hosted Substack embed.
-const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_HOSTED_FEEDS={"1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings":"elway-team-ratings-injury.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_team_ratings_meta":"elway-team-ratings-injury-meta.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings":"elway-team-ratings-qb1.csv","16bllY3VXX7aO5K74MdMPp112H9esmhYsZP047Yq6lT8|_embed_approved_team_ratings_meta":"elway-team-ratings-qb1-meta.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings":"elway-team-ratings-team.csv","1wgLya3b531Ms-chNaa1_ltO730zs2C4_5g5UfeB4VYQ|_embed_approved_team_ratings_meta":"elway-team-ratings-team-meta.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter":"elway-scatter.csv","1cn8hoTWnefXFp5uuXylviIxyLuQ8i3U3HuenZlQ1jbc|_embed_approved_scatter_meta":"elway-scatter-meta.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings":"elway-standings.csv","1MqCS69-GSHwUFjiZ0ope7vzVCa8T_9Stw_9CHVpkkgc|_embed_approved_standings_meta":"elway-standings-meta.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings":"elway-seeds.csv","1FTW8nqnCrTqjOtXZvmdPgQA28qk4BnkQtDk-6x05V9o|_embed_approved_standings_meta":"elway-seeds-meta.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals":"elway-win-totals.csv","18Yq0q-rsieH10YxoxUQblNXF0KYHumEogd9J0u-i8U0|_embed_approved_win_totals_meta":"elway-win-totals-meta.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional":"elway-conditional.csv","1RQPASSHaqr6k9my3K0xnBAeC3IdoX2k0ROoD1xhv1Ms|_embed_approved_conditional_meta":"elway-conditional-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games":"elway-future-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_future_games_meta":"elway-future-games-meta.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins":"elway-margin-games.csv","1z7qxd50OSzoaJrInv7xyVUGAu1f_hJmrg8YmNmfp4KU|_embed_approved_margins_meta":"elway-margin-games-meta.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins":"elway-margins.csv","1KuknRXSFPGMQv0GS4I2rXVzu4TgQPkY_iAdK4_B9QIY|_embed_approved_margins_meta":"elway-margins-meta.csv","1BNTLzkQjvR6K0aRkUolDUMSyoMolYYplg5mfzlq-a2c|Data":"elway-rating-trends.csv","16U32FpF5Tk7IDT16pdTHtQdkdtSIuCFZLG7GzDSKENA|_embed_approved_qbert_leaderboard":"qbert-leaderboard.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_leaderboard":"qbert-leaderboard-roster.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_leaderboard":"qbert-projection-week.csv","1huxAnIwsH88QMmgAk-afkuqO0oAh7J_Cf0rWyfnj5cI|_embed_approved_qbert_game_by_game":"qbert-game-by-game.csv","1jd6lCimqYdIz-ZbE0VcRJeab4ybGZprzJd1B0a9oncc|_embed_approved_qbert_career":"qbert-career.csv","1j40SUgtux8yF0zzAQxXXmC_PKKwXMG34P8m8R4XCg9M|_embed_approved_qbert_career":"qbert-career-roster.csv"};
+const __SB_RELEASE_ROOT=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/');
+const __SB_MANIFEST_URL=new URL('manifest.json',__SB_RELEASE_ROOT);
+const __SB_CACHE_PREFIX='silver-bulletin:verified-release:v3:';
+const __SB_CACHE_MAX_AGE_MS=24*60*60*1000;
+let __sbManifestPromise=null;
+document.documentElement.dataset.sbRelease='pending';
+const __sbStatusStyle=document.createElement('style');
+__sbStatusStyle.textContent=`html[data-sb-release="pending"] body>*:not(script):not(style):not(#sb-release-status){display:none!important}#sb-release-status{box-sizing:border-box;margin:0 auto;padding:26px 18px;max-width:760px;background:#fff;color:#60686e;font:600 14px/1.45 Arial,sans-serif;text-align:center}html:not([data-sb-release="pending"]) #sb-release-status{display:none}`;
+document.head.append(__sbStatusStyle);
+const __sbStatus=document.createElement('div');
+__sbStatus.id='sb-release-status';__sbStatus.setAttribute('role','status');__sbStatus.textContent='Loading the latest approved data…';document.body.prepend(__sbStatus);
+function __sbUnavailable(){__sbStatus.textContent='Current data is temporarily unavailable. Please refresh shortly.'}
+const __sbStatusObserver=new MutationObserver(()=>{if(document.documentElement.dataset.feedStatus==='approved'){document.documentElement.dataset.sbRelease='ready';__sbStatusObserver.disconnect()}});
+__sbStatusObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-feed-status']});
+try{for(let i=localStorage.length-1;i>=0;i--){const key=localStorage.key(i)||'';if(key.startsWith('silver-bulletin:hosted-feed:')||key.startsWith('silver-bulletin:elway-ratings:'))localStorage.removeItem(key)}}catch(_error){}
 function __sbHostedFeed(source){
   try{
     const url=new URL(source),match=url.pathname.match(/^\/spreadsheets\/d\/([\w-]+)\/gviz\/tq$/);
     if(!match)return null;
     const file=__SB_HOSTED_FEEDS[match[1]+'|'+(url.searchParams.get('sheet')||'')];
     if(!file)return null;
-    const hosted=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/'+file);
-    hosted.searchParams.set('_',Date.now().toString());
-    return hosted;
+    return {file,feed:file.replace(/\.csv$/,''),url:new URL(file,__SB_RELEASE_ROOT)};
   }catch(_error){return null;}
+}
+async function __sbSha256(body){
+  if(!globalThis.crypto?.subtle)throw new Error('Browser cannot verify approved data');
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(body));
+  return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('');
+}
+async function __sbManifest(){
+  if(!__sbManifestPromise)__sbManifestPromise=(async()=>{
+    const url=new URL(__SB_MANIFEST_URL);url.searchParams.set('_',Date.now().toString());
+    const response=await fetch(url,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Release manifest returned HTTP '+response.status);
+    const manifest=await response.json();
+    const published=Date.parse(manifest?.published_at||'');
+    if(manifest?.schema!==1||!manifest.files||!Number.isFinite(published)||published>Date.now()+60000)throw new Error('Release manifest is invalid');
+    return manifest;
+  })().catch(error=>{__sbManifestPromise=null;throw error});
+  return __sbManifestPromise;
+}
+function __sbReadCache(feed,expected=null){
+  try{
+    const cached=JSON.parse(localStorage.getItem(__SB_CACHE_PREFIX+feed)||'null');
+    if(!cached||cached.schema!==3||!cached.text||!cached.sha256||!cached.savedAt)return null;
+    if(Date.now()-Date.parse(cached.savedAt)>__SB_CACHE_MAX_AGE_MS)return null;
+    if(expected&&(cached.release!==expected.release||cached.sha256!==expected.sha256))return null;
+    return cached.text;
+  }catch(_error){return null}
+}
+function __sbWriteCache(feed,release,sha256,body){
+  try{localStorage.setItem(__SB_CACHE_PREFIX+feed,JSON.stringify({schema:3,release,sha256,text:body,savedAt:new Date().toISOString()}))}catch(_error){}
+}
+async function __sbApprovedText(info,options={}){
+  let expected=null,primaryError=null;
+  try{
+    const manifest=await __sbManifest(),entry=manifest.files?.[info.feed];
+    if(!entry?.sha256||entry.path!=='data/latest/'+info.file)throw new Error(info.feed+': missing from release manifest');
+    expected={release:manifest.published_at,sha256:entry.sha256};
+    const url=new URL(info.url);url.searchParams.set('release',entry.sha256.slice(0,16));
+    const response=await fetch(url,{...options,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Approved feed returned HTTP '+response.status);
+    const body=await response.text();
+    if(!body||/^\s*</.test(body))throw new Error('Approved feed returned invalid content');
+    const actual=await __sbSha256(body);
+    if(actual!==entry.sha256)throw new Error('Approved feed checksum mismatch');
+    __sbWriteCache(info.feed,manifest.published_at,actual,body);
+    return body;
+  }catch(error){primaryError=error}
+  const cached=__sbReadCache(info.feed,expected);
+  if(cached){document.documentElement.dataset.feedTransport='verified-cache';return cached}
+  throw primaryError||new Error('Approved feed unavailable');
 }
 
 const __sbPreviousFetchPublicSheet=fetchPublicSheet;
 fetchPublicSheet=async function(source,options={}){
-  const hosted=__sbHostedFeed(source);
-  if(!hosted)return __sbPreviousFetchPublicSheet(source,options);
-  const cacheKey='silver-bulletin:hosted-feed:'+hosted.pathname;
+  const info=__sbHostedFeed(source);
+  if(!info)return __sbPreviousFetchPublicSheet(source,options);
   try{
-    const response=await fetch(hosted,{...options,cache:'no-store',credentials:'omit'});
-    if(!response.ok)throw new Error('Hosted feed returned HTTP '+response.status);
-    const text=await response.text();
-    if(!text||/^\s*</.test(text))throw new Error('Hosted feed returned invalid content');
-    try{localStorage.setItem(cacheKey,text)}catch(_error){}
+    const text=await __sbApprovedText(info,options);
     return {ok:true,status:200,text:async()=>text};
   }catch(error){
-    let cached='';try{cached=localStorage.getItem(cacheKey)||''}catch(_error){}
-    if(cached){document.documentElement.dataset.feedTransport='cached-hosted';return {ok:true,status:200,text:async()=>cached};}
-    console.warn('Hosted approved feed unavailable; trying the source Sheet.',error);
-    return __sbPreviousFetchPublicSheet(source,options);
+    console.warn('Verified approved feed unavailable; trying the source Sheet.',error);
+    try{return await __sbPreviousFetchPublicSheet(source,options)}
+    catch(sheetError){document.documentElement.dataset.feedStatus='unavailable';__sbUnavailable();throw new AggregateError([error,sheetError],'No current approved data source is available')}
   }
 };
 
