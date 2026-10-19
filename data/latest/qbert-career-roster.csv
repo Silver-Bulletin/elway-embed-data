@@ -1,110 +1,110 @@
 team,order,player,displayname,frid,rookie,birthdate,qbert,qb_value_points,qb_injury_risk,injury_risk_category,injury_risk_display,current_injury,healthy_week_bestcase,healthy_week_worstcase,job_security,chance_start,current_starter
-ARI,QB1,Jacoby Brissett,Brissett,BrisJa00,,33949,78.68333851538267,2.509907868453364,0.0590663015786188,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Uncontroversial,,1
-ARI,QB2,Gardner Minshew II,Minshew,MinsGa00,,35201,71.471501401977,0.8155829445657923,0.0809875640805948,High risk,🔴 High risk (8.1%),Healthy,,,Tenuous,,0
-ARI,QB3,Carson Beck,Beck,BeckCa01,R,37579,65.72696105476297,-0.5340201778439114,0.0493930073789105,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
-ATL,QB1,Michael Penix Jr.,Penix,PeniMi00,,36654,82.06524467411276,3.304441605818841,0.0554652713107418,Injury-prone,🟠 Injury-prone (5.5%),Healthy,,,Tenuous,,1
-ATL,QB2,Tua Tagovailoa,Tagovailoa,TagoTu00,,35856,78.00189351996988,2.349811457257367,0.0628353373065085,Injury-prone,🟠 Injury-prone (6.3%),Healthy,,,Uncontroversial,,0
-ATL,QB3,Cooper Rush,Rush,RushCo00,,34294,65.91419605764594,-0.4900318116314958,0.040205550703499,Average,🟡 Average (4.0%),Healthy,,,Uncontroversial,,0
-ATL,QB4,Jack Strand,Strand,StraJa00,R,38161,62.88957484113654,-1.200626218003352,0.0472254186003396,Average,🟡 Average (4.7%),Healthy,,,Uncontroversial,,0
-BAL,QB1,Lamar Jackson,Jackson,JackLa00,,35437,95.48502550807106,6.457240092881018,0.0498843526641775,Average,🟡 Average (5.0%),Questionable,6,8,Rock Solid,,1
-BAL,QB2,Tyler Huntley,Huntley,HuntTy01,,35829,80.63411779380397,2.968217436522873,0.1002282701150087,High risk,🔴 High risk (10.0%),Healthy,,,Uncontroversial,,0
-BAL,QB3,Joe Fagnano,Fagnano,FagnJo00,R,36981,59.56543296599547,-1.981589007515131,0.0517182318315957,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-BAL,QB4,Skylar Thompson,Thompson,ThomSk00,,35585,63.25306976707974,-1.115227934175309,0.1180522319696113,High risk,🔴 High risk (11.8%),Out,23,23,Uncontroversial,,0
-BUF,QB1,Josh Allen,Allen,AlleJo02,,35206,91.88210987173176,5.610783127017688,0.0194679889345729,Iron man,🔵 Iron man (1.9%),Healthy,,,Rock Solid,,1
-BUF,QB2,Kyle Allen,Allen,AlleKy00,,35132,63.7936283474477,-0.9882309067693176,0.0659526589001508,Injury-prone,🟠 Injury-prone (6.6%),Healthy,,,Uncontroversial,,0
-BUF,QB3,Shane Buechele,Buechele,BuecSh00,,35803,63.00057938086962,-1.174547182193624,0.0566044200246679,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
-CAR,QB1,Bryce Young,Young,YounBr01,,37097,82.72289703476076,3.458948254870597,0.052895906332304,Average,🟡 Average (5.3%),Healthy,,,Uncontroversial,,1
-CAR,QB2,Kenny Pickett,Pickett,PickKe00,,35952,68.56606418274689,0.1329892284401828,0.0941733788343195,High risk,🔴 High risk (9.4%),Healthy,,,Uncontroversial,,0
-CAR,QB3,Haynes King,King,KingHa00,R,36900,59.27947744131514,-2.048770443392074,0.0520410377758797,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-CHI,QB1,Caleb Williams,Williams,WillCa03,,37213,82.90157937355578,3.500927286748087,0.0420309137833214,Average,🟡 Average (4.2%),Questionable,6,8,Uncontroversial,,1
-CHI,QB2,Tyson Bagent,Bagent,BageTy00,,36685,71.56526594087556,0.8376116721610621,0.0424218393094032,Average,🟡 Average (4.2%),Healthy,,,Uncontroversial,,0
-CHI,QB3,Case Keenum,Keenum,KeenCa00,,32190,65.56918064170053,-0.5710885811022215,0.0710518520731913,Injury-prone,🟠 Injury-prone (7.1%),Healthy,,,Uncontroversial,,0
-CHI,QB4,Miller Moss,Moss,MossMi00,R,37334,60.75301814411754,-1.702581712301626,0.050333418357235,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
-CIN,QB1,Joe Burrow,Burrow,BurrJo01,,35409,88.43583362960163,4.801126497254284,0.0507554024278846,Average,🟡 Average (5.1%),Healthy,,,Rock Solid,,1
-CIN,QB2,Joe Flacco,Flacco,FlacJo00,,31063,71.98399478469908,0.9359864281746204,0.0340460823916455,Below average,🟢 Below average (3.4%),Healthy,,,Uncontroversial,,0
-CIN,QB3,Josh Johnson,Johnson,JohnJo05,,31547,72.1855960403896,0.9833499538383572,0.0589761931686384,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Uncontroversial,,0
-CIN,QB4,Sean Clifford,Clifford,ClifSe00,,35990,64.98835175669747,-0.707546579376364,0.0558007695336171,Injury-prone,🟠 Injury-prone (5.6%),Healthy,,,Uncontroversial,,0
-CLE,QB1,Deshaun Watson,Watson,WatsDe00,,34956,71.37875560017511,0.7937935556614361,0.109641925619341,High risk,🔴 High risk (11.0%),Healthy,,,Tenuous,,1
-CLE,QB2,Shedeur Sanders,Sanders,SandSh00,,37294,69.59545583380788,0.3748310647723374,0.0531807326310803,Average,🟡 Average (5.3%),Healthy,,,Tenuous,,0
-CLE,QB3,Dillon Gabriel,Gabriel,GabrDi00,,36888,71.31949060333507,0.779870035248926,0.0801221978441357,High risk,🔴 High risk (8.0%),Out,7,8,Uncontroversial,,0
-CLE,QB4,Taylen Green,Green,GreeTa00,R,37547,65.32458757016026,-0.6285524603890325,0.0495148842592798,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
-DAL,QB1,Dak Prescott,Prescott,PresDa01,,34179,90.91078580007805,5.382583493845764,0.0386009406423078,Below average,🟢 Below average (3.9%),Healthy,,,Rock Solid,,1
-DAL,QB2,Sam Howell,Howell,HoweSa00,,36785,66.2012890272797,-0.4225831482362585,0.0476532462368578,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-DAL,QB3,Joe Milton III,Milton,MiltJo00,,36591,67.88874776081076,-0.0261372294926414,0.0532900495856659,Average,🟡 Average (5.3%),Healthy,,,Uncontroversial,,0
-DEN,QB1,Bo Nix,Nix,NixxBo00,,36581,79.67621668318112,2.743171348982851,0.029152611279453,Iron man,🔵 Iron man (2.9%),Healthy,,,Uncontroversial,,1
-DEN,QB2,Jarrett Stidham,Stidham,StidJa00,,35285,70.10666575603385,0.4949330164589672,0.0608480380203465,Injury-prone,🟠 Injury-prone (6.1%),Healthy,,,Uncontroversial,,0
-DEN,QB3,Sam Ehlinger,Ehlinger,EhliSa00,,36068,69.55718513300819,0.3658398741505999,0.0575457005494112,Injury-prone,🟠 Injury-prone (5.8%),Healthy,,,Uncontroversial,,0
-DET,QB1,Jared Goff,Goff,GoffJa00,,34621,85.49969859312796,4.111320738476182,0.0245073107956111,Iron man,🔵 Iron man (2.5%),Healthy,,,Rock Solid,,1
-DET,QB2,Joshua Dobbs,Dobbs,DobbJo00,,34725,70.48056680186563,0.582776079337194,0.0462744052403977,Average,🟡 Average (4.6%),Healthy,,,Uncontroversial,,0
-DET,QB3,Luke Altmyer,Altmyer,AltmLu00,R,37551,61.44746038767278,-1.539431771037851,0.0494996340738724,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
-GB,QB1,Jordan Love,Love,LoveJo03,,36101,89.34105685999198,5.013796619556603,0.037534009050639,Below average,🟢 Below average (3.8%),Healthy,,,Rock Solid,,1
-GB,QB2,Tyrod Taylor,Taylor,TaylTy00,,32723,73.33574505417272,1.253562121638857,0.1333411215831642,High risk,🔴 High risk (13.3%),Healthy,,,Uncontroversial,,0
-GB,QB3,Kedon Slovis,Slovis,SlovKe00,,36992,62.74329621883461,-1.234992428956368,0.0516745402568584,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-HOU,QB1,C.J. Stroud,Stroud,StroCJ00,,37167,78.97880420747961,2.579323591299207,0.0501133986851219,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,1
-HOU,QB2,Davis Mills,Mills,MillDa02,,36089,70.00253540169999,0.4704689788071533,0.0317148493242326,Below average,🟢 Below average (3.2%),Healthy,,,Uncontroversial,,0
-HOU,QB3,Graham Mertz,Mertz,MertGr00,,36866,63.0348059362131,-1.16650610959792,0.0521771032141295,Average,🟡 Average (5.2%),Out,23,23,Uncontroversial,,0
-HOU,QB4,Mark Gronowski,Gronowski,GronMa00,R,36900,59.27947744131514,-2.048770443392074,0.0520410377758797,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-IND,QB1,Daniel Jones,Jones,JoneDa05,,35577,79.84214737114418,2.782154550604394,0.0784082632693999,High risk,🔴 High risk (7.8%),Healthy,,,Uncontroversial,,1
-IND,QB2,Anthony Richardson Sr.,Richardson,RichAn03,,37398,75.59710248651992,1.784837883860684,0.0788517695674266,High risk,🔴 High risk (7.9%),Healthy,,,Uncontroversial,,0
-IND,QB3,Riley Leonard,Leonard,LeonRi02,,37512,72.88176943733619,1.146906606497843,0.0472500537564101,Average,🟡 Average (4.7%),Healthy,,,Uncontroversial,,0
-JAX,QB1,Trevor Lawrence,Lawrence,LawrTr00,,36439,88.52695676420615,4.822534662147,0.0379426756383307,Below average,🟢 Below average (3.8%),Healthy,,,Uncontroversial,,1
-JAX,QB2,Quinn Ewers,Ewers,EwerQu00,,37695,71.05827129737668,0.7185000439795434,0.0479459100870684,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-JAX,QB3,Nick Mullens,Mullens,MullNi00,,34779,70.4568984446243,0.5772155145392281,0.0653495652009648,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Uncontroversial,,0
-JAX,QB4,Joey Aguilar,Aguilar,AguiJo00,R,37058,59.83266868604148,-1.918805540014826,0.0514131228726002,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
-KC,QB1,Patrick Mahomes,Mahomes,MahoPa00,,34959,87.89391043129744,4.67380887106818,0.0360225126645152,Below average,🟢 Below average (3.6%),Healthy,,,Rock Solid,,1
-KC,QB2,Justin Fields,Fields,FielJu00,,36224,69.81672441953266,0.4268151672654423,0.1310137274972064,High risk,🔴 High risk (13.1%),Healthy,,,Uncontroversial,,0
-KC,QB3,Garrett Nussmeier,Nussmeier,NussGa00,R,37293,62.99993019283551,-1.17469970026207,0.0504924405324741,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
-LAC,QB1,Justin Herbert,Herbert,HerbJu00,,35864,76.93441244710912,2.099021019386244,0.0425080192005213,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
-LAC,QB2,Trey Lance,Lance,LancTr00,,36655,69.13802269666596,0.2673632513588929,0.0979875013607235,High risk,🔴 High risk (9.8%),Out,10,12,Uncontroversial,,0
-LAC,QB3,Jake Browning,Browning,BrowJa08,,35166,72.78862419655916,1.125023374734791,0.0538366788505943,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
-LAC,QB4,DJ Uiagalelei,Uiagalelei,UiagDJ00,,36998,61.4405853876583,-1.541046960578753,0.0516507232007171,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-LAR,QB1,Matthew Stafford,Stafford,StafMa00,,32180,87.73136908616205,4.635621950330163,0.0371450240904696,Below average,🟢 Below average (3.7%),Healthy,,,Rock Solid,,1
-LAR,QB2,Stetson Bennett IV,Bennett,BennSt00,,35731,65.42610760469302,-0.6047016825528225,0.0569167384974453,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
-LAR,QB3,Ty Simpson,Simpson,SimpTy00,R,37611,63.44788193844713,-1.069459413306907,0.0492714149376804,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
-LAR,QB4,Matthew Caldwell,Caldwell,CaldMa00,R,37764,62.06463573064089,-1.39443465732657,0.0486939639302751,Average,🟡 Average (4.9%),Out,23,23,Uncontroversial,,0
-LV,QB1,Kirk Cousins,Cousins,CousKi00,,32374,80.91553936627047,3.0343336808101,0.0216079470824375,Iron man,🔵 Iron man (2.2%),Healthy,,,Tenuous,,1
-LV,QB2,Fernando Mendoza,Mendoza,MendFe00,R,37895,65.8036962202698,-0.515992274355189,0.0482046531962513,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-LV,QB3,Aidan O'Connell,O'Connell,OConAi00,,36039,72.10819297230618,0.9651651355490876,0.0616173851733631,Injury-prone,🟠 Injury-prone (6.2%),Healthy,,,Uncontroversial,,0
-MIA,QB1,Malik Willis,Willis,WillMa12,,36305,77.0908548332038,2.135775071057759,0.0823166772540079,High risk,🔴 High risk (8.2%),Healthy,,,Uncontroversial,,1
-MIA,QB2,Kyle McCord,McCord,McCoKy00,,37518,65.53378578955534,-0.5794041294464058,0.0496255813641356,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
-MIA,QB3,Brady Cook,Cook,CookBr03,,37176,63.36489700276432,-1.088955616926539,0.0541330841232215,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
-MIN,QB1,Kyler Murray,Murray,MurrKy00,,35649,75.88760242136713,1.853086968283907,0.0592607789218471,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Uncontroversial,,1
-MIN,QB2,Carson Wentz,Wentz,WentCa00,,33968,66.4718862528338,-0.359009939859312,0.0740248421488981,Injury-prone,🟠 Injury-prone (7.4%),Healthy,,,Uncontroversial,,0
-MIN,QB3,Max Brosmer,Brosmer,BrosMa00,,36978,61.0057533531149,-1.643204946435385,0.0647012142977895,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Uncontroversial,,0
-NE,QB1,Drake Maye,Maye,MayeDr00,,37498,88.75607849051804,4.876363755260149,0.0372896639386274,Below average,🟢 Below average (3.7%),Healthy,,,Rock Solid,,1
-NE,QB2,Tommy DeVito,DeVito,DeViTo00,,36014,64.08068057978218,-0.9207918140591104,0.0975668366436649,High risk,🔴 High risk (9.8%),Healthy,,,Uncontroversial,,0
-NE,QB3,Behren Morton,Morton,MortBe00,R,37273,62.5488375574152,-1.280677897378314,0.0505701848381173,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
-NO,QB1,Tyler Shough,Shough,ShouTy00,,36431,79.45721367815014,2.691719514450909,0.0462728661897986,Average,🟡 Average (4.6%),Healthy,,,Uncontroversial,,1
-NO,QB2,Spencer Rattler,Rattler,RattSp00,,36797,74.43251167505827,1.511232808349194,0.0440005205754752,Average,🟡 Average (4.4%),Healthy,,,Uncontroversial,,0
-NO,QB3,Zach Wilson,Wilson,WilsZa00,,36375,60.85652330483995,-1.678264555548741,0.0852725871375389,High risk,🔴 High risk (8.5%),Healthy,,,Uncontroversial,,0
-NYG,QB1,Jaxson Dart,Dart,DartJa00,,37754,81.73833275644184,3.227638011767038,0.0922584165142738,High risk,🔴 High risk (9.2%),Out,21,23,Uncontroversial,,0
-NYG,QB2,Jameis Winston,Winston,WinsJa00,,34340,76.21744941090346,1.930580118316625,0.0669973199499146,Injury-prone,🟠 Injury-prone (6.7%),Healthy,,,Uncontroversial,,1
-NYG,QB3,J.J. McCarthy,McCarthy,McCaJJ00,,37641,76.50103174249799,1.997204004136457,0.0899207342686858,High risk,🔴 High risk (9.0%),Healthy,,,Uncontroversial,,0
-NYG,QB4,Jake Haener,Haener,HaenJa00,,36229,62.61620246317126,-1.264851411418772,0.0569192664395126,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
-NYJ,QB1,Geno Smith,Smith,SmitGe00,,33156,71.72753748453866,0.8757352066423139,0.076290688739801,High risk,🔴 High risk (7.6%),Healthy,,,Tenuous,,1
-NYJ,QB2,Cade Klubnik,Klubnik,KlubCa00,R,37904,65.76140103618467,-0.5259289636382356,0.0481712083329036,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-NYJ,QB3,Will Levis,Levis,LeviWi00,,36338,67.17015355112564,-0.1949613530114037,0.1191666590382761,High risk,🔴 High risk (11.9%),Healthy,,,Uncontroversial,,0
-PHI,QB1,Jalen Hurts,Hurts,HurtJa00,,36014,80.46781995569361,2.929147977872006,0.0511004711633207,Average,🟡 Average (5.1%),Out,8,23,Uncontroversial,,0
-PHI,QB2,Tanner McKee,McKee,McKeTa01,,36643,70.68919722030499,0.6317910130197386,0.0499134145778298,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,1
-PHI,QB3,Cole Payton,Payton,PaytCo00,R,37555,62.12463336325423,-1.380339013912485,0.0494843883408663,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
-PIT,QB1,Aaron Rodgers,Rodgers,RodgAa00,,30652,72.95223763147303,1.163462168664583,0.0454461118209114,Average,🟡 Average (4.5%),Healthy,,,Uncontroversial,,1
-PIT,QB2,Mason Rudolph,Rudolph,RudoMa00,,34897,73.70259981306069,1.339749753397102,0.0567067301737754,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
-PIT,QB3,Will Howard,Howard,HowaWi01,,37158,66.07319658861029,-0.4526767579485051,0.0510194181742084,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
-PIT,QB4,Drew Allar,Allar,AllaDr00,R,38054,66.30777207940802,-0.3975663756226238,0.0476170274758364,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-SEA,QB1,Sam Darnold,Darnold,DarnSa00,,35586,82.86845945981626,3.493146204834637,0.0645151180680565,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Rock Solid,,1
-SEA,QB2,Drew Lock,Lock,LockDr00,,35379,72.75110391516132,1.116208485140925,0.0676633407531239,Injury-prone,🟠 Injury-prone (6.8%),Healthy,,,Uncontroversial,,0
-SEA,QB3,Jalen Milroe,Milroe,MilrJa00,,37603,63.88091182936098,-0.9677248170554408,0.0493017864139534,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
-SF,QB1,Brock Purdy,Purdy,PurdBr00,,36521,98.2784822814472,7.113525497072384,0.0433936579715316,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
-SF,QB2,Mac Jones,Jones,JoneMa05,,36043,74.19251384016562,1.454848518612284,0.0448282264620127,Average,🟡 Average (4.5%),Healthy,,,Uncontroversial,,0
-SF,QB3,Kurtis Rourke,Rourke,RourKu01,,36824,63.08297672206719,-1.155189026059785,0.0523456481853942,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
-TB,QB1,Baker Mayfield,Mayfield,MayfBa00,,34803,77.92935883021632,2.332770399512528,0.0476286443909401,Average,🟡 Average (4.8%),Out,7,9,Uncontroversial,,0
-TB,QB2,Jalon Daniels,Daniels,DaniJa03,R,37558,69.5710107084539,0.3690880086683924,0.0491827900476544,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,1
-TB,QB3,Easton Stick,Stick,SticEa00,,34957,68.6693131993938,0.157246207559493,0.0576278622427804,Injury-prone,🟠 Injury-prone (5.8%),Healthy,,,Uncontroversial,,0
-TB,QB4,Brett Rypien,Rypien,RypiBr00,,35255,61.57365971458131,-1.509782922679713,0.0540857073625072,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
-TEN,QB1,Cam Ward,Ward,WardCa00,,37401,72.00805467418368,0.9416389782501026,0.0410136687605296,Average,🟡 Average (4.1%),Healthy,,,Uncontroversial,,1
-TEN,QB2,Mitchell Trubisky,Trubisky,TrubMi00,,34566,74.2921434576674,1.478255168185229,0.0499305788388031,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
-TEN,QB3,Hendon Hooker,Hooker,HookHe00,,35808,64.825342606083,-0.7458434047711647,0.0565827911648153,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
-WAS,QB1,Jayden Daniels,Daniels,DaniJa02,,36878,85.54171483949328,4.121191895062988,0.0877948620970174,High risk,🔴 High risk (8.8%),Healthy,,,Uncontroversial,,1
-WAS,QB2,Marcus Mariota,Mariota,MariMa01,,34272,82.42361770672318,3.388636569134403,0.1046900533632623,High risk,🔴 High risk (10.5%),Doubtful,6,9,Uncontroversial,,0
-WAS,QB3,Athan Kaliakmanis,Kaliakmanis,KaliAt00,R,37853,64.17292104503458,-0.8991211472358651,0.0483610209001598,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
-WAS,QB4,Sam Hartman,Hartman,HartSa00,,36370,60.9232598065725,-1.662585704731612,0.0542006520408991,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
+ARI,QB1,Jacoby Brissett,Brissett,BrisJa00,,33949,79.25806446085203,2.644932062497276,0.056591701797701,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,1
+ARI,QB2,Gardner Minshew II,Minshew,MinsGa00,,35201,71.17386104732967,0.7456563137637336,0.0809938837355674,High risk,🔴 High risk (8.1%),Healthy,,,Tenuous,,0
+ARI,QB3,Carson Beck,Beck,BeckCa01,R,37579,65.70055216886263,-0.540224593291658,0.0494044212442338,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
+ATL,QB1,Michael Penix Jr.,Penix,PeniMi00,,36654,79.888102177062,2.792951019217674,0.0586006241262098,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Tenuous,,1
+ATL,QB2,Tua Tagovailoa,Tagovailoa,TagoTu00,,35856,77.65370750422589,2.268009797659767,0.062852853440518,Injury-prone,🟠 Injury-prone (6.3%),Healthy,,,Uncontroversial,,0
+ATL,QB3,Andy Dalton,Dalton,DaltAn00,,32079,65.31383916881742,-0.6310776539008582,0.0599496693114889,Injury-prone,🟠 Injury-prone (6.0%),Healthy,,,Uncontroversial,,0
+ATL,QB4,Jack Strand,Strand,StraJa00,R,38161,62.8645303233994,-1.206510093351825,0.0472363564632729,Average,🟡 Average (4.7%),Healthy,,,Uncontroversial,,0
+BAL,QB1,Lamar Jackson,Jackson,JackLa00,,35437,95.11185834829342,6.369569446741173,0.0498913254334087,Average,🟡 Average (5.0%),Questionable,7,8,Rock Solid,,1
+BAL,QB2,Tyler Huntley,Huntley,HuntTy01,,35829,80.32018782511065,2.89446377820416,0.0997800286724141,High risk,🔴 High risk (10.0%),Healthy,,,Uncontroversial,,0
+BAL,QB3,Joe Fagnano,Fagnano,FagnJo00,R,36981,59.53554175168286,-1.98861154956908,0.0517301537760315,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+BAL,QB4,Skylar Thompson,Thompson,ThomSk00,,35585,63.1485114365379,-1.139792519127983,0.1180539404466912,High risk,🔴 High risk (11.8%),Out,23,23,Uncontroversial,,0
+BUF,QB1,Josh Allen,Allen,AlleJo02,,35206,91.5210354474166,5.52595350775766,0.0193826175740993,Iron man,🔵 Iron man (1.9%),Healthy,,,Rock Solid,,1
+BUF,QB2,Kyle Allen,Allen,AlleKy00,,35132,63.70677346117758,-1.0086363036543,0.065960142336106,Injury-prone,🟠 Injury-prone (6.6%),Healthy,,,Uncontroversial,,0
+BUF,QB3,Shane Buechele,Buechele,BuecSh00,,35803,62.96971940397539,-1.181797322092831,0.0566174010707071,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
+CAR,QB1,Bryce Young,Young,YounBr01,,37097,82.82360234076403,3.482607623107282,0.0518258789664952,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,1
+CAR,QB2,Kenny Pickett,Pickett,PickKe00,,35952,68.28551365638445,0.0670776248153509,0.0941825441640118,High risk,🔴 High risk (9.4%),Healthy,,,Uncontroversial,,0
+CAR,QB3,Haynes King,King,KingHa00,R,36900,59.24917413914105,-2.055889799991827,0.0520530300480153,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+CHI,QB1,Caleb Williams,Williams,WillCa03,,37213,81.97921244625121,3.284229481552689,0.042849976894239,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
+CHI,QB2,Tyson Bagent,Bagent,BageTy00,,36685,71.32391347953345,0.7809091310105659,0.041479288244982,Average,🟡 Average (4.1%),Healthy,,,Uncontroversial,,0
+CHI,QB3,Case Keenum,Keenum,KeenCa00,,32190,65.36551360298422,-0.6189374349303207,0.0710796106033636,Injury-prone,🟠 Injury-prone (7.1%),Healthy,,,Uncontroversial,,0
+CHI,QB4,Miller Moss,Moss,MossMi00,R,37334,60.71980395377825,-1.710384943244543,0.050345038026106,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
+CIN,QB1,Joe Burrow,Burrow,BurrJo01,,35409,88.37872181834587,4.787708839071304,0.0507663506770026,Average,🟡 Average (5.1%),Healthy,,,Rock Solid,,1
+CIN,QB2,Joe Flacco,Flacco,FlacJo00,,31063,71.94384267260158,0.926553225066488,0.0340586266689605,Below average,🟢 Below average (3.4%),Healthy,,,Uncontroversial,,0
+CIN,QB3,Josh Johnson,Johnson,JohnJo05,,31547,72.14588566297599,0.9740205304014636,0.0590002815916221,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Uncontroversial,,0
+CIN,QB4,Sean Clifford,Clifford,ClifSe00,,35990,64.94832990529416,-0.7169491794720739,0.0558135771828038,Injury-prone,🟠 Injury-prone (5.6%),Healthy,,,Uncontroversial,,0
+CLE,QB1,Deshaun Watson,Watson,WatsDe00,,34956,70.65717890328848,0.624268736561059,0.1128008457096685,High risk,🔴 High risk (11.3%),Healthy,,,Tenuous,,1
+CLE,QB2,Shedeur Sanders,Sanders,SandSh00,,37294,69.31581423803851,0.3091330022652132,0.0531739347186771,Average,🟡 Average (5.3%),Healthy,,,Tenuous,,0
+CLE,QB3,Dillon Gabriel,Gabriel,GabrDi00,,36888,71.07120676969366,0.7215390606412176,0.0801182270741009,High risk,🔴 High risk (8.0%),Out,7,8,Uncontroversial,,0
+CLE,QB4,Taylen Green,Green,GreeTa00,R,37547,65.29816203294689,-0.6347607878406475,0.0495263248209152,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
+DAL,QB1,Dak Prescott,Prescott,PresDa01,,34179,90.34536599295149,5.249745652861602,0.037745787349547,Below average,🟢 Below average (3.8%),Healthy,,,Rock Solid,,1
+DAL,QB2,Sam Howell,Howell,HoweSa00,,36785,65.97366670934005,-0.4760599753544575,0.0476463841316962,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+DEN,QB1,Bo Nix,Nix,NixxBo00,,36581,79.89943314351008,2.795613078629559,0.0291657914203516,Iron man,🔵 Iron man (2.9%),Healthy,,,Uncontroversial,,1
+DEN,QB2,Jarrett Stidham,Stidham,StidJa00,,35285,70.06633285102279,0.4854573384675725,0.0608504309962866,Injury-prone,🟠 Injury-prone (6.1%),Healthy,,,Uncontroversial,,0
+DEN,QB3,Sam Ehlinger,Ehlinger,EhliSa00,,36068,69.51681777537792,0.3563561019759178,0.0575456662901313,Injury-prone,🟠 Injury-prone (5.8%),Healthy,,,Uncontroversial,,0
+DET,QB1,Jared Goff,Goff,GoffJa00,,34621,85.44236274321018,4.097850445398238,0.0245145708983248,Iron man,🔵 Iron man (2.5%),Healthy,,,Rock Solid,,1
+DET,QB2,Joshua Dobbs,Dobbs,DobbJo00,,34725,70.44061898793956,0.5733908733591001,0.0462846998237757,Average,🟡 Average (4.6%),Healthy,,,Uncontroversial,,0
+DET,QB3,Luke Altmyer,Altmyer,AltmLu00,R,37551,61.4072697481546,-1.548874025649518,0.0495110712954524,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
+GB,QB1,Jordan Love,Love,LoveJo03,,36101,88.51752092164156,4.82031783681059,0.0375867019643378,Below average,🟢 Below average (3.8%),Healthy,,,Rock Solid,,1
+GB,QB2,Tyrod Taylor,Taylor,TaylTy00,,32723,73.06468573592494,1.189880350747847,0.1333336676662843,High risk,🔴 High risk (13.3%),Healthy,,,Uncontroversial,,0
+GB,QB3,Kedon Slovis,Slovis,SlovKe00,,36992,62.71347126780262,-1.241999403336487,0.0516864526785923,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+HOU,QB1,C.J. Stroud,Stroud,StroCJ00,,37167,80.7807977471849,3.002677934859146,0.0483151156884179,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,1
+HOU,QB2,Davis Mills,Mills,MillDa02,,36089,69.74929475718716,0.4109734676090619,0.0317238910339487,Below average,🟢 Below average (3.2%),Healthy,,,Uncontroversial,,0
+HOU,QB3,Graham Mertz,Mertz,MertGr00,,36866,63.00456071152879,-1.173611821666203,0.0521891251148049,Average,🟡 Average (5.2%),Out,23,23,Uncontroversial,,0
+HOU,QB4,Mark Gronowski,Gronowski,GronMa00,R,36900,59.24917413914105,-2.055889799991827,0.0520530300480153,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+IND,QB1,Daniel Jones,Jones,JoneDa05,,35577,78.76114512058894,2.528187492406462,0.080228256266566,High risk,🔴 High risk (8.0%),Healthy,,,Uncontroversial,,1
+IND,QB2,Anthony Richardson Sr.,Richardson,RichAn03,,37398,75.34355387927832,1.725270020927691,0.0788766511234668,High risk,🔴 High risk (7.9%),Healthy,,,Uncontroversial,,0
+IND,QB3,Riley Leonard,Leonard,LeonRi02,,37512,72.75554070466278,1.117250849647519,0.0472670830780657,Average,🟡 Average (4.7%),Healthy,,,Uncontroversial,,0
+JAX,QB1,Trevor Lawrence,Lawrence,LawrTr00,,36439,89.6416384123717,5.084414245530311,0.0367127618822898,Below average,🟢 Below average (3.7%),Healthy,,,Uncontroversial,,1
+JAX,QB2,Quinn Ewers,Ewers,EwerQu00,,37695,70.85900018695904,0.6716839548635316,0.0479535083785454,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+JAX,QB3,Nick Mullens,Mullens,MullNi00,,34779,70.31772265072081,0.5445180183666938,0.0653623673250312,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Uncontroversial,,0
+JAX,QB4,Joey Aguilar,Aguilar,AguiJo00,R,37058,59.81379146629961,-1.923240490971068,0.0514249782982852,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
+KC,QB1,Patrick Mahomes,Mahomes,MahoPa00,,34959,88.42655579862203,4.798946794631893,0.0353915113187065,Below average,🟢 Below average (3.5%),Healthy,,,Rock Solid,,1
+KC,QB2,Justin Fields,Fields,FielJu00,,36224,69.49054389430891,0.3501834041123292,0.1309773904739495,High risk,🔴 High risk (13.1%),Healthy,,,Uncontroversial,,0
+KC,QB3,Garrett Nussmeier,Nussmeier,NussGa00,R,37293,62.97172023333769,-1.181327253925222,0.0505040949599262,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
+LAC,QB1,Justin Herbert,Herbert,HerbJu00,,35864,76.50162402300079,1.997343152539568,0.0425913457027993,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
+LAC,QB2,Trey Lance,Lance,LancTr00,,36655,68.97241284544745,0.2284554260505203,0.0980047805654115,High risk,🔴 High risk (9.8%),Out,10,12,Uncontroversial,,0
+LAC,QB3,Jake Browning,Browning,BrowJa08,,35166,72.55227580917409,1.069496474006158,0.0538382334125927,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
+LAC,QB4,DJ Uiagalelei,Uiagalelei,UiagDJ00,,36998,61.4210722919411,-1.545631302112813,0.0516626304310656,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+LAR,QB1,Matthew Stafford,Stafford,StafMa00,,32180,86.38055432568964,4.318266042226077,0.0373843527503572,Below average,🟢 Below average (3.7%),Healthy,,,Rock Solid,,1
+LAR,QB2,Stetson Bennett IV,Bennett,BennSt00,,35731,65.38949749202246,-0.6133027401458673,0.0569297868450494,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
+LAR,QB3,Ty Simpson,Simpson,SimpTy00,R,37611,63.42099772901574,-1.075775499677457,0.049282802161798,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
+LAR,QB4,Matthew Caldwell,Caldwell,CaldMa00,R,37764,62.03905818532779,-1.400443760393428,0.0487052245352962,Average,🟡 Average (4.9%),Out,23,23,Uncontroversial,,0
+LV,QB1,Kirk Cousins,Cousins,CousKi00,,32374,81.79971265053175,3.242058399075675,0.0209923115636967,Iron man,🔵 Iron man (2.1%),Healthy,,,Tenuous,,1
+LV,QB2,Fernando Mendoza,Mendoza,MendFe00,R,37895,65.77785642403435,-0.5220629897778251,0.0482158063819941,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+LV,QB3,Aidan O'Connell,O'Connell,OConAi00,,36039,71.83956016983376,0.9020534421697765,0.0616390679727661,Injury-prone,🟠 Injury-prone (6.2%),Healthy,,,Uncontroversial,,0
+MIA,QB1,Malik Willis,Willis,WillMa12,,36305,77.02957727581857,2.121378726392713,0.0823054893645356,High risk,🔴 High risk (8.2%),Healthy,,,Uncontroversial,,1
+MIA,QB2,Kyle McCord,McCord,McCoKy00,,37518,65.49363049995966,-0.5888380790653464,0.0496370461669686,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
+MIA,QB3,Brady Cook,Cook,CookBr03,,37176,63.3240287301238,-1.098557072400673,0.0541300731251546,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
+MIN,QB1,Kyler Murray,Murray,MurrKy00,,35649,75.83211153757078,1.840050125384344,0.0592739714840927,Injury-prone,🟠 Injury-prone (5.9%),Healthy,,,Uncontroversial,,1
+MIN,QB2,Carson Wentz,Wentz,WentCa00,,33968,66.42561130933484,-0.3698816205266457,0.0740253580850449,Injury-prone,🟠 Injury-prone (7.4%),Healthy,,,Uncontroversial,,0
+MIN,QB3,Max Brosmer,Brosmer,BrosMa00,,36978,60.9651654210637,-1.6527405396278,0.0646722322516303,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Uncontroversial,,0
+NE,QB1,Drake Maye,Maye,MayeDr00,,37498,89.2452067560773,4.991277916282234,0.0354284101589024,Below average,🟢 Below average (3.5%),Healthy,,,Rock Solid,,1
+NE,QB2,Tommy DeVito,DeVito,DeViTo00,,36014,63.88392271080566,-0.9670174506251732,0.0975222617510634,High risk,🔴 High risk (9.8%),Healthy,,,Uncontroversial,,0
+NE,QB3,Behren Morton,Morton,MortBe00,R,37273,62.51549645220043,-1.288510945278181,0.0505818562542065,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
+NO,QB1,Tyler Shough,Shough,ShouTy00,,36431,81.80687155096096,3.243740287231788,0.0433847206228855,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
+NO,QB2,Spencer Rattler,Rattler,RattSp00,,36797,74.13956095498325,1.442407944630176,0.0440038433367929,Average,🟡 Average (4.4%),Healthy,,,Uncontroversial,,0
+NO,QB3,Zach Wilson,Wilson,WilsZa00,,36375,60.62760720446856,-1.732045339590219,0.0852536214842371,High risk,🔴 High risk (8.5%),Healthy,,,Uncontroversial,,0
+NYG,QB1,Jaxson Dart,Dart,DartJa00,,37754,81.41517049161914,3.151715348631558,0.0922527454943667,High risk,🔴 High risk (9.2%),Out,21,23,Uncontroversial,,0
+NYG,QB2,Jameis Winston,Winston,WinsJa00,,34340,74.99002015256228,1.642211987975672,0.0690821679751946,Injury-prone,🟠 Injury-prone (6.9%),Healthy,,,Uncontroversial,,1
+NYG,QB3,J.J. McCarthy,McCarthy,McCaJJ00,,37641,77.28942338060452,2.182426102365134,0.0899067765443589,High risk,🔴 High risk (9.0%),Healthy,,,Uncontroversial,,0
+NYG,QB4,Jake Haener,Haener,HaenJa00,,36229,62.53092193898614,-1.284886932933873,0.0569221605633121,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
+NYJ,QB1,Geno Smith,Smith,SmitGe00,,33156,72.76056777406694,1.118431892542922,0.0760084539502117,High risk,🔴 High risk (7.6%),Healthy,,,Tenuous,,1
+NYJ,QB2,Cade Klubnik,Klubnik,KlubCa00,R,37904,65.73646964645138,-0.5317862610713313,0.0481823541721835,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+NYJ,QB3,Will Levis,Levis,LeviWi00,,36338,66.8873403128311,-0.2614045506201063,0.1191304105062068,High risk,🔴 High risk (11.9%),Healthy,,,Uncontroversial,,0
+PHI,QB1,Jalen Hurts,Hurts,HurtJa00,,36014,80.09139229077954,2.840711319545493,0.060118663443011,Injury-prone,🟠 Injury-prone (6.0%),Out,23,23,Uncontroversial,,0
+PHI,QB2,Tanner McKee,McKee,McKeTa01,,36643,70.46285910587027,0.5786158923837466,0.049864394896444,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,1
+PHI,QB3,Cole Payton,Payton,PaytCo00,R,37555,62.09977671673312,-1.386178751424955,0.0494958222232532,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
+PHI,QB4,Joe Milton III,Milton,MiltJo00,,36591,67.85807798285362,-0.0333426846888344,0.0533023134948034,Average,🟡 Average (5.3%),Healthy,,,Uncontroversial,,0
+PIT,QB1,Aaron Rodgers,Rodgers,RodgAa00,,30652,72.82224793121928,1.132922822652567,0.0460248594791804,Average,🟡 Average (4.6%),Healthy,,,Uncontroversial,,1
+PIT,QB2,Mason Rudolph,Rudolph,RudoMa00,,34897,73.44923494410384,1.280225057323042,0.0567292523587298,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
+PIT,QB3,Will Howard,Howard,HowaWi01,,37158,66.04454056668035,-0.4594091080296104,0.0510311876989254,Average,🟡 Average (5.1%),Healthy,,,Uncontroversial,,0
+PIT,QB4,Drew Allar,Allar,AllaDr00,R,38054,66.2835398371318,-0.4032594176873114,0.047628051505163,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+SEA,QB1,Sam Darnold,Darnold,DarnSa00,,35586,82.80987462098584,3.479382478473179,0.0645253759637052,Injury-prone,🟠 Injury-prone (6.5%),Healthy,,,Rock Solid,,1
+SEA,QB2,Drew Lock,Lock,LockDr00,,35379,72.70405262918574,1.105154413165116,0.067686732261232,Injury-prone,🟠 Injury-prone (6.8%),Healthy,,,Uncontroversial,,0
+SEA,QB3,Jalen Milroe,Milroe,MilrJa00,,37603,63.84101250315629,-0.9770986314902212,0.0493131802932105,Average,🟡 Average (4.9%),Healthy,,,Uncontroversial,,0
+SF,QB1,Brock Purdy,Purdy,PurdBr00,,36521,98.22325014634042,7.100549443725729,0.0434094963915528,Average,🟡 Average (4.3%),Healthy,,,Uncontroversial,,1
+SF,QB2,Mac Jones,Jones,JoneMa05,,36043,74.15074876350864,1.445036370997851,0.0448415144817579,Average,🟡 Average (4.5%),Healthy,,,Uncontroversial,,0
+SF,QB3,Kurtis Rourke,Rourke,RourKu01,,36824,63.0430550836661,-1.164568082447467,0.0523577067746141,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,0
+TB,QB1,Baker Mayfield,Mayfield,MayfBa00,,34803,77.55327915661027,2.244415497101635,0.0476371269097324,Average,🟡 Average (4.8%),Out,7,9,Uncontroversial,,0
+TB,QB2,Jalon Daniels,Daniels,DaniJa03,R,37558,70.18787363180427,0.5140117235581639,0.0519105936781488,Average,🟡 Average (5.2%),Healthy,,,Uncontroversial,,1
+TB,QB3,Easton Stick,Stick,SticEa00,,34957,68.53539029236099,0.1257828070837137,0.0576371046394718,Injury-prone,🟠 Injury-prone (5.8%),Healthy,,,Uncontroversial,,0
+TB,QB4,Brett Rypien,Rypien,RypiBr00,,35255,61.48911904177112,-1.529644625983893,0.0540963993383738,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
+TEN,QB1,Cam Ward,Ward,WardCa00,,37401,72.18444658189836,0.9830799038996164,0.0391201093168713,Below average,🟢 Below average (3.9%),Healthy,,,Uncontroversial,,1
+TEN,QB2,Mitchell Trubisky,Trubisky,TrubMi00,,34566,74.06449883286314,1.424773100366764,0.0499471074165766,Average,🟡 Average (5.0%),Healthy,,,Uncontroversial,,0
+TEN,QB3,Hendon Hooker,Hooker,HookHe00,,35808,64.78962980946739,-0.7542336499272961,0.0565957675482914,Injury-prone,🟠 Injury-prone (5.7%),Healthy,,,Uncontroversial,,0
+WAS,QB1,Jayden Daniels,Daniels,DaniJa02,,36878,85.48816957575973,4.108612149642607,0.0877997762309516,High risk,🔴 High risk (8.8%),Healthy,,,Uncontroversial,,1
+WAS,QB2,Marcus Mariota,Mariota,MariMa01,,34272,82.37638347434422,3.377539516341627,0.1047013764711061,High risk,🔴 High risk (10.5%),Out,7,9,Uncontroversial,,0
+WAS,QB3,Athan Kaliakmanis,Kaliakmanis,KaliAt00,R,37853,64.13022350071296,-0.90915236568899,0.0483722084262484,Average,🟡 Average (4.8%),Healthy,,,Uncontroversial,,0
+WAS,QB4,Sam Hartman,Hartman,HartSa00,,36370,60.88320596412266,-1.671995820696943,0.0542131135111024,Average,🟡 Average (5.4%),Healthy,,,Uncontroversial,,0
