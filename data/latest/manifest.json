@@ -1,150 +1,150 @@
 {
-  "approved_data_updated_at": "2026-11-09T18:04:19.610080+00:00",
+  "approved_data_updated_at": "2026-11-10T22:44:54.559272+00:00",
   "files": {
     "elway-conditional": {
       "path": "data/latest/elway-conditional.csv",
       "rows": 32,
-      "sha256": "0e06c1d9d52bb501c4831b6e1951a2d6c6c34485ea55a42f8afb624c693ee507"
+      "sha256": "6442a1e9c9f977b396d48edec532c56326125f434557e66c31bf13091880f52c"
     },
     "elway-conditional-meta": {
       "path": "data/latest/elway-conditional-meta.csv",
       "rows": 2,
-      "sha256": "042afcf0506335963b024b0cc09d3ac316d93d89dbc92fc2d0b1372fccaf2478"
+      "sha256": "4def86d21c45c49fbdbfe82947ec780ede954775ab3f090fbf300aa8bb051063"
     },
     "elway-future-games": {
       "path": "data/latest/elway-future-games.csv",
-      "rows": 137,
-      "sha256": "aec339ff539653939e406ba21e5b1779ac43364f41b91066572003ae488d0013"
+      "rows": 136,
+      "sha256": "3ce490cf30cf9e15491b879bbc107b3cd61c6769e4367723e2fd98d896e3096f"
     },
     "elway-future-games-meta": {
       "path": "data/latest/elway-future-games-meta.csv",
       "rows": 2,
-      "sha256": "ef0798b554753c9b6edb5925c818cfa748dc7c84b1b7b2e86376f9d8e30255ba"
+      "sha256": "66aa8e7cc084d92ea53ba3f622ea01a5333c476afaa489a8eaf196ab324c1041"
     },
     "elway-margin-games": {
       "path": "data/latest/elway-margin-games.csv",
-      "rows": 137,
-      "sha256": "aec339ff539653939e406ba21e5b1779ac43364f41b91066572003ae488d0013"
+      "rows": 136,
+      "sha256": "3ce490cf30cf9e15491b879bbc107b3cd61c6769e4367723e2fd98d896e3096f"
     },
     "elway-margin-games-meta": {
       "path": "data/latest/elway-margin-games-meta.csv",
       "rows": 2,
-      "sha256": "ef0798b554753c9b6edb5925c818cfa748dc7c84b1b7b2e86376f9d8e30255ba"
+      "sha256": "66aa8e7cc084d92ea53ba3f622ea01a5333c476afaa489a8eaf196ab324c1041"
     },
     "elway-margins": {
       "path": "data/latest/elway-margins.csv",
-      "rows": 100,
-      "sha256": "c46d4bd4a2ed117f15e3694418dce80e49a9ef08912cc5b54c6d0e4fb2245969"
+      "rows": 1364,
+      "sha256": "d6c4a0d7bbdf02fbd7f8aeb16f4990ad94df7c464ec91e1528e0b4ed81c20cc4"
     },
     "elway-margins-meta": {
       "path": "data/latest/elway-margins-meta.csv",
       "rows": 2,
-      "sha256": "c33ced88e960cf3c14163a55281dcddb93fa35235187ec949002ad024406a4be"
+      "sha256": "29433f55f4fed9f240bcf2e1b2d70bd168f0ba33ac7bbd8a7c4f73be69e43106"
     },
     "elway-rating-trends": {
       "path": "data/latest/elway-rating-trends.csv",
       "rows": 10,
-      "sha256": "d5b1e9c6d2ed1aba85eca30ef8b43c2c3543432709e2f48c20741d3bb045ed93"
+      "sha256": "249736400c7a96b31af5d5297a3c940089944f30f7776152794f6da48e77614c"
     },
     "elway-scatter": {
       "path": "data/latest/elway-scatter.csv",
       "rows": 32,
-      "sha256": "3abe9e78df2d6b1d2402c4d4eb4944199fc1cdd59fdd37c8f77b69e62133f5ad"
+      "sha256": "7370113003d6b802bac044c258f7e25bde9d5535cfc11111a43116b2e24c8531"
     },
     "elway-scatter-meta": {
       "path": "data/latest/elway-scatter-meta.csv",
       "rows": 2,
-      "sha256": "7859ebdc41f2209a8270567c98ca101ec5988b7877b01f757885ff72b75dfdd0"
+      "sha256": "474fa5b89c28c332fb65237ce362725ded92e7f215419058475c0c42709d3e63"
     },
     "elway-seeds": {
       "path": "data/latest/elway-seeds.csv",
       "rows": 32,
-      "sha256": "da31750461bf51e8f3c5cb467049e32a4dfb6bb1885713b5ef7da0134c93e811"
+      "sha256": "745db7231462cc96e9d97fdfa323d04afcc1fbaf961289c7b0e3a85b8143b47c"
     },
     "elway-seeds-meta": {
       "path": "data/latest/elway-seeds-meta.csv",
       "rows": 2,
-      "sha256": "6fa2f0c1d66ccea0a2bc1ec11c8b43d900c76a04c3fc45e038da17642bea02c2"
+      "sha256": "f2dbaf86132d937957e964d0b207c4be71004de2ab7d1477cf2f4030c3464174"
     },
     "elway-standings": {
       "path": "data/latest/elway-standings.csv",
       "rows": 32,
-      "sha256": "3d9ea5497fd38d8e2ffbb6dc426dd144fd910a8fe9ae99a5e68597e572ba90d6"
+      "sha256": "626f4b1ced1ab5822126e9b940cca869cae1573c71c1d16dd7b3a0dad822205a"
     },
     "elway-standings-meta": {
       "path": "data/latest/elway-standings-meta.csv",
       "rows": 2,
-      "sha256": "52a5b312105f079dd2b5c780572193bed91916679d45691a7992d11d57086d99"
+      "sha256": "decf541273ab82dce1de1f215a4f59cadf84cb5327b5ba68582089b660772ba0"
     },
     "elway-team-ratings-injury": {
       "path": "data/latest/elway-team-ratings-injury.csv",
       "rows": 32,
-      "sha256": "3abe9e78df2d6b1d2402c4d4eb4944199fc1cdd59fdd37c8f77b69e62133f5ad"
+      "sha256": "7370113003d6b802bac044c258f7e25bde9d5535cfc11111a43116b2e24c8531"
     },
     "elway-team-ratings-injury-meta": {
       "path": "data/latest/elway-team-ratings-injury-meta.csv",
       "rows": 2,
-      "sha256": "7859ebdc41f2209a8270567c98ca101ec5988b7877b01f757885ff72b75dfdd0"
+      "sha256": "474fa5b89c28c332fb65237ce362725ded92e7f215419058475c0c42709d3e63"
     },
     "elway-team-ratings-qb1": {
       "path": "data/latest/elway-team-ratings-qb1.csv",
       "rows": 32,
-      "sha256": "d4160488451d8ba4eb1506fd629a2333784f429b5e75135bae9220a7bbee6646"
+      "sha256": "9c1571f32d13e22a89f70d6f157dd41dd6d0b2d5460d1b6c231d191a16aa3057"
     },
     "elway-team-ratings-qb1-meta": {
       "path": "data/latest/elway-team-ratings-qb1-meta.csv",
       "rows": 2,
-      "sha256": "555fed8a15250f78716b4f02b4754c249a5794c88a549847e000fe78d3434773"
+      "sha256": "ee153d7f02866f0e0aa85c4afeceffdefda76086c4921d080ffb26a369f7f1f3"
     },
     "elway-team-ratings-team": {
       "path": "data/latest/elway-team-ratings-team.csv",
       "rows": 32,
-      "sha256": "6ee1e881d9f791dc598c2c16d115c6e78180e24fa2d50288e86a7e6d7c809c7a"
+      "sha256": "74a3ede47f3d58030bae0b8220f469d6941cc4c809f6bfa36ac9bb31c67edda6"
     },
     "elway-team-ratings-team-meta": {
       "path": "data/latest/elway-team-ratings-team-meta.csv",
       "rows": 2,
-      "sha256": "44b41f83bad40212ff66e6481194ff9af6b6000c4415beee588cb2c7f49192a9"
+      "sha256": "b3c90ff623a23f17f8c6595763a63b147d9628ade98a10e0ef4313489dbf51bf"
     },
     "elway-win-totals": {
       "path": "data/latest/elway-win-totals.csv",
       "rows": 576,
-      "sha256": "d22bed3f85d496035fde97f2cdae9e0041eabd6c3a7cff7ee23a4ae1d23e2222"
+      "sha256": "813ecb8dceef7215f8806d5a2765f8afdbabcb70503c1cfb7a4e3b028f5a0508"
     },
     "elway-win-totals-meta": {
       "path": "data/latest/elway-win-totals-meta.csv",
       "rows": 2,
-      "sha256": "d4774984add8680fa9904f0c744e6acffc7e1f633d6270c31951fd801542f604"
+      "sha256": "51a0d597fd2ec649333a317dffb5c7a9d4e4815c3fce3b7b8ccb139ea80b0448"
     },
     "qbert-career": {
       "path": "data/latest/qbert-career.csv",
-      "rows": 343,
-      "sha256": "ba27733df5e271c5e318d0c6923751f81291732690bfe21badf36752c65b6e90"
+      "rows": 347,
+      "sha256": "3bbdd6d7714e48c2749099c434eb27af8b397370bbe013093ffddf8ca91cea12"
     },
     "qbert-career-roster": {
       "path": "data/latest/qbert-career-roster.csv",
       "rows": 110,
-      "sha256": "0874bf2e6d85d07f5e158d9f7b4a75f48f0644ae790a4360fc5ccf1c15aeead0"
+      "sha256": "762b3e31a9698665f9e49864d5ed6d6f1932cb715f7a023effa70c541eefaeea"
     },
     "qbert-depth-charts": {
       "path": "data/latest/qbert-depth-charts.csv",
       "rows": 110,
-      "sha256": "0874bf2e6d85d07f5e158d9f7b4a75f48f0644ae790a4360fc5ccf1c15aeead0"
+      "sha256": "762b3e31a9698665f9e49864d5ed6d6f1932cb715f7a023effa70c541eefaeea"
     },
     "qbert-game-by-game": {
       "path": "data/latest/qbert-game-by-game.csv",
-      "rows": 276,
-      "sha256": "431b3d48ba711f3cc4810f4baed5b749a75a87ef885aa10754eb253ec2624af7"
+      "rows": 278,
+      "sha256": "4685d7d4d44f1d1aa590a8005b723d89be421dff62b01ab391f37f3a2b43163c"
     },
     "qbert-leaderboard": {
       "path": "data/latest/qbert-leaderboard.csv",
       "rows": 5,
-      "sha256": "e212998e5d2edc3ff6e23cb05e1c7512f75772426ad909324db9e8895ac4995e"
+      "sha256": "a232b6beb549ff2a1a730888db8536af7e25b6d20f804718b1aefca93b7fee0f"
     },
     "qbert-leaderboard-roster": {
       "path": "data/latest/qbert-leaderboard-roster.csv",
       "rows": 110,
-      "sha256": "0874bf2e6d85d07f5e158d9f7b4a75f48f0644ae790a4360fc5ccf1c15aeead0"
+      "sha256": "762b3e31a9698665f9e49864d5ed6d6f1932cb715f7a023effa70c541eefaeea"
     },
     "qbert-projection-week": {
       "path": "data/latest/qbert-projection-week.csv",
@@ -152,6 +152,6 @@
       "sha256": "c6fb5f79acea4aa9f1380856dda5a55231a0b1d332ad56e70ddbdde4849a5fb7"
     }
   },
-  "published_at": "2026-11-09T18:10:52.911079+00:00",
+  "published_at": "2026-11-10T22:48:14.514384+00:00",
   "schema": 1
 }
