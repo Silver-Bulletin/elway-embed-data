@@ -7,7 +7,7 @@
 #qbert-depth{--ink:#101214;--muted:#60686e;--hair:#cfd5d9;--paper:#f4f4f1;--green:#04ff40;--sans:"Geist",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;--headline:"Archivo Narrow","Arial Narrow",Arial,sans-serif;max-width:760px;margin:0 auto;color:var(--ink);font-family:var(--sans)}
 #qbert-depth *{box-sizing:border-box}
 #qbert-depth{overflow-anchor:none}
-#qbert-depth .qbd-stage{position:relative;min-height:658px;margin-top:15px}
+#qbert-depth .qbd-stage{position:relative;margin-top:15px}
 #qbert-depth button,#qbert-depth input,#qbert-depth select{font:inherit}
 #qbert-depth .qbd-mark{width:27px;height:0;margin-bottom:5px;border-bottom:5.5px solid var(--green)}
 #qbert-depth h1{margin:0;font-family:var(--headline);font-size:28px;font-weight:700;line-height:1.15}
@@ -44,13 +44,7 @@
 #qbert-depth .qbd-risk-mark,#qbert-depth .qbd-legend-mark{display:inline-block;width:8px;height:8px;margin-right:5px;border:0;border-radius:50%;background:var(--risk);vertical-align:0}
 #qbert-depth .qbd-legend-mark{margin-left:2px}
 #qbert-depth .qbd-empty-cell{height:100%;background:#fafafa}
-#qbert-depth .qbd-no-results{display:none;position:absolute;top:44px;left:0;right:0;padding:22px 0;color:var(--muted);font:700 10px/1.4 var(--mono);text-align:center}
-#qbert-depth .qbd-pages{display:flex;align-items:center;justify-content:center;gap:14px;padding-top:10px}
-#qbert-depth .qbd-page-button{width:80px;min-height:36px;padding:9px 10px;border:1px solid var(--hair);border-radius:3px;background:#fff;color:var(--ink);font:600 11px/1 var(--sans);cursor:pointer}
-#qbert-depth .qbd-page-button:hover:not(:disabled){border-color:var(--ink);background:#f7f8f8}
-#qbert-depth .qbd-page-button:focus-visible{border-color:var(--ink);outline:2px solid var(--green);outline-offset:2px}
-#qbert-depth .qbd-page-button:disabled{opacity:.35;cursor:default}
-#qbert-depth .qbd-page-label{min-width:100px;text-align:center;color:var(--muted);font:400 12px/1.3 var(--sans);font-variant-numeric:tabular-nums}
+#qbert-depth .qbd-no-results{display:none;padding:22px 0;color:var(--muted);font:700 10px/1.4 var(--mono);text-align:center}
 #qbert-depth .qbd-mobile{display:none}
 #qbert-depth .qbd-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:12px;padding-top:10px;border-top:1px solid var(--hair);color:#687178;font:500 8px/1.45 var(--mono)}
 #qbert-depth .qbd-footer-copy{min-width:0}
@@ -64,7 +58,7 @@
   #qbert-depth .qbd-controls{grid-template-columns:1fr}
   #qbert-depth .qbd-search-field{display:none}
   #qbert-depth .qbd-table-wrap{display:none}
-  #qbert-depth .qbd-stage{min-height:294px;margin-top:13px}
+  #qbert-depth .qbd-stage{margin-top:13px}
   #qbert-depth .qbd-select{font-size:16px}
   #qbert-depth .qbd-mobile{display:block;margin-top:0;border-top:1px solid var(--hair)}
   #qbert-depth .qbd-mobile-head{border-bottom:1px solid var(--hair)}
@@ -104,11 +98,6 @@
   <section class="qbd-mobile" data-mobile aria-live="polite"></section>
   <div class="qbd-no-results" data-empty>No matching quarterbacks or teams.</div>
   </div>
-  <nav class="qbd-pages" aria-label="Depth chart pages">
-    <button class="qbd-page-button" data-previous type="button" aria-label="Previous teams">Previous</button>
-    <span class="qbd-page-label" data-page-label aria-live="polite"></span>
-    <button class="qbd-page-button" data-next type="button" aria-label="Next teams">Next</button>
-  </nav>
   <footer class="qbd-footer"><div class="qbd-footer-copy"><span class="qbd-source" data-source>Source: QBERT model</span></div><img class="qbd-wordmark" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MjkuMyAxMjYiPgogIDxnIGlkPSJMYWdfMSIgZGF0YS1uYW1lPSJMYWcgMSI+CiAgICA8Zz4KICAgICAgPHBhdGggZD0iTTUzLjUsNTUuMWwtMTQuMi03Yy00LjMtMi4xLTYuNy0zLjktOC02LjMtMS4yLTIuMS0xLjUtNC4xLTEuNS02LjdzLjUtNC4zLDEuNS02YzEuNC0yLjIsMi40LTMuNCw1LjMtMy40LDUuMywwLDcuOSwzLjQsNy45LDEwLjZ2NS41aDI3LjR2LTUuNUM3MS45LDEyLjUsNTkuOCwwLDM2LjcsMFMxMi41LDUuNSw2LjksMTUuMmMtMy40LDYtNS4zLDEzLjUtNS4zLDIyLjJzMS43LDE1LjQsNSwyMWMzLjEsNS4zLDcuNSw5LjQsMTMuNSwxMi4zbDE0LjIsN2M0LjMsMi4xLDYuNywzLjksOCw2LjMsMS4yLDIuMSwxLjUsNC4xLDEuNSw2LjdzLS41LDQuMy0xLjUsNmMtMS40LDIuMi0zLjQsMy40LTYuNywzLjQtNS41LDAtOC4yLTMuNC04LjItMTAuNnYtNS41SDB2NS41YzAsMjMuOCwxMi4zLDM2LjMsMzUuNiwzNi4zczI1LjUtNS41LDMxLjEtMTUuMmMzLjQtNiw1LjMtMTMuNSw1LjMtMjIuMnMtMS43LTE1LjQtNS0yMWMtMy4xLTUuMy03LjUtOS40LTEzLjUtMTIuM2gwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjIwMi4yIDg1LjggMjAyLjIgMTAyLjMgMTk3LjkgMTAyLjMgMTk3LjkgODUuOCAxOTAuNCAzLjIgMTYxLjIgMy4yIDE3NC41IDEyMi45IDIyNS42IDEyMi45IDIzOSAzLjIgMjA5LjcgMy4yIDIwMi4yIDg1LjgiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxMzguNiAzLjIgMTExLjIgMy4yIDExMS4yIDEyMi45IDE2Ny4zIDEyMi45IDE2Ny4zIDk3LjIgMTM4LjYgOTcuMiAxMzguNiAzLjIiLz4KICAgICAgPHJlY3QgeD0iNzcuNSIgeT0iMy4yIiB3aWR0aD0iMjcuNCIgaGVpZ2h0PSIxMTkuNyIvPgogICAgICA8cGF0aCBkPSJNNDgzLjEsNDkuOGMyLjQtNC4xLDMuOC05LjQsMy44LTE1LjRzLTEuNC0xMy00LjEtMTcuOGMtNS4xLTkuMS0xNS43LTEzLjUtMzEtMTMuNWgtMzcuNXYxMTkuN2gzNy41YzE1LjIsMCwyNS44LTQuNCwzMS0xMy41LDIuNy00LjgsNC4xLTEwLjYsNC4xLTE3LjhzLTEuNC0xMS44LTMuOC0xNS45Yy0zLjQtNS44LTkuMi0xMC44LTIxLjctMTAuOHYtNC4zYzEyLDAsMTguMy01LDIxLjctMTAuOHYuMVpNNDU3LjEsOTMuM2MtMS43LDIuOS00LjQsMy45LTguNywzLjloLTYuN3YtMjIuMmg2LjdjMy45LDAsNywxLjUsOC43LDQuNCwxLDEuNywxLjUsMy45LDEuNSw2LjVzLS4zLDUuMy0xLjUsNy40Wk00NTcuMSw0Ni42Yy0xLjcsMi45LTQuOCw0LjQtOC43LDQuNGgtNi43di0yMi4yaDYuN2M0LjMsMCw3LDEsOC43LDMuOSwxLjIsMi4xLDEuNSw0LjMsMS41LDcuNHMtLjUsNC44LTEuNSw2LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik01MzYsODkuNWMwLDYuNS0yLjYsMTAuOC03LjksMTAuOHMtOC4xLTQuNC04LjEtMTAuOFYzLjJoLTI3LjR2ODYuNGMwLDIyLjYsMTIuOSwzNi40LDM1LjQsMzYuNHMzNS4zLTE0LDM1LjMtMzYuNFYzLjJoLTI3LjR2ODYuNGwuMS0uMVoiLz4KICAgICAgPHBhdGggZD0iTTM1Ny43LDcwLjJ2LTMuOGM3LjktMi4xLDE0LjQtNi4zLDE3LjgtMTIuMywyLjctNC42LDQuMy0xMC4zLDQuMy0xNi4ycy0xLjUtMTQuNC00LjYtMTkuN2MtNS44LTkuNy0xNi42LTE1LTMxLjgtMTVoLTk5Ljh2MTE5LjdoNTcuM3YtMjUuN2gtMjkuOXYtMjEuNGgyOC4ydi0yNS43aC0yOC4ydi0yMS40aDM2Ljl2OTQuMWgyNy40di01MC4xaDEuNWwxNS4yLDUwLjFoMzAuNmwtMTUuNy01MC44LTkuMS0xLjktLjEuMVpNMzUwLjUsNDYuOGMtMS45LDMuMi01LjYsNS4xLTkuNyw1LjFoLTUuNnYtMjMuMWg1LjZjNC4zLDAsOCwyLjEsOS45LDUuNSwxLDEuNywxLjUsMy42LDEuNSw2cy0uNyw0LjgtMS43LDYuNWgwWiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjU5Ny4zIDk3LjIgNTk3LjMgMy4yIDU3MCAzLjIgNTcwIDEyMi45IDYyMC42IDEyMi45IDYyMC42IDk3LjIgNTk3LjMgOTcuMiIvPgogICAgPC9nPgogICAgPHBhdGggZD0iTTgwOC4xLDEyMi45aDI3LjRWMy4yaC0yNy40djExOS43Wk02MjQuOSwxMjIuOWg1MC42di0yNS43aC0yMy4zVjMuMmgtMjcuNHYxMTkuN2guMVoiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjc5LjcgMy4yIDY3OS43IDEyMi45IDczNy41IDEyMi45IDczNy41IDk3LjIgNzA3IDk3LjIgNzA3IDc1LjggNzM1LjggNzUuOCA3MzUuOCA1MC4yIDcwNyA1MC4yIDcwNyAyOC44IDczNy41IDI4LjggNzU0LjUgMjguOCA3NTQuNSAxMjIuOSA3ODEuOSAxMjIuOSA3ODEuOSAyOC44IDgwMy4yIDI4LjggODAzLjIgMy4yIDY3OS43IDMuMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI5MDQuMyAzIDkwNC4zIDEwMi42IDkwMS41IDEwMi42IDg5OS41IDc3LjIgODgxLjEgMyA4NDAuNyAzIDg0MC43IDEyMi44IDg2NS44IDEyMi44IDg2NS44IDIyLjcgODY4LjcgMjIuNyA4NzAuMyA0OC45IDg4OS4xIDEyMi44IDkyOS4zIDEyMi44IDkyOS4zIDMgOTA0LjMgMyIvPgogIDwvZz4KPC9zdmc+" alt="Silver Bulletin" /></footer>
 </main>
 <script>
@@ -447,14 +436,8 @@ const select=root.querySelector('[data-team]');
 const search=root.querySelector('[data-search]');
 const body=root.querySelector('[data-body]');
 const empty=root.querySelector('[data-empty]');
-const previousButton=root.querySelector('[data-previous]');
-const nextButton=root.querySelector('[data-next]');
-const pageLabel=root.querySelector('[data-page-label]');
 const mobile=root.querySelector('[data-mobile]');
 const sourceLine=root.querySelector('[data-source]');
-const mobileLayout=window.matchMedia('(max-width:620px)');
-const pageSize=()=>mobileLayout.matches?1:8;
-let page=0;
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const escapeAttr=value=>escapeHtml(value).replace(/`/g,'&#96;');
 const heatStops=[[60,'#F6FCFD'],[70,'#D7F2F6'],[80,'#B4E6EE'],[90,'#86D4E3'],[100,'#4B99D5'],[110,'#1318B2']];
@@ -469,23 +452,17 @@ const playerCell=(player,compact=false)=>{if(!player)return `<div class="qbd-emp
 const visibleTeams=()=>{const term=(search.value||'').trim().toLowerCase();return teams.filter(team=>{if(select.value&&select.value!=='ALL'&&team.code!==select.value)return false;if(!term)return true;return team.code.toLowerCase().includes(term)||team.team.toLowerCase().includes(term)||team.players.some(p=>p.name.toLowerCase().includes(term)||p.display.toLowerCase().includes(term));});};
 const renderMobile=visible=>{mobile.innerHTML=visible.map(team=>`<section class="qbd-mobile-team"><div class="qbd-mobile-head"><div class="qbd-team-title"><span class="qbd-team-chip">${teamLogo(team)}${escapeHtml(team.code)}</span><span class="qbd-team-name">${escapeHtml(team.team)}</span></div></div><div class="qbd-room">${[1,2,3,4].map(depth=>playerCell(team.players.find(p=>p.depth===depth),true)).join('')}</div></section>`).join('');};
 const buildOptions=()=>{const current=select.value;select.innerHTML=`<option value="ALL">ALL ${teams.length} TEAMS</option>`+teams.map(team=>`<option value="${escapeAttr(team.code)}">${escapeHtml(team.code)} \u2014 ${escapeHtml(team.team)}</option>`).join('');select.value=current&&teams.some(t=>t.code===current)?current:'ALL';};
-// Keep the results area and pager in place; filters never collapse the frame.
+// Render the full selected set. Let the host resize the iframe to the content.
+// Controls remain above the results; no focus or scroll commands move the page.
 const render=()=>{
-  const filtered=visibleTeams(),size=pageSize(),pages=Math.max(1,Math.ceil(filtered.length/size));
-  page=Math.min(page,pages-1);
-  const visible=filtered.slice(page*size,(page+1)*size);
+  const visible=visibleTeams();
   body.innerHTML=visible.map(team=>`<tr><td><span class="qbd-team">${teamLogo(team)}${escapeHtml(team.code)}</span></td>${[1,2,3,4].map(depth=>`<td>${playerCell(team.players.find(p=>p.depth===depth))}</td>`).join('')}</tr>`).join('');
-  empty.style.display=filtered.length?'none':'block';
-  previousButton.disabled=page===0;nextButton.disabled=page>=pages-1;
-  pageLabel.textContent=filtered.length?`Page ${page+1} of ${pages}`:'No results';
+  empty.style.display=visible.length?'none':'block';
   renderMobile(visible);scheduleHeightReport();
 };
 buildOptions();
-select.addEventListener('change',()=>{page=0;render();});
-search.addEventListener('input',()=>{page=0;render();});
-previousButton.addEventListener('click',()=>{if(page>0){page--;render();}});
-nextButton.addEventListener('click',()=>{if((page+1)*pageSize()<visibleTeams().length){page++;render();}});
-mobileLayout.addEventListener('change',()=>{page=0;render();});
+select.addEventListener('change',render);
+search.addEventListener('input',render);
 let heightFrame=0,heightTimer=0,lastReportedHeight=0;
 function reportHeight(){
   if(window.parent===window)return;
