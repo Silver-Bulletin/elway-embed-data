@@ -146,10 +146,28 @@
       "rows": 110,
       "sha256": "bdf197bd94abc74d3471e578c13a559e4cfd18a705c951813873ffc22808c3be"
     },
+    "qbert-lifetime-table": {
+      "path": "data/latest/qbert-lifetime-table.csv",
+      "rows": 527,
+      "sha256": "e10dfe83b4307def8f9f29ce6baa76c1357e0089df4411d530047a84470ec07c",
+      "updated_at": "2026-11-15T02:53:55.065908+00:00"
+    },
     "qbert-projection-week": {
       "path": "data/latest/qbert-projection-week.csv",
       "rows": 1,
       "sha256": "c6fb5f79acea4aa9f1380856dda5a55231a0b1d332ad56e70ddbdde4849a5fb7"
+    },
+    "qbert-projections-table": {
+      "path": "data/latest/qbert-projections-table.csv",
+      "rows": 110,
+      "sha256": "4fd1165cb23c356e9d7d807562a1612b2d3dddebc9a163bb53523b3786ab138a",
+      "updated_at": "2026-11-15T02:53:55.065908+00:00"
+    },
+    "qbert-season-table": {
+      "path": "data/latest/qbert-season-table.csv",
+      "rows": 66,
+      "sha256": "fc83f2410e5064f8d6a2520bdd7d2d47b264f785602fd42ea01f541fd3d20cca",
+      "updated_at": "2026-11-15T02:53:55.065908+00:00"
     }
   },
   "published_at": "2026-11-15T02:53:55.065908+00:00",

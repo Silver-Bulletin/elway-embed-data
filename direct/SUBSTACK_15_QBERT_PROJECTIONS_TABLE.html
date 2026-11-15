@@ -1,0 +1,147 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QBERT’s 2026 quarterback projections</title>
+<style>
+@font-face{font-family:QTableGeist;src:url('https://static.dwcdn.net/custom/themes/silver-bulletin/Geist-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:QTableGeist;src:url('https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_Re-Q4nQ.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:QTableHeadline;src:url('https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2') format('woff2');font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:QTableMono;src:url('https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2') format('woff2');font-style:normal;font-weight:400 900;font-display:swap}
+html,body{margin:0;background:#fff;color:#181818;color-scheme:light}
+.qbt{container-type:inline-size;box-sizing:border-box;width:100%;max-width:1062px;margin:0 auto;font-family:QTableGeist,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.qbt *{box-sizing:border-box}
+.qbt .kicker{width:3.86cqw;height:.754cqw;background:#04ff40;margin-bottom:.942cqw}
+.qbt h1{margin:0;color:#000;font:700 3.955cqw/4.708cqw QTableHeadline,'Arial Narrow',Arial,sans-serif;letter-spacing:0}
+.qbt .dek{margin:.942cqw 0 0;color:#454c52;font-size:2.119cqw;line-height:3.014cqw;font-weight:400}
+.qbt mark{background:#fff200;color:#171717;padding:0 .12em}
+.qbt .toolbar{margin-top:1.507cqw;display:flex;align-items:center;justify-content:space-between;height:3.767cqw;gap:12px}
+.qbt .search{height:100%;width:28.25%;min-width:170px;position:relative;display:flex;align-items:center}
+.qbt .search svg{position:absolute;left:.753cqw;width:2.26cqw;height:2.26cqw;color:#ccc;pointer-events:none}
+.qbt input{border:1px solid #ddd;border-radius:1.13cqw;background:white;width:100%;height:100%;padding:0 1cqw 0 3.67cqw;color:#181818;font:400 1.883cqw QTableGeist,Arial,sans-serif;outline-offset:2px}
+.qbt input::placeholder{color:#777;opacity:1}
+.qbt .pager{display:flex;align-items:center;gap:.94cqw;color:#777;font-size:1.883cqw;white-space:nowrap}
+.qbt .pager button{display:grid;place-items:center;width:4.14cqw;height:3.58cqw;border:1px solid #ddd;border-radius:1.32cqw;color:#777;background:white;cursor:pointer;padding:0}
+.qbt .pager button:disabled{opacity:.4;cursor:default}
+.qbt .pager svg{width:1.5cqw;height:1.5cqw;stroke-width:2.5}
+.qbt .table-scroll{margin-top:3.767cqw;overflow-x:auto;outline-offset:2px}
+.qbt table{table-layout:fixed;border-collapse:collapse;width:100%;font-size:2.072cqw;line-height:1.2}
+.qbt th{height:6.215cqw;vertical-align:bottom;padding:0 .7cqw 1.318cqw;font-size:1.883cqw;font-weight:400;text-align:center;border-bottom:1px solid #333}
+.qbt--projections th{height:3.955cqw}
+.qbt th.name{text-align:left;padding-left:1.225cqw}
+.qbt th button{padding:0;margin:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;text-align:inherit}
+.qbt th[aria-sort=ascending] button::after{content:' ↑';font-size:.8em}
+.qbt th[aria-sort=descending]:not([data-default]) button::after{content:' ↓';font-size:.8em}
+.qbt td{height:4.049cqw;padding:0 .7cqw;border-bottom:1px solid #eee;vertical-align:middle;text-align:center;font-weight:400;white-space:nowrap}
+.qbt tbody tr:last-child td{border-bottom:0}
+.qbt--projections tr.injured td{height:4.331cqw}
+.qbt td.rank{padding-left:1.036cqw;text-align:left;font-weight:700;font-size:1.507cqw}
+.qbt--lifetime td.rank,.qbt--projections td.rank{padding-left:0}
+.qbt td.name{padding-left:1.225cqw;text-align:left;overflow:hidden;text-overflow:ellipsis}
+.qbt td.starter{font-size:2.354cqw;padding:0}
+.qbt td.team{padding:0;border-color:transparent}
+.qbt td.heat{border-color:transparent}
+.qbt td.projection{font-weight:700}
+.qbt td.war{padding:0 2.26cqw 0 0;text-align:left;position:relative;border-left:1px solid #777}
+.qbt .bar-track{height:2.825cqw;position:relative}
+.qbt .bar{position:absolute;height:100%;min-width:0;background:#5fde47}
+.qbt .bar.negative{background:#ef785a}
+.qbt .bar-label{position:absolute;right:.28cqw;top:50%;transform:translateY(-50%);font-size:1.695cqw;color:#111}
+.qbt .empty{text-align:center;padding:2cqw;height:auto;color:#666}
+.qbt footer{margin-top:2.825cqw;padding-top:1.507cqw;border-top:1px solid #eee}
+.qbt .note{margin:0;color:#666;font:400 1.413cqw/1.789cqw QTableMono,monospace}
+.qbt .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:1.318cqw;min-height:2.072cqw;padding-bottom:2.825cqw}
+.qbt time{color:#666;font:400 1.224cqw/1.6 QTableMono,monospace}
+.qbt .wordmark{display:block;width:14.69%;height:auto;margin-left:auto;flex:none}
+@media(max-width:600px){
+ .qbt{padding:0 12px}.qbt .kicker{width:28px;height:6px;margin-bottom:8px}.qbt h1{font-size:30px;line-height:1.1}.qbt .dek{font-size:15px;line-height:1.4;margin-top:10px}.qbt .toolbar{height:36px;margin-top:16px;gap:8px}.qbt .search{min-width:0;flex:1}.qbt input{font-size:14px;border-radius:9px;padding-left:30px}.qbt .search svg{left:7px;width:18px;height:18px}.qbt .pager{font-size:12px;gap:5px}.qbt .pager button{width:29px;height:32px;border-radius:9px}.qbt .pager svg{width:12px;height:12px}.qbt .table-scroll{margin-top:24px}.qbt table{min-width:708px;font-size:14.67px}.qbt th{height:44px;font-size:13.33px;padding:0 5px 9px}.qbt--projections th{height:28px}.qbt--projections tr.injured td{height:30.67px}.qbt td{height:28.67px;padding:0 5px}.qbt th.name,.qbt td.name{padding-left:8.67px}.qbt td.rank{padding-left:7.33px;font-size:10.67px}.qbt--lifetime td.rank,.qbt--projections td.rank{padding-left:0}.qbt td.starter{font-size:16.67px}.qbt td.war{padding-right:16px}.qbt .bar-track{height:20px}.qbt .bar-label{font-size:12px;right:2px}.qbt footer{margin-top:20px;padding-top:12px}.qbt .note{font-size:10px;line-height:1.4}.qbt .footer-bottom{margin-top:12px;padding-bottom:20px}.qbt time{font-size:9px}.qbt .wordmark{width:104px}
+}
+</style>
+<main id="sb-qbert-projections-table" class="qbt qbt--projections" aria-labelledby="sb-qbert-projections-table-title">
+ <div class="kicker" aria-hidden="true"></div>
+ <h1 id="sb-qbert-projections-table-title">QBERT’s 2026 quarterback projections</h1>
+ <p class="dek">QBERT projections with adjusted QBERT ratings for 2024–26<br>80 = league average · 100 = MVP-level · Deeper blue = stronger rating · ✓ projected starter</p>
+ <div class="toolbar">
+  <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9.5" cy="9.5" r="8"/><path d="m15.5 15.5 7 7" stroke-width="4"/></svg><input type="search" aria-label="Search in table" placeholder="Search in table" autocomplete="off"></label>
+  <nav class="pager" aria-label="Table pages"><button type="button" class="previous" aria-label="Previous page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true"><path d="m10 2-6 6 6 6"/></svg></button><span class="page-label" aria-live="polite"></span><button type="button" class="next" aria-label="Next page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true"><path d="m6 2 6 6-6 6"/></svg></button></nav>
+ </div>
+ <div class="table-scroll" role="region" aria-label="QBERT’s 2026 quarterback projections table; scroll horizontally on smaller screens" tabindex="0"><table><colgroup><col style="width:5%"><col style="width:26%"><col style="width:5.6%"><col style="width:8.8%"><col style="width:13.85%"><col style="width:13.85%"><col style="width:13.65%"><col style="width:13.25%"></colgroup><thead><tr><th></th><th class="name" data-key="player" aria-sort="none"><button type="button" aria-label="Sort by Player">Player</button></th><th></th><th data-key="team" aria-sort="none"><button type="button" aria-label="Sort by Team">Team</button></th><th data-key="y2024" aria-sort="none"><button type="button" aria-label="Sort by 2024">2024</button></th><th data-key="y2025" aria-sort="none"><button type="button" aria-label="Sort by 2025">2025</button></th><th data-key="y2026" aria-sort="none"><button type="button" aria-label="Sort by 2026">2026</button></th><th data-key="projection" aria-sort="none"><button type="button" aria-label="Sort by Proj.">Proj.</button></th></tr></thead><tbody></tbody></table></div>
+ <footer><p class="note">Note: Projected QBERT incorporates recent performance, age, experience, injuries or idleness, and college information for young players. Rookies are highlighted in <mark>yellow</mark>.</p><div class="footer-bottom"><time aria-live="polite"></time><img class="wordmark" src="https://static.dwcdn.net/custom/themes/silver-bulletin/Silver%20Bulletin%20June2026%20logo%20-%20black.svg" alt="Silver Bulletin"></div></footer>
+</main>
+<script>
+(()=>{'use strict';
+const root=document.getElementById('sb-qbert-projections-table'),config={"kind":"projections","feed":"qbert-projections-table","sortKey":"projection","minimum":100,"whiteFrom":95.5,"columns":8},snapshot={"updated_at":"2026-11-15T02:53:55.065908+00:00","values":[["Player","","Team","Rookie",2024,2025,2026,"Proj."],["Brock Purdy","✓","SF","",91.834587,96.033409,98.9748,97.38174193831556],["Lamar Jackson ⛑️","","BAL","",109.52576,83.886787,104.82411,93.94209796224094],["Joe Burrow","✓","CIN","",95.009254,87.101517,99.051239,92.24848026293624],["Josh Allen","✓","BUF","",97.438873,91.276604,88.258324,91.4089491873376],["Jordan Love","✓","GB","",92.414207,90.969528,91.237953,91.32278926714017],["Trevor Lawrence","✓","JAX","",83.977295,90.661064,91.483528,90.17707005445732],["Dak Prescott","✓","DAL","",71.388779,91.522499,91.911469,89.84254878112878],["Drake Maye","✓","NE","",77.987381,91.373192,89.781631,89.6826171632766],["Patrick Mahomes","✓","KC","",87.616783,86.302338,85.708397,87.17271771860497],["Matthew Stafford","✓","LAR","",84.326828,95.09742,82.170036,86.84701204976146],["Jayden Daniels","✓","WAS","",90.538925,75.318314,89.882973,84.43046402302446],["Caleb Williams","✓","CHI","",68.174355,82.827209,90.843468,84.39738571178461],["Jared Goff","✓","DET","",86.808922,85.295387,84.101837,83.91027841312527],["C.J. Stroud","✓","HOU","",74.810226,78.139359,88.109459,83.02349643002749],["Sam Darnold ⛑️","","SEA","",82.175026,85.549835,76.512932,82.99435047859778],["Kirk Cousins","✓","MIN","",73.037064,72.728065,85.828163,82.36279809782677],["Tyler Shough","✓","NO","","",75.031319,78.852104,81.31501629986012],["Bryce Young","✓","CAR","",77.834488,76.222992,83.277588,81.29644272741488],["Marcus Mariota ⛑️","","WAS","","",78.104286,"",81.2703975281786],["Jaxson Dart ⛑️","","NYG","","",83.342567,"",80.63274998721727],["Michael Penix Jr.","✓","ATL","",76.148766,76.928932,74.093597,80.20181731903602],["Bo Nix","✓","DEN","",88.272514,84.58992,68.889465,79.73145460617307],["Jalen Hurts ⛑️","","PHI","",83.356125,84.710541,66.504776,79.1240344007494],["Malik Willis ⛑️","","MIA","","","",67.673996,78.7018603786254],["J.J. McCarthy","✓","NYG","","",65.518196,82.704163,78.40447409630346],["Kyler Murray ⛑️","","MIN","",87.784378,71.232224,77.683327,77.18430537439146],["Jacoby Brissett","✓","BAL","",69.548248,72.4533,70.818184,76.87483111425581],["Tua Tagovailoa","","ATL","",84.487144,66.728004,"",76.79173678068962],["Tyler Huntley ⛑️","","BAL","",73.157326,"",70.489601,76.69196346844433],["Daniel Jones","✓","IND","",78.285599,89.725983,56.220543,74.91207551801352],["Justin Herbert","✓","LAC","",90.280151,79.126038,56.024712,74.5432935358372],["Baker Mayfield","✓","TB","",88.507484,80.040474,59.383652,74.41698572966718],["Drew Lock","✓","SEA","",65.587875,"","",74.35541019577016],["Jameis Winston","","NYG","",76.084763,"",61.944553,74.29706897841184],["Anthony Richardson Sr.","","IND","",71.743103,"","",73.7582795941533],["Mitchell Trubisky","","TEN","","","","",73.74176816566631],["Spencer Rattler","","NO","",63.336334,78.97419,"",73.69748826754316],["Cam Ward","✓","TEN","","",63.461742,70.016335,73.67496215314185],["Mason Rudolph","","PIT","",77.513306,"","",73.07769250271696],["Geno Smith","✓","NYJ","",80.947449,59.891254,74.190956,72.62556080862878],["Riley Leonard","","IND","","","","",72.55805397681225],["Aaron Rodgers","✓","PIT","",79.210396,68.609085,65.725578,72.49364377006317],["Tyrod Taylor","","GB","","",78.310364,"",72.43309053784654],["Mac Jones","","SF","",68.279907,82.776131,"",72.26006628768383],["Jake Browning","","LAC","","",57.737438,"",72.21217190504022],["Tanner McKee ⛑️","","PHI","","","",63.651501,72.20403227787264],["Gardner Minshew II ⛑️","","ARI","",70.595619,"","",71.99684577345242],["Deshaun Watson","✓","CLE","",61.705265,"",65.307091,71.90343610337777],["Josh Johnson","","ARI","","","","",71.55031813138966],["Aidan O'Connell","","LV","",74.606758,"","",71.21870863213378],["Joe Flacco","","CIN","",79.528923,72.228577,"",71.09908998982884],["Tyson Bagent","","CHI","","","","",70.79670681263924],["Dillon Gabriel","","CLE","","",66.48365,"",70.51655209038266],["Nick Mullens","","JAX","","","","",70.16849795953621],["Joshua Dobbs","","DET","","","","",69.94444680194552],["Quinn Ewers","","JAX","","","","",69.73531209866385],["Jarrett Stidham","","DEN","","","","",69.71080581909267],["Shedeur Sanders","","CLE","","",52.207848,"",69.6229375589291],["Sam Ehlinger","","DEN","","","","",69.47843984221133],["Kenny Pickett","","CAR","","","","",69.10801341459488],["Davis Mills","","HOU","","",78.103439,"",69.07546726578198],["Trey Lance ⛑️","","LAC","","","","",68.7594814878104],["Easton Stick","","TB","","","","",68.31398453483813],["Jalon Daniels","","TB","✓","","",58.498547,67.78566976671212],["Joe Milton III","✓","PHI","","","","",67.67644038031929],["Kyle Trask","","DAL","","","","",66.9831190354856],["Justin Fields","","KC","",75.927246,70.582451,"",66.88723944636368],["Drew Allar","","PIT","✓","","","",66.37536795282679],["Will Levis","","NYJ","",61.375187,"","",66.21949947648231],["Will Howard","","PIT","","","","",66.11962291682069],["Fernando Mendoza","✓","LV","✓","","","",65.86075939471456],["Cade Klubnik","","NYJ","✓","","","",65.8252418749372],["Carson Beck","✓","ARI","✓","","","",65.78298194500755],["Kyle McCord","✓","MIA","","","","",65.57516775356692],["Sam Howell","","DAL","","","","",65.47343813194367],["Stetson Bennett IV","","LAR","","","","",65.4397837060636],["Taylen Green","","CLE","✓","","","",65.37988093559323],["Sean Clifford","","CIN","","","","",65.00571031964745],["Case Keenum","","CHI","","","","",64.9075953387121],["Hendon Hooker","","TEN","","","","",64.84492400664696],["Andy Dalton","","ATL","",77.569969,"","",64.66984737321634],["Tommy DeVito","","NE","","","","",64.39817865442986],["Athan Kaliakmanis","","WAS","✓","","","",64.23638630709195],["Carson Wentz","","MIN","","",62.854736,"",64.2261696340413],["Jalen Milroe","","SEA","","","","",63.92383301240105],["Ty Simpson","","LAR","✓","","","",63.50457832101187],["Adrian Martinez","","SEA","","","","",63.40271494135437],["Kurtis Rourke","","SF","","","","",63.12089013505928],["Graham Mertz ⛑️","","HOU","","","","",63.07494882413832],["Garrett Nussmeier","","KC","✓","","","",63.04933100876373],["Shane Buechele","","BUF","","","","",63.01996669043472],["Skylar Thompson ⛑️","","BAL","","","","",63.010199821101],["Jack Strand","","ATL","✓","","","",62.95046954447962],["Kedon Slovis","","BAL","","","","",62.78760286362441],["Brady Cook","","MIA","","",37.704338,"",62.78434558223991],["Behren Morton","","NE","✓","","","",62.59779515070545],["Jake Haener","","NYG","","","","",62.45305157147946],["Cam Miller","","GB","","","","",62.30961952733138],["Kyle Allen","","BUF","","","","",62.2732169206275],["Cole Payton","","PHI","✓","","","",62.19331091920301],["Matthew Caldwell ⛑️","","LAR","✓","","","",62.12504144441599],["DJ Uiagalelei","","LAC","","","","",61.79571763159367],["Luke Altmyer","","DET","✓","","","",61.48938840290285],["Sam Hartman","","WAS","","","","",60.96031988445041],["Joe Fagnano","","BAL","✓","","","",60.9055751268718],["Max Brosmer","","MIN","","","","",60.87366004629807],["Miller Moss","","CHI","✓","","","",60.81533107454999],["Zach Wilson","","NO","","","","",60.31311999807399],["Joey Aguilar","","ARI","✓","","","",59.87688203636344],["Haynes King","","CAR","✓","","","",59.32031444904258]]};
+const sourceRoot=new URL('https://silver-bulletin.github.io/elway-embed-data/data/latest/',location.href),cacheKey='silver-bulletin:qbert-table:'+config.feed;
+const teams={"ARI":"#97233f","ATL":"#a71930","BAL":"#241873","BUF":"#01338d","CAR":"#0285ca","CHI":"#0a162a","CIN":"#fb4f14","CLE":"#311D00","DAL":"#041e42","DEN":"#fb4f14","DET":"#0076b6","GB":"#203731","HOU":"#03202f","IND":"#002c5f","JAX":"#016778","KC":"#e31837","LAC":"#0080c6","LAR":"#013594","LV":"#a5acaf","MIA":"#008e97","MIN":"#4f2683","NE":"#002244","NO":"#d3bc8d","NYG":"#0b2265","NYJ":"#125740","PHI":"#004c54","PIT":"#ffb612","SEA":"#69be29","SF":"#aa0100","TB":"#d50a0a","TEN":"#4b92db","WAS":"#5a1414"},heatKnots=[[37,"#ffffff"],[60,"#f6fcfd"],[68.174347,"#ddf4f7"],[71.388779,"#d2f0f5"],[74.810226,"#c5ecf2"],[75.318314,"#c5ecf2"],[76.512924,"#c0eaf1"],[77.987381,"#bbe8f0"],[78.139351,"#bbe8ef"],[82.170036,"#abe2ec"],[82.175018,"#abe2ec"],[82.827202,"#a8e1eb"],[83.0061019028672,"#a7e1eb"],[83.03961290241205,"#a7e1eb"],[83.88678,"#a4dfea"],[83.92564826808814,"#a4dfea"],[83.977295,"#a2dfea"],[84.101837,"#a2dfe9"],[84.32682,"#a1dee9"],[84.41082886444698,"#a0dee9"],[84.94424782151641,"#9ddde9"],[85.29538,"#9cdce8"],[85.549828,"#9bdce8"],[85.708389,"#9adce8"],[86.30233,"#99dbe7"],[86.808922,"#95dae7"],[86.8641223100298,"#95dae6"],[87.101509,"#94d9e6"],[87.18728125620386,"#94d9e6"],[87.616783,"#91d8e6"],[88.109459,"#8fd7e5"],[88.258316,"#8ed7e5"],[89.70017671711629,"#87d5e3"],[89.781624,"#88d4e3"],[89.86022461533183,"#88d4e3"],[90.19141013051735,"#85d3e3"],[90.538918,"#83d1e2"],[90.661057,"#84d0e2"],[90.84346,"#83cfe1"],[90.969521,"#82cee2"],[91.237953,"#7fcce1"],[91.276596,"#7fcce1"],[91.33988921763832,"#7fcce1"],[91.373184,"#7fcce1"],[91.42401200441816,"#7ecbe1"],[91.483521,"#7ecbe1"],[91.522491,"#7ecbe1"],[91.834587,"#7cc9e1"],[91.911469,"#7bc8e0"],[92.2645929695345,"#7bc6e0"],[92.4142,"#7ac5e0"],[93.95083729672903,"#72bcde"],[94.252472,"#70badd"],[95.009254,"#6cb6dc"],[95.097412,"#6ab5dc"],[96.033401,"#65b0db"],[97.39601649754964,"#5da8d8"],[97.438866,"#5da8d8"],[98.9748,"#529fd7"],[99.051231,"#529ed6"],[104.82411,"#3f5ec5"],[109.52576,"#1b20b4"],[110,"#1318b2"]],pageSize=15;
+let rows=[],page=0,query='',sortKey=config.sortKey,sortDirection=-1,displayedAt=snapshot.updated_at;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean=v=>String(v??'').replace(/<[^>]*>/g,'');
+const number=v=>v===''||v==null?null:Number.isFinite(+v)?+v:null;
+const one=v=>v==null?'—':v.toFixed(1),integer=v=>v==null?'—':Math.round(v).toLocaleString('en-US');
+const normalize=v=>String(v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+function adapt(values){
+ if(!Array.isArray(values)||values.length<2)throw Error('Table data is empty');
+ const result=values.slice(1).filter(r=>r.some(v=>v!=='')).map((r,i)=>config.kind==='season'?{rank:i+1,team:r[0],player:clean(r[1]),raw:number(r[2]),adjusted:number(r[3]),plays:number(r[4]),war:number(r[5])}:config.kind==='lifetime'?{rank:i+1,player:clean(r[0]),active:/<span\s/i.test(String(r[0])),first:number(r[1]),last:number(r[2]),raw:number(r[3]),adjusted:number(r[4]),plays:number(r[5]),war:number(r[6])}:{rank:i+1,player:clean(r[0]),starter:r[1]==='✓',team:r[2],rookie:r[3]!==''&&r[3]!==0&&r[3]!=='0',y2024:number(r[4]),y2025:number(r[5]),y2026:number(r[6]),projection:number(r[7])});
+ if(result.length<config.minimum||result.some(r=>!r.player||!Number.isFinite(r[config.sortKey])))throw Error('Table data did not validate');
+ return result;
+}
+function heat(v){
+ if(v==null)return ['#fff','#181818'];
+ let hi=heatKnots.findIndex(s=>s[0]>=v);if(hi<0)hi=heatKnots.length-1;if(hi===0)hi=1;
+ const [lo,high]=[heatKnots[hi-1],heatKnots[hi]],t=Math.max(0,Math.min(1,(v-lo[0])/(high[0]-lo[0])));
+ const rgb=h=>h.match(/\w\w/g).map(x=>parseInt(x,16)),a=rgb(lo[1].slice(1)),b=rgb(high[1].slice(1));
+ const c=a.map((n,i)=>Math.round(n+(b[i]-n)*t)),color='#'+c.map(n=>n.toString(16).padStart(2,'0')).join('');
+ return [color, v>=config.whiteFrom?'#fff':'#181818'];
+}
+function heatCell(v,extra=''){const [bg,fg]=heat(v);return `<td class="heat ${extra}" style="background:${bg};color:${fg}">${one(v)}</td>`}
+function teamCell(team){const bg=teams[team]||'#eee',fg=['LV','NO','PIT'].includes(team)?'#000':'#fff';return `<td class="team" style="background:${bg};color:${fg}">${esc(team)}</td>`}
+function playerCell(r){return `<td class="name" title="${esc(r.player)}">${r.active||r.rookie?'<mark>':''}${esc(r.player)}${r.active||r.rookie?'</mark>':''}</td>`}
+function warCell(v,max){const w=Math.max(0,Math.min(100,Math.abs(v)/max*100)),label=(config.kind==='season'&&v>=0?'+':'')+v.toFixed(1);return `<td class="war"><div class="bar-track"><span class="bar ${v<0?'negative':''}" style="width:${w}%"><span class="bar-label"${w<25?' style="left:3px;right:auto"':''}>${esc(label)}</span></span></div></td>`}
+function render(){
+ const filtered=rows.filter(r=>normalize(r.player+' '+(r.team||'')).includes(query)).sort((a,b)=>{const av=a[sortKey],bv=b[sortKey];if(av==null)return bv==null?0:1;if(bv==null)return -1;return (typeof av==='number'?av-bv:String(av).localeCompare(String(bv)))*sortDirection||a.rank-b.rank});
+ const pages=Math.max(1,Math.ceil(filtered.length/pageSize));page=Math.min(page,pages-1);
+ const maxWar=Math.max(1,...rows.map(r=>Math.abs(r.war||0)));
+ root.querySelector('tbody').innerHTML=filtered.slice(page*pageSize,(page+1)*pageSize).map(r=>`<tr${r.player.includes('⛑')?' class="injured"':''}><td class="rank">${r.rank}</td>${playerCell(r)}${config.kind==='season'?teamCell(r.team)+heatCell(r.raw)+heatCell(r.adjusted)+`<td>${integer(r.plays)}</td>`+warCell(r.war,maxWar):config.kind==='lifetime'?`<td>${r.first}</td><td>${r.last}</td>`+heatCell(r.raw)+heatCell(r.adjusted)+`<td>${integer(r.plays)}</td>`+warCell(r.war,maxWar):`<td class="starter" aria-label="${r.starter?'Projected starter':'Not the projected starter'}">${r.starter?'✓':''}</td>`+teamCell(r.team)+heatCell(r.y2024)+heatCell(r.y2025)+heatCell(r.y2026)+heatCell(r.projection,'projection')}</tr>`).join('')||`<tr><td class="empty" colspan="${config.columns}">No quarterbacks match your search.</td></tr>`;
+ root.querySelector('.page-label').textContent=`Page ${page+1} of ${pages}`;
+ root.querySelector('.previous').disabled=page===0;root.querySelector('.next').disabled=page===pages-1;
+ root.querySelectorAll('th[data-key]').forEach(th=>{th.setAttribute('aria-sort',th.dataset.key===sortKey?(sortDirection===1?'ascending':'descending'):'none');th.toggleAttribute('data-default',sortKey===config.sortKey&&sortDirection===-1)});
+ resize();
+}
+function stamp(iso){const d=new Date(iso);if(!Number.isFinite(+d)||+d>Date.now()+60000)throw Error('Invalid data update time');const time=root.querySelector('time');time.dateTime=iso;time.textContent='Updated '+new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d);displayedAt=iso}
+function resize(){requestAnimationFrame(()=>{const style=getComputedStyle(document.body),h=Math.ceil(root.getBoundingClientRect().height+parseFloat(style.paddingTop||0)+parseFloat(style.paddingBottom||0));parent.postMessage({type:'silver-bulletin:embed-height',height:h},'*');parent.postMessage({type:'substack-code-embed',source:'height',height:h},'*')})}
+function parseCSV(text){const result=[];let row=[],value='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){value+='"';i++}else quoted=!quoted}else if(c===','&&!quoted){row.push(value);value=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(value);if(row.some(v=>v!==''))result.push(row);row=[];value=''}else value+=c}if(value!==''||row.length){row.push(value);result.push(row)}if(quoted)throw Error('Malformed CSV');return result}
+function sha256Portable(text){
+  const bytes=new TextEncoder().encode(text),size=Math.ceil((bytes.length+9)/64)*64,padded=new Uint8Array(size),view=new DataView(padded.buffer);
+  padded.set(bytes);padded[bytes.length]=0x80;view.setUint32(size-8,Math.floor(bytes.length/0x20000000));view.setUint32(size-4,(bytes.length*8)>>>0);
+  const k=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const h=new Uint32Array([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]),w=new Uint32Array(64),rotr=(n,b)=>(n>>>b)|(n<<(32-b));
+  for(let offset=0;offset<size;offset+=64){
+    for(let i=0;i<16;i++)w[i]=view.getUint32(offset+i*4);
+    for(let i=16;i<64;i++){const x=w[i-15],y=w[i-2],s0=rotr(x,7)^rotr(x,18)^(x>>>3),s1=rotr(y,17)^rotr(y,19)^(y>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)>>>0}
+    let [a,b,c,d,e,f,g,z]=h;
+    for(let i=0;i<64;i++){const s1=rotr(e,6)^rotr(e,11)^rotr(e,25),ch=(e&f)^(~e&g),t1=(z+s1+ch+k[i]+w[i])>>>0,s0=rotr(a,2)^rotr(a,13)^rotr(a,22),maj=(a&b)^(a&c)^(b&c),t2=(s0+maj)>>>0;z=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0}
+    const state=[a,b,c,d,e,f,g,z];for(let i=0;i<8;i++)h[i]=(h[i]+state[i])>>>0;
+  }
+  return [...h].map(v=>v.toString(16).padStart(8,'0')).join('');
+}
+async function sha256(text){if(!globalThis.crypto?.subtle)return sha256Portable(text);const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));return [...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('')}
+
+function apply(values,iso,status){const next=adapt(values);stamp(iso);rows=next;root.dataset.feedStatus=status;render()}
+async function refresh(){
+ try{
+  const mres=await fetch(new URL('manifest.json?_='+Date.now(),sourceRoot),{cache:'no-store',credentials:'omit'});if(!mres.ok)throw Error('Manifest unavailable');const m=await mres.json(),entry=m.files?.[config.feed];
+  if(m.schema!==1||!entry||entry.path!=='data/latest/'+config.feed+'.csv'||!/^[a-f0-9]{64}$/.test(entry.sha256))throw Error('Feed is not in the approved release');
+  const iso=entry.updated_at||m.published_at;if(!Number.isFinite(Date.parse(iso))||Date.parse(iso)>Date.now()+60000)throw Error('Invalid update time');
+  if(Date.parse(iso)<Date.parse(displayedAt))return;
+  const response=await fetch(new URL(config.feed+'.csv?v='+entry.sha256,sourceRoot),{cache:'no-store',credentials:'omit'});if(!response.ok)throw Error('Approved data unavailable');const text=await response.text();
+  if(await sha256(text)!==entry.sha256)throw Error('Approved data checksum mismatch');
+  apply(parseCSV(text),iso,'approved');try{localStorage.setItem(cacheKey,JSON.stringify({text,sha256:entry.sha256,updated_at:iso}))}catch(_){}
+ }catch(error){root.dataset.refreshStatus='retained-verified-data';console.info('QBERT table: retaining dated verified data.',error.message)}
+}
+root.querySelector('input').addEventListener('input',e=>{query=normalize(e.target.value.trim());page=0;render()});
+root.querySelector('.previous').addEventListener('click',()=>{page--;render()});root.querySelector('.next').addEventListener('click',()=>{page++;render()});
+root.querySelectorAll('th[data-key] button').forEach(button=>button.addEventListener('click',()=>{const key=button.closest('th').dataset.key;sortDirection=key===sortKey?-sortDirection:(key==='player'?1:-1);sortKey=key;page=0;render()}));
+apply(snapshot.values,snapshot.updated_at,'bundled-verified');
+(async()=>{try{const c=JSON.parse(localStorage.getItem(cacheKey)||'null');if(c&&Date.parse(c.updated_at)>Date.parse(displayedAt)&&await sha256(c.text)===c.sha256)apply(parseCSV(c.text),c.updated_at,'cached-verified')}catch(_){}await refresh()})();
+setInterval(refresh,300000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});window.addEventListener('resize',resize);document.fonts?.ready.then(resize);
+})();
+</script>

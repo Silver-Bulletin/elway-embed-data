@@ -27,3 +27,20 @@ historical rows bundled with the original chart shell.
 | QBERT game-by-game | `direct/SUBSTACK_09_QBERT_GAME_BY_GAME.html` |
 | Compare QB careers | `direct/SUBSTACK_10_QBERT_COMPARE_CAREERS.html` |
 | ELWAY team rating trends | `direct/SUBSTACK_11_ELWAY_RATING_TRENDS.html` |
+| QBERT depth charts | `direct/SUBSTACK_12_QBERT_DEPTH_CHARTS.html` |
+| Best and worst QBs of 2026 | `direct/SUBSTACK_13_QBERT_SEASON_TABLE.html` |
+| Lifetime QBERT leaderboard | `direct/SUBSTACK_14_QBERT_LIFETIME_TABLE.html` |
+| 2026 quarterback projections | `direct/SUBSTACK_15_QBERT_PROJECTIONS_TABLE.html` |
+
+The seven QBERT embeds show a visible update timestamp in Eastern Time, tied
+to the verified data being displayed. Opening a page or searching does not
+advance that timestamp. Replace previously pasted HTML once to add this label.
+
+The three complete tables (13–15) preserve the supplied screenshot designs,
+including 15-row pages, search, ratings colors, WAR bars, and player highlights.
+They include the verified November 14 snapshot and retain it, or a newer
+checksum-verified cache, with its original timestamp if a refresh fails. These
+three tables check for approved releases on load, every five minutes, and when
+the page becomes visible again. The explicit public-feed exporter includes
+their three canonical output Sheets; ordinary model/Sheets updates still do
+not publish them.
