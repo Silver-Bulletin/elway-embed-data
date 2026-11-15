@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <style>
 @font-face{font-family:"Archivo Narrow";src:url("https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
 @font-face{font-family:"Geist";src:url("https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf") format("truetype");font-style:normal;font-weight:400 800;font-display:swap}
@@ -120,6 +121,24 @@ const __SB_MANIFEST_URL=new URL('manifest.json',__SB_RELEASE_ROOT);
 const __SB_CACHE_PREFIX='silver-bulletin:verified-release:v3:';
 const __SB_CACHE_MAX_AGE_MS=24*60*60*1000;
 let __sbManifestPromise=null;
+const __sbReleaseTimes=new Map();
+let __sbTimeUnknown=false;
+const __sbUpdated=document.createElement('p');
+__sbUpdated.id='sb-release-updated';
+__sbUpdated.style.cssText='margin:12px 0 0;color:#60686e;font:11px/1.5 Arial,sans-serif';
+__sbUpdated.setAttribute('aria-live','polite');
+__sbUpdated.textContent='Update time unavailable';
+const __sbFooter=document.querySelector('footer');
+if(__sbFooter)__sbFooter.before(__sbUpdated);
+else document.body.append(__sbUpdated);
+function __sbRecordRelease(feed,release){
+  const stamp=Date.parse(release||'');
+  if(Number.isFinite(stamp))__sbReleaseTimes.set(feed,stamp);
+  if(__sbTimeUnknown||!__sbReleaseTimes.size){__sbUpdated.textContent='Update time unavailable';return}
+  const oldest=Math.min(...__sbReleaseTimes.values());
+  __sbUpdated.textContent='Updated '+new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(oldest));
+}
+
 document.documentElement.dataset.sbRelease='pending';
 const __sbStatusStyle=document.createElement('style');
 __sbStatusStyle.textContent=`html[data-sb-release="pending"] body>*:not(script):not(style):not(#sb-release-status){display:none!important}#sb-release-status{box-sizing:border-box;margin:0 auto;padding:26px 18px;max-width:760px;background:#fff;color:#60686e;font:600 14px/1.45 Arial,sans-serif;text-align:center}html:not([data-sb-release="pending"]) #sb-release-status{display:none}`;
@@ -162,6 +181,7 @@ function __sbReadCache(feed,expected=null){
     if(!cached||cached.schema!==3||!cached.text||!cached.sha256||!cached.savedAt)return null;
     if(Date.now()-Date.parse(cached.savedAt)>__SB_CACHE_MAX_AGE_MS)return null;
     if(expected&&(cached.release!==expected.release||cached.sha256!==expected.sha256))return null;
+    __sbRecordRelease(feed,cached.release);
     return cached.text;
   }catch(_error){return null}
 }
@@ -182,6 +202,7 @@ async function __sbApprovedText(info,options={}){
     const actual=await __sbSha256(body);
     if(actual!==entry.sha256)throw new Error('Approved feed checksum mismatch');
     __sbWriteCache(info.feed,manifest.published_at,actual,body);
+    __sbRecordRelease(info.feed,manifest.published_at);
     return body;
   }catch(error){primaryError=error}
   const cached=__sbReadCache(info.feed,expected);
@@ -197,7 +218,7 @@ async function fetchSheet(source){
     return parseCSV(text);
   }catch(error){
     console.warn('Verified approved feed unavailable; trying the source Sheet.',error);
-    try{return await fetchGoogleSheet(source)}
+    try{__sbTimeUnknown=true;__sbRecordRelease(info.feed,null);return await fetchGoogleSheet(source)}
     catch(sheetError){document.documentElement.dataset.feedStatus='unavailable';__sbUnavailable();throw new AggregateError([error,sheetError],'No current approved data source is available')}
   }
 }
